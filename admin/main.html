@@ -1,0 +1,572 @@
+<head>
+
+    
+
+    <title>POPCORN Management</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="./style.css?v=1.0">
+
+    <!--Import Framework-->
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/vue-resource.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script src="./js/jq311.js"></script>
+
+    <!--Import Plugin-->
+    <script src="./js/dropzone.js"></script>
+
+    <!--Import View Controller-->
+    <script src="./js/iflogin.js"></script>
+    <script src="./js/main.js" defer></script>
+    
+
+</head>
+
+
+
+<body>
+        
+<div class="all">
+
+    <div class="titleBar">
+        <div class="titleBarContainer">
+            <div class="titleBar_title">
+                <a style="font-family:barlowbold !important;">POPCORN </a><a>MANAGEMENT SYSTEM</a>
+            </div>
+
+            <div class="titleBar_logout" onclick="window.location.href='./services/loginfunc.php?action=logout'">
+                <img src="./asset/img/logout.png">
+            </div>
+        </div>
+    </div>
+
+    <!--SIDEBAR-->
+    <div class="sideBar">
+        <div class="sideBarContainer">
+
+            <router-link to="/view_movie">
+                <div class="sideBar_item" data-id="0" id="default_sBI">
+                    <div class="sideBar_item_name">
+                        <a>Movie</a>
+                    </div>
+                </div>
+            </router-link>
+
+            <router-link to="/view_video">
+                <div class="sideBar_item" data-id="1">
+                    <div class="sideBar_item_name">
+                        <a>Video</a>
+                    </div>
+                </div>
+            </router-link>
+
+            <div class="sideBar_item" id="toTT" data-id="2">
+                <div class="sideBar_item_name">
+                    <a>Timetable</a>
+                </div>
+            </div>
+
+            <div class="sideBar_item" data-id="3">
+                <div class="sideBar_item_name">
+                    <a>User</a>
+                </div>
+            </div>
+    
+            <div class="sideBar_item" data-id="4">
+                <div class="sideBar_item_name">
+                    <a>Slider</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+    <div id="main">
+        <!--TABLE VIEW ALL-->
+        <div id="uiTableView" v-if="view_table">
+
+            <div class="tableViewTop">
+                <div class="addNewBtn">
+                    <div class="addNewBtnContainer">
+                        <a>ADD NEW</a>
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th v-for="item in table_title">{{item}}</th>
+                </tr>
+
+                <tr v-for="item in table_content" v-if="vid === 0">
+                    <td>{{item.name}}</td>
+                    <td>{{item.cate}}</td>
+                    <td>{{item.rDate}}</td>
+                    <td>{{item.status}}</td>
+                    <td class="tt_iA">
+                        <!--div class="tt_actionBtn tt_aBD movieDelBtn"><img src="./asset/img/del.png" width="24px" v-bind:data-id="item.id" v-on:click="sub_del"></div-->
+                        <div class="tt_actionBtn movieEditBtn" v-bind:data-id="item.id"><img src="./asset/img/edit.png" width="20px"></div>
+                    </td>
+                </tr>
+
+                <tr v-for="item in table_content" v-if="vid === 1">
+                    <td>{{item.name}}</td>
+                    <td>{{item.url}}</td>
+                    <td>{{item.toMovieId}}</td>
+                    <td>{{item.status}}</td>
+                    <td class="tt_iA">
+                        <div class="tt_actionBtn tt_aBD videoDelBtn"><img src="./asset/img/del.png" width="24px" v-bind:data-id="item.id" v-on:click="sub_del"></div>
+                        <div class="tt_actionBtn videoEditBtn" v-bind:data-id="item.id"><img src="./asset/img/edit.png" width="20px"></div>
+                    </td>
+                </tr>
+
+                <tr v-for="item in table_content" v-if="vid == 3">
+                    <td>{{item.email}}</td>
+                    <td>{{item.address}}</td>
+                    <td>{{item.postcode}}</td>
+                    <td>{{item.pcard}}</td>
+                    <td class="tt_iA">
+                        <div class="tt_actionBtn tt_aBD userDelBtn"><img src="./asset/img/del.png" width="24px" v-bind:data-id="item.id" v-on:click="sub_del"></div>
+                    </td>
+                </tr>
+
+                <tr v-for="item in table_content" v-if="vid == 4">
+                    <td>{{item.name}}</td>
+                    <td><img v-bind:src="item.img" width="100"> </td>
+                    <td>{{item.toMovieId}}</td>
+                    <td>{{item.od}}</td>
+                    <td class="tt_iA">
+                        <div class="tt_actionBtn tt_aBD sliderDelBtn"><img src="./asset/img/del.png" width="24px" v-bind:data-id="item.id" v-on:click="sub_del"></div>
+                        <div class="tt_actionBtn sliderEditBtn" v-bind:data-id="item.id"><img src="./asset/img/edit.png" width="20px"></div>
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+
+        <!--MOVIE NEW/EDIT PAGE-->
+        <div id="uiFilmEditView" v-if="view_film">
+            <div class="uif_title">
+                <a v-if="view_is_edit">EDIT MOVIE</a>
+                <a v-if="view_is_new">NEW MOVIE</a>
+                <div class="uif_sub"><button v-on:click="sub_f">SUBMIT</button></div>
+                
+            </div>
+
+            
+            <div class="uif_form_container_left">
+                <div class="uif_name">
+                        <li>NAME: </li>
+                        <li>CATEGORY: </li>
+                        <li>BRIEF: </li>
+                        <li>RELEASE DATA: </li>
+                        <li>RUNNING TIME: </li>
+                        <li>DIRECTOR: </li>
+                        <li>CAST: </li>
+                        <li>RATE: </li>
+                        <li>STATUS: </li>
+                </div>
+
+                <!-- EDIT MOVIE-->
+                <!-- Control by viewIsEdit-->
+                <div class="uif_input" v-if="view_is_edit" v-for="item in single_data_content">
+                        
+                        <li><input type="text" id="f_name" v-bind:value="item.name"></li>
+                        <li><input type="text" id="f_cate" v-bind:value="item.cate"></li>
+                        <li><textarea rows="4" cols="50" id="f_brief" v-bind:value="item.brief"></textarea></li>
+                        <li><input type="text" id="f_rdate" v-bind:value="item.rDate"></li>
+                        <li><input type="text" id="f_runningTime" v-bind:value="item.runningTime"></li>
+                        <li><input type="text" id="f_director" v-bind:value="item.director"></li>
+                        <li><input type="text" id="f_cast" v-bind:value="item.cast"></li>
+                        <li>
+                            <select id="f_rate" v-model="item.rate">
+                                <option v-for="a in view_film_rate" v-bind:value="a">
+                                {{ a }}
+                                </option>
+                            </select>
+                            <div class="arrowdown"></div>
+                        </li>
+                        
+                        <li>
+                            <select id="f_status" v-model="item.status">
+                                <option v-for="b in view_film_status" v-bind:value="b">
+                                {{ b }}
+                                </option>
+                            </select>
+                            <div class="arrowdown"></div>
+                        </li>
+                        <li><input type="hidden" id="f_id" v-bind:value="item.id"></li>
+                </div>
+
+
+                <!-- ADD NEW MOVIE-->
+                <!-- Control by viewIsNew-->
+                <div class="uif_input" v-if="view_is_new">
+                        <li><input type="text" id="f_name" placeholder="NAME OF THE MOVIE"></li>
+                        <li><input type="text" id="f_cate" placeholder="CATEGORY"></li>
+                        <li><textarea rows="4" cols="50" id="f_brief" placeholder="BRIEF DISCRIPTION"></textarea></li>
+                        <li><input type="date" id="f_rdate" placeholder="CHOOSE A DATE"></li>
+                        <li><input type="text" id="f_runningTime" placeholder="2HOURS 4MINS"></li>
+                        <li><input type="text" id="f_director" placeholder="JEFF?"></li>
+                        <li><input type="text" id="f_cast" placeholder="NAME OF THE PLAYER"></li>
+                        <li>  
+                            <select id="f_rate">
+                                <option v-for="a in view_film_rate" v-bind:value="a">
+                                    {{ a }}
+                                </option>
+                            </select>
+                            <div class="arrowdown"></div>
+                        </li>
+                        
+                        <li>
+                            <select id="f_status">
+                                <option v-for="b in view_film_status" v-bind:value="b">
+                                    {{ b }}
+                                </option>
+                            </select>
+                            <div class="arrowdown"></div>
+                        </li>
+                </div>
+
+            </div>
+
+            
+
+            <div class="uif_form_container_right" >
+
+
+                <div class="uif_uploadImg">
+                    <a class="uif_uploadImgTitle">POSTER IMAGE</a>
+                    
+                    <!--Display current image from database-->
+                    <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.posterImg" id="f_posterImgExist" width="200px"></div>
+                    
+                    <!--Image upload function, call onFileChange function when selected image-->
+                    <div class="imgUploadBtn">
+                        <form action="/file-upload" class="dropzone" id="dropzone">
+                            <input type="file" name="posterImgUpload" id="f_posterImg" @change="upload" path="">
+                            <div></div>
+                            <!--img id="poIUploading" src="" width="200px"-->
+                        </form>
+                        
+                    </div>
+                </div>
+
+                <div class="uif_uploadImg">
+                        <a class="uif_uploadImgTitle">PREVIEW IMAGE</a>
+
+                        <!--Display current image from database-->
+                        <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.previewImg" id="f_previewImgExist" width="200px"></div>
+                        
+                        <!--Image upload function, call onFileChange function when selected image-->
+                        <div class="imgUploadBtn">
+                            <input type="file" name="previewImgUpload" id="f_previewImg" @change="upload" path="">
+                            <div></div>
+                        </div>
+                        
+                    </div>
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <!--VIDEO NEW/EDIT PAGE-->
+        <div id="uiVideoEditView" v-if="view_video">
+                <div class="uif_title">
+                    <a v-if="view_is_edit">EDIT VIDEO</a>
+                    <a v-if="view_is_new">NEW VIDEO</a>
+                    <div class="uif_sub"><button v-on:click="sub_v">SUBMIT</button></div>
+                    
+                </div>
+    
+                
+                <div class="uif_form_container_left">
+                    <div class="uif_name">
+                            <li>NAME: </li>
+                            <li>MOVIE: </li>
+                            <li>VIDEO LINK: </li>
+                            <li>VIDEO: </li>
+
+                    </div>
+    
+                    <!-- EDIT VIDEO-->
+                    <!-- Control by viewIsEdit-->
+                    <div class="uif_input" v-if="view_is_edit" v-for="item in single_data_content">
+                            
+                            <li><input type="text" id="v_name" v-bind:value="item.name"></li>
+                            <li>
+                                <select id="v_toid" v-model="item.toMovieId">
+                                    <option v-for="c in movie_to_id_list" v-bind:value="c.id">
+                                        {{ c.name }}
+                                    </option>
+                                </select>
+                                <div class="arrowdown"></div>
+                            </li>
+                            <li><input type="text" id="v_url" v-bind:value="item.url"></li>
+                            <li>
+                                <input type="file" name="v_url" id="v_url_input" @change="upload_v" path="">
+                                <div>
+                                    <iframe width="320" height="240" v-if="is_youtube" v-bind:src="youtube_Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <video width="320" height="240" v-else controls>
+                                            <source v-bind:src="item.url"  type="video/mp4">               
+                                    </video>
+                                    
+                                </div>
+                                
+                            </li>
+                            <li><input type="hidden" id="v_id" v-bind:value="item.id"></li>
+                    </div>
+    
+    
+                    <!-- ADD NEW VIDEO-->
+                    <!-- Control by viewIsNew-->
+                    <div class="uif_input" v-if="view_is_new">
+                        <li><input type="text" id="v_name" placeholder="NAME OF THE VIDEO"></li>
+                        <li>  
+                                <select id="v_toid">
+                                    <option v-for="c in movie_to_id_list" v-bind:value="c.id">
+                                        {{ c.name }}
+                                    </option>
+                                </select>
+                                <div class="arrowdown"></div>
+                        </li>
+                        <li><input type="text" id="v_url" placeholder="Use embed link or upload (support YouTube)"></li>
+                        <li>
+                                <input type="file" name="v_url" id="v_url_input" @change="upload_v" path="">
+                                <div></div>
+                        </li>
+                    </div>
+    
+                </div>
+    
+                
+    
+                <div class="uif_form_container_right" >
+    
+                    <div class="uif_uploadImg">
+                            <a class="uif_uploadImgTitle">PREVIEW IMAGE</a>
+    
+                            <!--Display current image from database-->
+                            <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.pImgUrl" id="v_previewImgExist" width="200px"></div>
+                            
+                            <!--Image upload function, call onFileChange function when selected image-->
+                            <div class="imgUploadBtn">
+                                <input type="file" name="previewImgUpload" id="v_previewImg" @change="upload" path="">
+                                <div></div>
+                            </div>
+                            
+                        </div>
+    
+                    
+    
+                </div>
+    
+                
+    
+        </div>
+
+        <!--TIMETABLE NEW/EDIT PAGE-->
+        <div id="uiTimeTableView" class="uiTimeTableView" v-if="view_timetable">
+            <div class="tableViewTop">
+
+                <div class="uiTT_mS">
+                    <a>MOVIE: </a> 
+                    <select id="t_mid" @change="tt_m_switch" v-model="tt_id">
+                        <option v-for="t in movie_to_id_list" v-bind:value="t.id">
+                            {{ t.name }}
+                        </option>
+                    </select>
+                    <div class="arrowdown" style="margin-left: 292px;"></div>
+                </div>
+                
+                <div class="addNewBtn" v-on:click="tt_addNew" style="margin-top: -36px;">
+                    <div class="addNewBtnContainer">
+                        <a>ADD NEW</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tt_all_container">
+                <div class="tt_date" v-for="date in tt_datelist">
+
+                    <div class="tt_date_title">
+                        <a>{{date}}</a>
+                    </div>
+
+                    <div class="tt_single_container">
+                        <div class="tt_single" v-for="item in tt_content" v-if="item.date == date">
+                            <div class="tt_single_time">{{item.time}}</div>
+                            <div class="tt_single_edit_btn" v-bind:data-id="item.id" v-on:click="tt_single_edit"><img src="./asset/img/edit.png" width="20px"></div>
+                        </div>
+                    </div>
+
+                    <!--EDIT TT POPUP-->
+                    <div class="tt_edit_view_container" v-for="item in tt_s" v-if="tt_editview">
+                        
+                        <div class="tt_single_edit">
+                            <a>DATE: </a><br>
+                            <input type="date" v-bind:id="'t_date_' + item.id" v-bind:value="item.date" @change="dateChange" style="width:190px;"><br><br>
+                            <a>TIME: </a><br>
+                            <input type="time" v-bind:id="'t_time_' + item.id" v-bind:value="item.time" @change="timeChange" step="1" style="width:190px;"><br><br><br>
+                            <a>TYPE: </a><br>
+                            <select v-model="item.type" v-bind:id="'t_type_' + item.id" style="width:190px;height: 40px;">
+                                <option v-for="tt in tt_typelist" v-bind:value="tt">
+                                    {{ tt }}
+                                </option>
+                            </select><div class="arrowdown" style="margin-left: 172px;margin-top: -25px;"></div>
+                            <br><br><br>
+                            <a>MOVIE: </a><br>
+                            <select v-model="item.toMovieId" v-bind:id="'t_toMovieId_' + item.id" style="width:190px;height: 40px;">
+                                    <option v-for="ttm in movie_to_id_list" v-bind:value="ttm.id">
+                                        {{ ttm.name }}
+                                    </option>
+                            </select>
+                            <div class="arrowdown" style="margin-left: 172px;margin-top: -25px;"></div>
+                            <br><br>
+                            <div class="tt_submit tt_s_save" v-bind:data-id="item.id">
+                                <div class="tt_single_edit_submit_text" v-bind:data-id="item.id" v-on:click="sub_t" style="padding-top:10px;">SAVE</div>
+                            </div>
+
+                            <div class="tt_submit tt_s_del" v-bind:data-id="item.id">
+                                <div class="tt_single_edit_submit_text" v-bind:data-id="item.id" v-on:click="tt_del" style="padding-top:10px;">DELETE</div>
+                            </div>
+
+                            
+
+                        </div>
+                    </div>
+
+                    <!--NEW TT POPUP-->
+                    <div class="tt_edit_view_container" v-if="tt_newview">
+                        
+                            <div class="tt_single_edit">
+                                <a>DATE: </a><br>
+                                <input type="date" id="t_date_0" placeholder="" @change="dateChange" style="width:190px;"><br><br>
+                                <a>TIME: </a><br>
+                                <input type="time"  id="t_time_0" @change="timeChange" step="1" style="width:190px;"><br><br><br>
+                                <a>TYPE: </a><br>
+                                <select id="t_type_0" style="width:190px;height: 40px;">
+                                    <option v-for="tt in tt_typelist" v-bind:value="tt">
+                                        {{ tt }}
+                                    </option>
+                                </select><div class="arrowdown" style="margin-left: 172px;margin-top: -25px;"></div>
+                                <br><br><br>
+                                <a>MOVIE: </a><br>
+                                <select id="t_toMovieId_0" style="width:190px;height: 40px;" @change="movChange">
+                                        <option v-for="ttm in movie_to_id_list" v-bind:value="ttm.id">
+                                            {{ ttm.name }}
+                                        </option>
+                                </select>
+                                <div class="arrowdown" style="margin-left: 172px;margin-top: -25px;"></div>
+                                
+                                <br><br>
+                                <div class="tt_submit tt_s_save">
+                                    <div class="tt_single_edit_submit_text" v-on:click="sub_t" style="padding-top:10px;">SAVE</div>
+                                </div>
+    
+                                
+    
+                            </div>
+                        </div>
+
+                    <!--EDIT POPUP OVERLAY-->
+                    <div class="tt_edit_overlay" v-if="tt_editview" v-on:click="tt_closeEditView"> </div>
+                    <!--NEW POPUP OVERLAY-->
+                    <div class="tt_edit_overlay" v-if="tt_newview" v-on:click="tt_closeNewView"> </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--SLIDER NEW/EDIT PAGE-->
+        <div id="uiSliderEditView" v-if="view_slider">
+                <div class="uif_title">
+                    <a v-if="view_is_edit">EDIT SLIDER</a>
+                    <a v-if="view_is_new">NEW SLIDER</a>
+                    <div class="uif_sub"><button v-on:click="sub_s">SUBMIT</button></div>
+                    
+                </div>
+    
+                
+                <div class="uif_form_container_left">
+                    <div class="uif_name">
+                            <li>NAME: </li>
+                            <li>LINK TO: </li>
+                            <li>PRIORITY: </li>
+
+                    </div>
+    
+                    <!-- EDIT SLIDER-->
+                    <!-- Control by viewIsEdit-->
+                    <div class="uif_input" v-if="view_is_edit" v-for="item in single_data_content">
+                        <li><input type="text" id="s_name" v-bind:value="item.name"></li>
+                        <li>
+                            <select id="s_toid" v-model="item.toMovieId">
+                                <option v-for="d in movie_to_id_list" v-bind:value="d.id">
+                                    {{ d.name }}
+                                </option>
+                            </select>
+                            <div class="arrowdown"></div>
+                        </li>
+                        <li><input type="text" id="s_od" v-bind:value="item.od"></li>
+                        <li><input type="hidden" id="s_id" v-bind:value="item.id"></li>
+                    </div>
+    
+    
+                    <!-- ADD NEW SLIDER-->
+                    <!-- Control by viewIsNew-->
+                    <div class="uif_input" v-if="view_is_new">
+                        <li><input type="text" id="s_name" placeholder="NAME OF THE SLIDER"></li>
+                        <li>  
+                            <select id="s_toid">
+                                <option v-for="d in movie_to_id_list" v-bind:value="d.id">
+                                    {{ d.name }}
+                                </option>
+                            </select>
+                            <div class="arrowdown"></div>
+                        </li>
+                        <li><input type="text" id="s_od" placeholder="IMAGE SEQUENCE"></li>
+                    </div>
+    
+                </div>
+    
+                
+    
+                <div class="uif_form_container_right" >
+    
+                    <div class="uif_uploadImg">
+                            <a class="uif_uploadImgTitle">PREVIEW IMAGE</a>
+    
+                            <!--Display current image from database-->
+                            <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.img" id="s_imgExist" width="200px"></div>
+                            
+                            <!--Image upload function, call onFileChange function when selected image-->
+                            <div class="imgUploadBtn">
+                                <input type="file" name="previewImgUpload" id="s_img" @change="upload" path="">
+                                <div></div>
+                            </div>
+                            
+                        </div>
+    
+                    
+    
+                </div>
+    
+                
+    
+        </div>
+        
+    </div>
+    
+    
+
+
+</div>
+</body>

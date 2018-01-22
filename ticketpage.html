@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<!--
+Popcorn Project
+Created by Jeff Wu, Liam White
+ticket page
+University of Portsmouth
+2018.01.11
+
+Catagories Page
+
+Simon Stringer
+-->
+
+<html>
+
+  <head>
+
+    <title>Popcorn | TICKET PAGE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./asset/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./asset/css/common.css" >
+    <link rel="stylesheet" type="text/css" href="./asset/css/index.css" >
+    <link rel="stylesheet" type="text/css" href="./asset/css/slider.css" >
+	<link rel="stylesheet" type="text/css" href="./asset/css/ticketpage.css" >
+	<link rel="icon" href="./asset/img/favicon1.png" type="image/gif" sizes="16x16">
+    <!--link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"-->
+
+  </head>
+
+  <body>
+    <nav class='navBar'>
+
+      <div class='navBar_logo' id='logoBg'>
+        <img src = './asset/img/headLogo.png' alt='logo' id='logo'>
+      </div>
+
+
+      <script src='./js/logohome.js'></script>
+
+      <div class='navBar_sBar'>
+        <input id='ssbar' type='text' onfocus="if(value=='&#xf002;  SEARCH') value = ''" onblur="if (this.value == '') (this.value='&#xf002;  SEARCH')" value='&#xf002;  SEARCH'>
+      </div>
+
+      <div class='navBar_text'>
+        <a href='#' onclick='openDialog()' id='navIn'>Sign In</a>
+        <a href='#' onclick='openDialog()' id='navUp'>Sign Up</a>
+        <a href='#' id='navUn'></a>
+        <a href='#' onclick='signOut()' id='navOut'>Sign Out</a>
+      </div>
+
+      <div class='navBar_mobile'>
+        <i class="fa fa-user" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
+        <a class='navBar_mobile_Un' id='navMUN' onclick='signOut()'>Sign Out</a>
+      </div>
+
+    </nav>
+
+    <div class='slider w3-display-container'>
+      <div class='sInner'>
+        <img class="mySlides" src="./asset/img/slider1.jpg" alt='call of duty'>
+      </div>
+
+      <!--a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+      <a class="w3-btn-floating w3-display-right" onclick="plusDivs(+1)">&#10095;</a-->
+
+        <!--a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+        <a class="w3-btn-floating w3-display-right" onclick="plusDivs(+1)">&#10095;</a-->
+    </div>
+
+
+
+    <div class=sInnerText>
+      <div class='sInnerTextH1' id = 'btx'>
+        <h1 class="myTexts">CALL OF DUTY</h1>
+        <h1 class="myTexts">OVERWATCH</h1>
+        <h1 class="myTexts">BATTLEFIELD 1</h1>
+        <h1 class="myTexts">Assassin's Creed IV</h1>
+      </div>
+
+      <div class='sInnerTextH3'>
+        <a class="myTextsH3">Infinite Warfare delivers three unique game modes:<br> Campaign returns to the gritty, large-scale war roots of the franchise, while boldly looking ahead. </a>
+        <a class="myTextsH3">In a time of global crisis, an international task force<br> of heroes banded together to restore peace to a war-torn world: OVERWATCH. </a>
+        <a class="myTextsH3">PLAY MORE MAPS, MORE WEAPONS, MORE BATTLEFIELD™ 1<br> Explore the battlefield with houses, tank, gas weapon in the period of World War I. </a>
+        <a class="myTextsH3">Ostensibly, this is to gather material for an Animus-powered<br> interactive feature film, but in reality, Abstergo and the Templars are searching for the Observatory</a>
+      </div>
+    </div>
+
+    <div class='sButton'>
+      <button class = 'sliderButton' onclick="window.location.href='./cate.html'">WELL PLAYED</button>
+    </div>
+
+    <div class='sInnerIndicator'>
+      <i class="fa fa-circle fa-1x fa-inverse myInd indCircle" aria-hidden="true"></i>
+      <i class="fa fa-circle fa-1x fa-inverse myInd indCircle" aria-hidden="true"></i>
+      <i class="fa fa-circle fa-1x fa-inverse myInd indCircle" aria-hidden="true"></i>
+      <i class="fa fa-circle fa-1x fa-inverse myInd indCircle" aria-hidden="true"></i>
+    </div>
+
+    <!--div class='bigText'>
+      <h1>CALL OF DUTY: INFINITE WARFARE</h1>
+      <h3>Infinite Warfare delivers three unique game modes:<br> Campaign returns to the gritty, large-scale war roots of the franchise, while boldly looking ahead. </h3>
+    </div-->
+    <script src="./js/slider.js"></script>
+
+    <!--div class='sideBar'>
+      <ul>
+        <a href='#' target="_blank"><li class='sBunit'><img src='./asset/img/sb_live.png' alt='live'><br>Live</li></a>
+        <a href='#' target="_blank"><li class='sBunit'><img src='./asset/img/sb_discover.png' alt='discover'>Discover</li></a>
+        <a href='#' target="_blank"><li class='sBunit'><img src='./asset/img/sb_library.png' alt='library'><br>Catagory</li></a>
+        <a href='#' target="_blank"><li class='sBunit'><img src='./asset/img/sb_game.png' alt='game'><br>Game</li></a>
+        <a href='#' target="_blank"><li class='sBunit'><img src='./asset/img/sb_my.png' alt='my account'><br>My</li></a>
+      </ul>
+
+    </div-->
+
+
+    <!-- Catagories Area-->
+   <!-- Catagories Area-->
+   <!-- Catagories Area-->
+   <!-- Basis of Scroll bar reference http://www.quackit.com/html/codes/html_scroll_box.cfm, http://www.html.am/html-codes/scrollboxes/html-scroll,box.cfm -->
+  <!--p://www.w3schools.com/tags/att_table_cellspacing.asp -->
+  <!--div class="title_cata">
+
+      <h1>Choose a Game</h1>
+
+  </div>
+
+  <div class='content_cata'>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/witcher.png' alt="Witcher"></a>
+      <br><br>
+      <p>Witcher 3</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/battlefield.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Battlefield</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/battlefront.jpeg' alt="Witcher"></a>
+      <br><br>
+      <p>Star Wars Battlefront</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/bioshock.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Bioshock</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/forza.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Forza Horizon 3</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/fifa.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Fifa 17</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/nba.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>NBA 2K17</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/gta.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>GTA V</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/halowars2.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Halo Wars 2</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/counter.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Counter Strike</p>
+    </div>
+
+    <div class='game'>
+     <a href='./video.html'><img src='./asset/img/cata/honor.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Honor</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/overwatch.png' alt="Witcher"></a>
+      <br><br>
+      <p>Overwatch</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/red.png' alt="Witcher"></a>
+      <br><br>
+      <p>Red Dead Redemption</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/warz.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>WarZ</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/worldoftanks.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>World of Tanks</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/dota2.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Dota 2</p>
+    </div>
+	   <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/elderscrolls.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Elder Scrolls</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/callofdutyaw.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Call Of Duty Advanced Warfare</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/minecraft.png' alt="Witcher"></a>
+      <br><br>
+      <p>Minecraft</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/titanfall.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Titanfall</p>
+    </div>
+
+	   <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/WoW Burning Crusade.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>WoW Burning Crusade</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/WoW Cataclysm.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>WoW Cataclysm</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/Wow Legion.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>Wow Legion</p>
+    </div>
+
+    <div class='game'>
+      <a href='./video.html'><img src='./asset/img/cata/WoW the Wrath of Lich King.jpg' alt="Witcher"></a>
+      <br><br>
+      <p>WoW the Wrath of Lich King</p>
+    </div>
+
+
+
+  </div-->
+<!-- orignal table created but changed to above, to allow a responvise page -->
+  <!--div class="content_cata">
+		  <table cellspacing="75" border="2" class= "table">
+		  <tr>
+			<td><img src='./asset/img/cata/witcher.png' alt="Witcher" style="width:304px;height:228px;"><p><br>Witcher 3</p></td>
+			<td><img src='./asset/img/cata/battlefield.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Battlefield</p></td>
+			<td><img src='./asset/img/cata/Battlefront.jpeg' alt="Witcher" style="width:304px;height:228px;"><p><br>Star Wars Battlefront</p></td>
+			<td><img src='./asset/img/cata/Bioshock.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Bioshock</p></td>
+		  </tr>
+		   <tr>
+		   <td><img src='./asset/img/cata/Elder Scrolls.jpg' alt="Withcer" style="width:304px;height:228px;"><p><br>Elder Scrolls</p></td>
+			<td><img src='./asset/img/cata/titanfall.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Titanfall</p></td>
+			<td><img src='./asset/img/cata/WarZ.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>WarZ</p></td>
+			<td><img src='./asset/img/cata/callofdutyaw.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Call of Duty AW</p></td>
+		   </tr>
+			  <tr>
+		  <td><img src='./asset/img/cata/WorldsofTanks.jpg' alt="Withcer" style="width:304px;height:228px;"><p><br>World of Tanks</p></td>
+			<td><img src='./asset/img/cata/Honor.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Honor</p></td>
+			<td><img src='./asset/img/cata/halowars2.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Halo Wars 2</p></td>
+			<td><img src='./asset/img/cata/nba.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>NBA 2k17</p></td>
+		   </tr>
+			  <tr>
+		<td><img src='./asset/img/cata/forza.jpg' alt="Withcer" style="width:304px;height:228px;"><p><br>Forza Horizan 3</p></td>
+			<td><img src='./asset/img/cata/dota2.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Dota 2</p></td>
+			<td><img src='./asset/img/cata/gta.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>GTA V</p></td>
+			<td><img src='./asset/img/cata/fifa.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>Fifa 17</p></td>
+		   </tr>
+			   <tr>
+		<td><img src='./asset/img/cata/counter.jpg' alt="Withcer" style="width:304px;height:228px;"><p><br>Counter Strike</p></td>
+			<td><img src='./asset/img/cata/minecraft.png' alt="Witcher" style="width:304px;height:228px;"><p><br>Minecraft</p></td>
+			<td><img src='./asset/img/cata/overwatch.png' alt="Witcher" style="width:304px;height:228px;"><p><br>Overwatch</p></td>
+			<td><img src='./asset/img/cata/red.png' alt="Witcher" style="width:304px;height:228px;"><p><br>Red Dead Redemption</p></td>
+		   </tr>
+			   <tr>
+		  <td><img src='./asset/img/cata/Wow Legion.jpg' alt="Withcer" style="width:304px;height:228px;"><p><br>Wow Legion</p></td>
+			<td><img src='./asset/img/cata/WoW Burning Crusade.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>WoW Burning Crusade</p></td>
+			<td><img src='./asset/img/cata/WoW Cataclysm.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>WoW Cataclysm</p></td>
+			<td><img src='./asset/img/cata/WoW the Wrath of Lich King.jpg' alt="Witcher" style="width:304px;height:228px;"><p><br>WoW the Wrath of Lich King</p></td>
+		   </tr>
+		</table>
+
+
+  </div-->
+
+       <div class='dialog' id='dialog'>
+         <div class='dialog_close' id='dialogClose'><i class="fa fa-times" aria-hidden="true" onclick='closeDialog()'></i></div>
+         <div class='dialog_input' id='dialog_sign_input'>
+           <input type='text' id='username' value='Email' onfocus="if(value=='Email') value = ''" onblur="if(value=='') value = 'Email'"></input>
+           <input type='text' id='password' value='Password' onfocus="if(value=='Password') value = '', type='password'" onblur="if(value =='') value = 'Password', type='text'"></input>
+         </div>
+         <div class='dialog_term'>
+           <a>By creating an account, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
+         </div>
+
+         <div class='dialog_button'>
+           <button onclick="login()">Sign in or Create account</button>
+         </div>
+
+         <div class='dialog_iForgot'>
+           <a href='#'>I forgot my password</a>
+         </div>
+       </div>
+
+       <div class='dialogOverlay' id='dialogOverlay' onclick='closeDialog()'>
+         <a> </a>
+       </div>
+
+       <div class='alertOverlay' id='alertOverlay'>
+         <a id='alertContent'>Something wrong here.</a>
+       </div>
+
+       <div class="line01">
+
+         <img src = "./asset/img/footer_line.png">
+
+       </div>
+
+       <footer class='footer'>
+         <div class='f_container'>
+         <div class='footer_list'>
+
+           <div class='footer_socialNet'>
+             <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
+             <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
+             <a href='https://en-gb.facebook.com/'target="_blank"><img src='./asset/img/social_icon04.png' alt='logo'></a>
+             <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
+             <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
+           </div>
+         </div>
+           <div class='contact'>
+             <ul>
+               <li><a href='#' target="_blank">POPCORN 2017 All rights reserved</a></li>
+               <li></li>
+               <li><a href='./index.html'target="_blank"><img src='./asset/img/headLogo.png' alt='logo'></a></li>
+               <li></li>
+               <li><a href='#' target="_blank">Customer service 020 8789 1436</a></li>
+             </ul>
+           </div>
+         </div>
+       </footer>
+
+
+  <script src="./js/signin.js"></script>
+
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<!--
+Popcorn Project
+Created by Jeff Wu, Liam White
+video page
+University of Portsmouth
+2018.01.11
+-->
+
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Popcorn | Book Film Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./asset/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./asset/css/common.css" >
+    <link rel="stylesheet" type="text/css" href="./asset/css/index.css" >
+    <link rel="stylesheet" type="text/css" href="./asset/css/video.css" >
+    <link rel="stylesheet" type="text/css" href="./asset/css/slider.css" >
+    <link rel="icon" href="./asset/img/favicon1.png" type="image/gif" sizes="16x16">
+
+
+	<!--link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"-->
+
+  <script>
+
+    var isOpen = 0;
+    function openVideo(){
+
+      if(isOpen == 0){
+        document.getElementById("video_overlay").style.display = "block";
+        document.getElementById("video_overlay_player").style.display = "block";
+        isOpen = 1;
+      }else{
+        document.getElementById("video_overlay").style.display = "none";
+        document.getElementById("video_overlay_player").style.display = "none";
+        isOpen = 0;
+      }
+    }
+
+  </script>
+
+  </head>
+  <h1 class='noLS'>Webpage currently unable to support landscape view.</h1>
+  <body>
+
+    <div class="video_overlay" id="video_overlay" onclick="openVideo()"></div>
+
+    <div class='vid_container' id="video_overlay_player">
+      <div class='insideoverlay' onclick="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
+      <iframe width="1080" height="720" src="https://www.youtube.com/embed/52x5HJ9H8DM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <nav class='navBar'>
+
+      <div class='navBar_logo' id='logoBg'>
+        <img src = './asset/img/headLogo.png' alt='logo' id='logo'>
+      </div>
+
+      <div class='navBar_sBar'>
+        <input id='ssbar' type='text' onfocus="if(value=='&#xf002;  SEARCH') value = ''" onblur="if (this.value == '') (this.value='&#xf002;  SEARCH')" value='&#xf002;  SEARCH'>
+      </div>
+
+      <div class='navBar_text'>
+        <a href='#' onclick='openDialog()' id='navIn'>Sign In</a>
+        <a href='#' onclick='openDialog()' id='navUp'>Sign Up</a>
+        <a href='#' id='navUn'></a>
+        <a href='#' onclick='signOut()' id='navOut'>Sign Out</a>
+      </div>
+
+      <div class='navBar_mobile'>
+        <i class="fa fa-user" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
+        <a class='navBar_mobile_Un' id='navMUN' onclick='signOut()'>Sign Out</a>
+      </div>
+
+    </nav>
+
+	<!--poster here-->
+
+  <div class='movie_container'>
+    <div class='movie_2'>
+      <img src='./asset/img/slider1.jpg' alt="">
+    </div>
+  </div>
+
+        <div class='main_filminfo'>
+
+             <div class='mi_main'>
+
+               <img src='./asset/img/poster05.jpg' alt='image'>
+
+             </div>
+
+      <div class='movie_infocont'>
+
+          <div class='movie_cred'>
+               <ul>
+                 <li><a><img src='./asset/img/certificate.png' alt='image'></a></li>
+                 <li></li>
+                 <li><a>RELEASE DATE</a></li>
+                 <li><a>10/04/17</a></li>
+                 <li></li>
+                 <li><a>RUNNING TIME</a></li>
+                 <li><a>2HR 30MIN</a></li>
+                 <li></li>
+                 <li><a>DIRECTER</a></li>
+                 <li><a>efefefefe</a></li>
+                 <li></li>
+                 <li><a>CAST</a></li>
+                 <li><a>efefefe</a></li>
+                 <li><a>JOHN</a></li>
+                 <li><a>efefefe</a></li>
+                 <li><a>DAVE</a></li>
+                 <li><a>efefefe</a></li>
+               </ul>
+             </div>
+
+
+
+
+        <div class='movie_info'>
+
+              <ul>
+                <li><a><img src='./asset/img/play_btn.png' alt='image'></a></li>
+                <li><a>STAR WARS:THE LAST JEDI</a></li>
+                <li><a>ACTION, ADVENTURE, FANTASY | 2 HR 30MIN</a></li>
+                <li><a><img src='./asset/img/sep.png' alt='image'></a></li>
+              </ul>
+            <div class='paragraph_f'>
+              <P>HAVING TAKEN HER FIRST STEPS INTO THE JEDI WORLD, REY</p>
+              <P>JOINS LUKE SKYWALKER ON AN ADVENTURE WITH LEAI, FINN</p>
+              <p>AND POE THAT UNLOCKS MYSTERIES OF THE FORCE AND </p>
+              <p>SECRETS OF THE PAST.</P>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class='date_select'>
+      </div>
+<div class='outer_time'>
+      <div class='time_table'>
+        <div class='time'>
+
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class='time_table2'>
+        <div class='time'>
+
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+          <ul>
+            <li><a>2:40 PM</a></li>
+            <li><a>2D - AD</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class='content_title'>
+      <a class='ct ct_1'>RELATED</a>
+      <img src='./asset/img/indicator.png' alt='image'>
+    </div>
+
+    <div class='videoPreview_Container'>
+      <div class="vP_container_inside">
+          <div class='videoimg'>
+            <!--a class='ct ct_1'>Trailer</a-->
+            <img src='./asset/img/videoright.png' alt='image'>
+          </div>
+
+          <div class='videoimg'onclick="openVideo()">
+            <img src='./asset/img/videoright.png' alt='image'>
+          </div>
+
+          <div class='videoimg'>
+            <img src='./asset/img/videoright.png' alt='image'>
+          </div>
+      </div>
+
+    </div>
+
+    <div class='content_title'>
+      <a class='ct ct_1'>ALSO SHOWING</a>
+      <img src='./asset/img/indicator.png' alt='image'>
+    </div>
+
+    <div class='content_video_list' id='cvl_2'>
+
+      <div class='vl_container vl1'>
+        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+        <div class='vl_text'>
+          <a href='./video.html'class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+      <div class='vl_container vl1'>
+        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+        <div class='vl_text'>
+          <a href='./video.html' class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+      <div class='vl_container vl1'>
+        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+        <div class='vl_text'>
+          <a href='./video.html' class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+      <div class='vl_container vl1'>
+        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+        <div class='vl_text'>
+          <a href='./video.html' class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+
+
+
+
+  </div>
+
+
+    <div class='dialog' id='dialog'>
+      <div class='dialog_close' id='dialogClose'><i class="fa fa-times" aria-hidden="true" onclick='closeDialog()'></i></div>
+      <div class='dialog_input' id='dialog_sign_input'>
+        <input type='text' id='username' value='Email' onfocus="if(value=='Email') value = ''" onblur="if(value=='') value = 'Email'"></input>
+        <input type='text' id='password' value='Password' onfocus="if(value=='Password') value = '', type='password'" onblur="if(value =='') value = 'Password', type='text'"></input>
+      </div>
+      <div class='dialog_term'>
+        <a>By creating an account, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
+      </div>
+
+      <div class='dialog_button'>
+        <button onclick="login()">Sign in or Create account</button>
+      </div>
+
+      <div class='dialog_iForgot'>
+        <a href='#'>I forgot my password</a>
+      </div>
+    </div>
+
+    <div class='dialogOverlay' id='dialogOverlay' onclick='closeDialog()'>
+      <a> </a>
+    </div>
+
+    <div class='alertOverlay' id='alertOverlay'>
+      <a id='alertContent'>Something wrong here.</a>
+    </div>
+
+    <div class="line01">
+
+      <img src = "./asset/img/footer_line.png">
+
+    </div>
+
+    <footer class='footer'>
+      <div class='f_container'>
+      <div class='footer_list'>
+
+        <div class='footer_socialNet'>
+          <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
+          <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
+          <a href='https://en-gb.facebook.com/'target="_blank"><img src='./asset/img/social_icon04.png' alt='logo'></a>
+          <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
+          <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
+        </div>
+      </div>
+        <div class='contact'>
+          <ul>
+            <li><a href='#' target="_blank">POPCORN 2017 All rights reserved</a></li>
+            <li></li>
+            <li style="margin-top: -26px;"><a href='./index.html'><img src='./asset/img/headLogo.png' alt='logo'></a></li>
+            <li></li>
+            <li><a href='#' target="_blank">Customer service 020 8789 1436</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+      <script src="./js/signin.js"></script>
+      <script src='./js/logohome.js'></script>
+
+
+  </body>
+
+</html>

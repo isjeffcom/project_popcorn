@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<!--
+Popcorn Project
+Created by Jeff Wu, Liam White
+Index Page
+University of Portsmouth
+2018.01.11
+-->
+
+<html>
+
+  <head>
+    <title>Popcorn | Book Film in Advance</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="./asset/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./asset/css/common.css" >
+    <link rel="stylesheet" type="text/css" href="./asset/css/index.css" >
+    <link rel="stylesheet" type="text/css" href="./asset/css/slider.css">
+    <script src="./js/scroll.js"></script>
+    <script src="./js/jq321.js"></script>
+    <script src="./js/popcorn_slider.js" defer></script>
+    <script src="./js/signin.js" defer></script>
+    <script src="./js/mobile.js" defer></script>
+
+    <link rel="icon" href="./asset/img/favicon1.png" type="image/gif" sizes="16x16">
+
+    <script>
+
+      var isOpen = 0;
+      function openVideo(){
+
+        if(isOpen == 0){
+          document.getElementById("video_overlay").style.display = "block";
+          document.getElementById("video_overlay_player").style.display = "block";
+          $("#video_overlay_player").find("iframe").attr("src", "https://www.youtube.com/embed/52x5HJ9H8DM");
+          isOpen = 1;
+        }else{
+          document.getElementById("video_overlay").style.display = "none";
+          document.getElementById("video_overlay_player").style.display = "none";
+          $("#video_overlay_player").find("iframe").attr("src", "");
+          isOpen = 0;
+        }
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <div class="video_overlay" id="video_overlay" onclick="openVideo()"></div>
+
+
+    <div class='vid_container' id="video_overlay_player">
+        <div class='insideoverlay' onclick="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
+        <iframe width="900" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+
+    <div class='navBar'>
+
+      <div class='navBar_logo' id='logoBg'>
+        <img src = './asset/img/headlogo01.png' alt='logo' id='logo'>
+      </div>
+
+      <script src='./js/logohome.js'></script>
+
+      <div class='navBar_sBar'>
+        <input id='ssbar' type='text' onfocus="if(value=='&#xf002;  SEARCH') value = ''" onblur="if (this.value == '') (this.value='&#xf002;  SEARCH')" value='&#xf002;  SEARCH'>
+      </div>
+
+      <div class='navBar_mobile'>
+        <i class="fa fa-search" style="margin-top:-2px;" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
+        <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
+        
+        <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
+      </div>
+
+    </div>
+
+
+
+
+    <div class="poocorn_slider">
+
+        <div class="ps_controller">
+          <div class="ps_controller_container">
+            <div class="ps_controller_single" id="s0" data-id="0">
+              <a class="ps_csN" id="sn0"></a>
+              <img src="./asset/img/simg1.jpg">
+            </div>
+            <div class="ps_controller_single" id="s1" data-id="1">
+              <a class="ps_csN" id="sn1"></a>
+              <img src="./asset/img/simg2.jpg">
+            </div>
+            <div class="ps_controller_single" id="s2" data-id="2">
+              <a class="ps_csN" id="sn2"></a>
+              <img src="./asset/img/simg3.jpg">
+            </div>
+            <div class="ps_controller_single" id="s3" data-id="3">
+              <a class="ps_csN" id="sn3"></a>
+              <img src="./asset/img/simg4.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="ps_name">
+          <div class="ps_playbtn"><img src="./asset/img/ptn.png"></div>
+          <div class="ps_name_container">
+            <div class="ps_name_title"><a id="psName"></a></div>
+            <div class="ps_name_des"><a style="font-size:20px; letter-spacing: 1px;">NOW IN POPCORN CINEMA</a></div>
+          </div>
+        </div>
+
+        <div class="ps_img">
+            <img id="ps_img_container" src="">
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class='content'>
+
+      <div class='content_title'>
+        <a class='ct ct_1'>NOW ON</a>
+        <div class="title_indicator_img"><img src='./asset/img/indicator.png' alt='image'></div>
+      </div>
+
+
+        <div class='content_video_list' id='cvl_1'>
+
+          <div class='vl_container vl1'>
+            <div class="vl_container_img"><img src='./asset/img/poster01.jpg' alt='image'></div>
+            <div class='vl_text'>
+              <a href='./video.html' class='vl_title'>Video Title</a><br>
+            </div>
+          </div>
+
+          <div class='vl_container vl1'>
+            <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
+            <div class='vl_text'>
+              <a href='./video.html' class='vl_title'>Video Title</a><br>
+            </div>
+          </div>
+
+          <div class='vl_container vl1'>
+            <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
+            <div class='vl_text'>
+              <a href='./video.html' class='vl_title'>Video Title</a><br>
+            </div>
+          </div>
+
+          <div class='vl_container vl1'>
+            <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
+            <div class='vl_text'>
+              <a href='./video.html' class='vl_title'>Video Title</a><br>
+            </div>
+          </div>
+
+
+    </div>
+
+
+    <div class='content_video_list' id='cvl_2'>
+
+      <div class='vl_container vl1'>
+        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
+        <div class='vl_text'>
+          <a href='./video.html' class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+
+      <div class='vl_container vl1'>
+        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
+        <div class='vl_text'>
+          <a href='./video.html' class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+
+      <div class='vl_container vl1'>
+        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
+        <div class='vl_text'>
+          <a href='./video.html' class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+
+      <div class='vl_container vl1'>
+        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
+        <div class='vl_text'>
+          <a href='./video.html' class='vl_title'>Video Title</a><br>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+  
+
+
+    <div class='videoPreview_Container'>
+
+      <div class='content_title'>
+        <a class='ct ct_1'>TRAILER</a>
+        <div class="title_indicator_img"><img src='./asset/img/indicator.png' alt='image'></div>
+      </div>
+
+      <div class="vP_container_inside">
+          <div class='videoimg'>
+            <img src='./asset/img/videoright.png' alt='image'>
+          </div>
+
+          <div class='videoimg'onclick="openVideo()">
+            <img src='./asset/img/videoright.png' alt='image'>
+          </div>
+
+          <div class='videoimg'>
+            <img src='./asset/img/videoright.png' alt='image'>
+          </div>
+      </div>
+
+    </div>
+
+
+    <div class='content_title'>
+      <a class='ct ct_1'>COMING SOON</a>
+    </div>
+    
+
+    <div class="timeline">
+      <div class="timeline_container">
+        <div class="draw_line"></div>
+        <div class="line_item_container">
+          <div class="line_item" style="border:2px solid #ffbf3b; background-color:#ffbf3b;"><div class="timeline_inner_text"><a>01/12</a></div></div>
+          <div class="line_item" style="border:2px solid #ffaa3c; background-color:#ffaa3c;"><div class="timeline_inner_text"><a>04/12</a></div></div>
+          <div class="line_item" style="border:2px solid #ff7f3d; background-color:#ff7f3d;"><div class="timeline_inner_text"><a>16/12</a></div></div>
+          <div class="line_item" style="border:2px solid #ff583d; background-color:#ff583d;"><div class="timeline_inner_text"><a>23/12</a></div></div>
+          <div class="line_item" style="border:2px solid #ff433e; background-color:#ff433e;"><div class="timeline_inner_text"><a>15/01</a></div></div>
+        </div>
+        
+      </div>
+
+      <div class="timeline_video_container">
+
+        <div class='timeline_video_single'>
+            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+            <div class='vl_text tvs_text'>
+              <a href='./video.html'class='vl_title'>Video Title</a><br>
+            </div>
+        </div>
+
+        <div class='timeline_video_single'>
+            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+            <div class='vl_text tvs_text'>
+              <a href='./video.html'class='vl_title'>Video Title</a><br>
+            </div>
+        </div>
+
+        <div class='timeline_video_single'>
+            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+            <div class='vl_text tvs_text'>
+              <a href='./video.html'class='vl_title'>Video Title</a><br>
+            </div>
+        </div>
+
+        <div class='timeline_video_single'>
+            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+            <div class='vl_text tvs_text'>
+              <a href='./video.html'class='vl_title'>Video Title</a><br>
+            </div>
+        </div>
+
+        <div class='timeline_video_single'>
+            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+            <div class='vl_text tvs_text'>
+              <a href='./video.html'class='vl_title'>Video Title</a><br>
+            </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+
+    <div class='dialog' id='dialog'>
+      <div class='dialog_close' id='dialogClose'><i class="fa fa-times" aria-hidden="true" onclick='closeDialog()'></i></div>
+      <div class='dialog_input' id='dialog_sign_input'>
+        <input type='text' id='username' value='Email' onfocus="if(value=='Email') value = ''" onblur="if(value=='') value = 'Email'"></input>
+        <input type='text' id='password' value='Password' onfocus="if(value=='Password') value = '', type='password'" onblur="if(value =='') value = 'Password', type='text'"></input>
+      </div>
+      <div class='dialog_term'>
+        <a>By creating an account, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
+      </div>
+
+      <div class='dialog_button'>
+        <button onclick="login()">Sign in or Create account</button>
+      </div>
+
+      <div class='dialog_iForgot'>
+        <a href='#'>I forgot my password</a>
+      </div>
+    </div>
+
+    <div class='dialogOverlay' id='dialogOverlay' onclick='closeDialog()'>
+      <a> </a>
+    </div>
+
+    <div class='alertOverlay' id='alertOverlay'>
+      <a id='alertContent'>Something wrong here.</a>
+    </div>
+
+    <div class='ticket_but1'>
+
+      <div class="ticket_but1_container">
+          <div class="popcorn_btn_1">
+            <div class="popcorn_btn_1_inside">
+              <div class="popcorn_btn_1_svg">
+                <svg t="1516376133506" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1048" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><defs><style type="text/css"></style></defs><path d="M828.5184 179.2H195.4816C144.1792 179.2 102.4 221.8496 102.4 274.2784v475.4432c0 52.4288 41.7792 95.0784 93.0816 95.0784h633.0368c51.3536 0 93.0816-42.6496 93.0816-95.0784V274.2784c0-52.4288-41.7792-95.0784-93.0816-95.0784z m41.8816 563.2c0 31.4368-20.3776 51.2-51.2 51.2H204.8c-30.8224 0-51.2-19.7632-51.2-51.2v-307.2h716.8v307.2z m0-409.6H153.6v-51.2c0-31.488 20.3776-51.2 51.2-51.2h614.4c30.8224 0 51.2 19.712 51.2 51.2v51.2zM256 716.8h281.6s25.6 0.8192 25.6-25.6-25.6-25.6-25.6-25.6H256s-25.6-0.8192-25.6 25.6 25.6 25.6 25.6 25.6z" fill="#000000" p-id="1049"></path></svg>
+              </div>
+              <div class="popcorn_btn_1_text"><a>BOOK TICKET</a></div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="line01">
+
+      <img src = "./asset/img/footer_line.png">
+
+    </div>
+
+    <footer class='footer'>
+      <div class='f_container'>
+
+        <div class='footer_list'>
+
+          <div class='footer_socialNet'>
+            <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
+            <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
+            <a href='https://en-gb.facebook.com/'target="_blank"><img src='./asset/img/social_icon04.png' alt='logo'></a>
+            <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
+            <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
+          </div>
+          
+        </div>
+
+        <div class='contact'>
+          <div class="contact_container">
+              <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
+              <div class="contact_single" style="margin-top: -24px;"><a href='./index.html'><img src='./asset/img/headLogo.png' alt='logo'></a></div>
+              <div class="contact_single"><a href='#'>Customer service 020 8789 1436</a></div>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+  </body>
+
+</html>

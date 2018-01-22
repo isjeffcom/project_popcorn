@@ -1,0 +1,160 @@
+
+
+@keyframes fade_in_out {
+    0%   {opacity: 0.8;}
+    50% {opacity: 0;}
+    100% {opacity: 0.8;}
+}
+
+@keyframes selHi {
+    0%   {height:70px;}
+    100% {height:120px;}
+}
+
+@keyframes unselLo {
+    0%   {height:120px;}
+    100% {height:70px;}
+}
+
+@keyframes snHi {
+    0%   {margin-top:50px;}
+    100% {margin-top:85px;}
+}
+
+@keyframes snLo {
+    0%   {margin-top:85px;}
+    100% {margin-top:50px;}
+}
+
+
+a{
+  font-family:barlow;
+}
+
+.poocorn_slider{
+  position: absolute;
+  top: 0px;
+  z-index: -1;
+  width:100%;
+  height:460px;
+  overflow: hidden;
+  background-color:#0c0f19;
+  font-family:barlow;
+}
+
+#ps_img_container{
+    opacity: 0.8;
+}
+
+.ani{
+  /*Animation*/
+  animation-name: fade_in_out;
+  animation-duration: 2s;
+}
+
+.selected{
+  animation-name: selHi;
+  animation-duration: 0.5s;
+}
+
+.unselected{
+  animation-name: unselLo;
+  animation-duration: 0.5s;
+}
+
+.sn_selected{
+  animation-name: snHi;
+  animation-duration: 0.5s;
+}
+
+.sn_unselected{
+  animation-name: snLo;
+  animation-duration: 0.5s;
+  background: none;
+  color:#000;
+}
+
+.ps_img img{
+    width:100%;
+    /*animate*/
+    transition: all 240ms cubic-bezier(.25,.8,.25,1);
+}
+
+.ps_controller{
+  position:absolute;
+  top:90px;
+  right:0px;
+  height:240px;
+  z-index:998;
+}
+
+.ps_controller_container{
+
+}
+
+.ps_controller_single{
+  height:70px;
+  width:400px;
+  box-shadow: 0px 6px 22px #0c0f19;
+  background-color:#0c0f19;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 460ms cubic-bezier(.25,.8,.25,1);
+}
+
+.ps_controller_single:hover{
+  height:90px;
+  z-index:999;
+
+}
+
+.ps_controller_single img{
+  width:400px;
+  opacity: 0.6;
+  transition: all 460ms cubic-bezier(.25,.8,.25,1);
+}
+
+.ps_controller_single img:hover{
+  opacity: 0.7;
+}
+
+.ps_name{
+  position: absolute;
+  z-index: 999;
+  color: #fff;
+  top: 340px;
+  left: 200px;
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.ps_csN{
+  position:absolute;
+  z-index: 1000;
+  margin-top: 50px;
+  margin-left: 6px;
+  color:#fff;
+  font-size:18px;
+
+}
+
+.ps_csN a{
+  font-family: barlowBold;
+
+}
+
+.ps_playbtn{
+  position: absolute;
+  left: -80px;
+  top: 4px;
+  cursor: pointer;
+}
+
+.ps_playbtn img{
+  width:80%;
+}
+
+.ps_name_des{
+  margin-top:-16px;
+}
