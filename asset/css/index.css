@@ -683,16 +683,25 @@ color: #ffffff;
 .line_item_container{
   display: flex;
   flex-direction: row;
-  margin-top: -24px;
+  margin-top: -19px;
   width: calc(100% - 160px);
 }
 
 .line_item{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 500px;
-  margin-left: 16%;
+  margin-left: 16.6%;
   border-spacing: 3px;
+}
+
+.line_item_border{
+  width: 36px;
+  height: 36px;
+  border-radius: 50px;
+  margin-left: -5px;
+  margin-top: -5px;
+  position: absolute;
 }
 
 .timeline_video_container{
@@ -719,10 +728,10 @@ color: #ffffff;
 }
 
 .timeline_inner_text{
-  margin-top:-36px;
-  color:#fff;
-  font-size:20px;
-  margin-left:-4px;
+  margin-top: -40px;
+  color: #fff;
+  font-size: 20px;
+  margin-left: -10px;
 }
   
 
