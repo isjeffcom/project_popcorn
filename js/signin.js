@@ -11,6 +11,14 @@ University of Portsmouth
 var username = ['up793229@myport.ac.uk', 'up123456@myport.ac.uk'];
 var password = ['123321', '123456'];
 
+function ifExist(v){
+  for(var i=0;i<username.length;i++){
+    if(v == username[i]){
+      
+    }
+  }
+}
+
 keepLogin();
 
 //Open dialog function

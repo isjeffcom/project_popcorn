@@ -71,6 +71,195 @@ button:focus {
        url('../asset/fonts/fontawesome-webfont.svg') format('svg');
 }
 
+.dialogOverlay{
+  display: none;
+  position: fixed;
+  top:0px;
+  left:0px;
+  height:100%;
+  width:100%;
+  background-color:#000;
+  opacity: 0.8;
+  z-index:998 !important;
+}
+
+
+
+
+.dialog{
+  display: none;
+  position:fixed;
+  top:10%;
+  left:27%;
+  width:45%;
+  height:60%;
+  background-color: #171720;
+  overflow: hidden;
+  z-index:999 !important;
+  
+
+}
+
+
+
+.dialog_bg{
+  top: 0px;
+  position: absolute;
+  opacity: 0.1;
+  z-index: -1;
+  text-align: center;
+}
+
+.dialog_bg_inner{
+
+}
+
+.dialog_bg img{
+  width:100%;
+}
+
+.dialog_close{
+  position:absolute;
+  font-size:22px;
+  color:#545454;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  transition: all 360ms ease-in-out;
+}
+
+.dialog_close:hover{
+  color:#ff803c;
+}
+
+.dialog_headline{
+  width:100%;
+  margin-top:40px;
+}
+
+.dialog_headline_inner{
+  text-align: center;
+}
+
+
+.dialog_headline_inner a{
+  background: linear-gradient( to right, rgb(255,66,62) 0%, rgb(255,193,59) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: barlowbold;
+  font-size:24px;
+}
+
+.dialog_input{
+  margin-top:4%;
+  text-align: center;
+}
+
+
+.dialog input{
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  outline: none;
+  height: 3rem;
+  width: 80%;
+  font-size: 16px;
+  margin-top:4%;
+  color:#fff;
+  box-shadow: none;
+  -webkit-appearance: none;
+  border:none;
+  padding-left: 14px;
+  transition: all 360ms ease-in-out;
+}
+
+
+.dialog input:focus{
+  background-color: rgba(255, 255, 255, 1);
+  outline:none;
+  color:#000;
+  
+}
+
+.dialog_term{
+  margin-top:1.6%;
+  margin-left:10%;
+  color:#545454;
+  font-size:18px;
+}
+
+.dialog_term_policy{
+  opacity: 0.5;
+}
+
+.dialog_term_policy:hover{
+  opacity: 1;
+}
+
+.dialog_button_area{
+  margin-top:5%;
+  text-align: center;
+}
+
+.dialog_btn{
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  width:500px !important;
+  height:40px !important;
+  margin-left:0px !important;
+  cursor: pointer;
+  padding-top:15px;
+  text-transform: uppercase;
+  
+}
+
+.dialog_btn a{
+  font-family:barlowbold !important;
+}
+
+.dialog_button button:hover{
+  box-shadow: 0px 0px 50px 0px rgba(170,40,40,0.75);
+  /*timer*/
+  -webkit-transition: all 580ms cubic-bezier(.25,.8,.25,1);
+  -moz-transition: all 580ms ease-in-out;
+  transition: all 580ms ease-in-out;
+
+}
+
+.dialog_iForgot{
+  margin-top:2%;
+  text-align: center;
+}
+
+.dialog_iForgot a{
+  color:#545454;
+  font-size:14px;
+}
+
+.dialog_username_input_container{
+  
+}
+
+.dialog_newsign{
+  position:absolute;
+  background-color:#4dffa9;
+  height:20px;
+  width:45px;
+  border-radius: 120px;
+  color:#000;
+  font-size:12px;
+  padding-top:2px;
+}
+
+.dialog_iForgot a:hover{
+  color:#747474;
+  /*timer*/
+  -webkit-transition: all 180ms cubic-bezier(.25,.8,.25,1);
+  -moz-transition: all 180ms ease-in-out;
+  transition: all 180ms ease-in-out;
+}
+
 
 
 
@@ -795,6 +984,68 @@ button:focus {
   z-index:998;
   opacity: 0.9;
   display: none;
+}
+
+.sbar_overlay{
+  width:100%;
+  height:100%;
+  position: fixed;
+  top:0px;
+  background-color: #000;
+  z-index:998;
+  opacity: 0.9;
+  display: none;
+}
+
+.searchBarOverlay{
+  display:none;
+  position:fixed;
+  top:0px;
+  background-color:#0c0f19;
+  height:66px;
+  width:100%;
+  z-index:1001;
+}
+
+.searchBarContainer{
+  text-align: center;
+  margin-top:10px;
+}
+
+.searchBarContainer input{
+  background:none;
+  border:none;
+  border-bottom: 2px solid #6c7182;
+  width:90%;
+  height:40px;
+  -webkit-appearance: none;
+  text-align:left;
+  color:#fff;
+  font-family:barlowbold;
+  font-size:20px;
+  transition: all 400ms ease-in-out;
+}
+
+.searchBarContainer input:focus{
+  border-bottom:2px solid #c5c7cf;
+}
+
+.searchBarContainer input::-webkit-input-placeholder{
+  color:#6c7182;
+}
+
+.searchBarContainer input:focus{
+  outline:none;
+  
+}
+
+.searchBar_close{
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  font-size: 30px;
+  color: #6c7182;
+  cursor: pointer;
 }
 
 

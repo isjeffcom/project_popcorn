@@ -27,6 +27,7 @@ University of Portsmouth
     <script>
 
       var isOpen = 0;
+      var sBarIsOpen = 0;
       function openVideo(){
 
         if(isOpen == 0){
@@ -42,6 +43,19 @@ University of Portsmouth
         }
       }
 
+      function openSearchBar(){
+        if(sBarIsOpen == 0){
+          document.getElementById("searchBarOverlay").style.display="block";
+          document.getElementById("sbar_overlay").style.display = "block";
+          sBarIsOpen = 1;
+        }else{
+          document.getElementById("searchBarOverlay").style.display="none";
+          document.getElementById("sbar_overlay").style.display = "none";
+          sBarIsOpen = 0;
+        }
+        
+      }
+
     </script>
 
   </head>
@@ -49,10 +63,20 @@ University of Portsmouth
   <body>
 
     <div class="video_overlay" id="video_overlay" onclick="openVideo()"></div>
+    <div class="sbar_overlay" id="sbar_overlay" onclick="openSearchBar()"></div>
 
     <div class='vid_container' id="video_overlay_player">
         <div class='insideoverlay' onclick="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
         <iframe width="900" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="searchBarOverlay" id="searchBarOverlay">
+      <div class="searchBarContainer">
+        <form>
+          <input value="" placeholder="SEARCH">
+          <div class="searchBar_close" onclick="openSearchBar()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+        </form>
+      </div>
     </div>
 
     <div class='navBar'>
@@ -68,7 +92,7 @@ University of Portsmouth
       </div>
 
       <div class='navBar_mobile'>
-        <i class="fa fa-search" style="margin-top:-2px;" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
+        <i class="fa fa-search" style="margin-top:-2px;" aria-hidden="true" onclick='openSearchBar()' id='navMBTN'></i>
         <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
         
         <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
@@ -221,11 +245,11 @@ University of Portsmouth
       <div class="timeline_container">
         <div class="draw_line"></div>
         <div class="line_item_container">
-          <div class="line_item" style="background-color:#ffbf3b;"><div class="line_item_border" style="border:2px solid #ffbf3b;"></div><div class="timeline_inner_text"><a>01/12</a></div></div>
-          <div class="line_item" style="background-color:#ffaa3c;"><div class="line_item_border" style="border:2px solid #ffaa3c;"></div><div class="timeline_inner_text"><a>04/12</a></div></div>
-          <div class="line_item" style="background-color:#ff7f3d;"><div class="line_item_border" style="border:2px solid #ff7f3d;"></div><div class="timeline_inner_text"><a>16/12</a></div></div>
-          <div class="line_item" style="background-color:#ff583d;"><div class="line_item_border" style="border:2px solid #ff583d;"></div><div class="timeline_inner_text"><a>23/12</a></div></div>
-          <div class="line_item" style="background-color:#ff433e;"><div class="line_item_border" style="border:2px solid #ff433e;"></div><div class="timeline_inner_text"><a>15/01</a></div></div>
+          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ffbf3b;"><div class="line_item_border" style="border:2px solid #ffbf3b;"></div><div class="timeline_inner_text"><a>01/12</a></div></div>
+          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ffaa3c;"><div class="line_item_border" style="border:2px solid #ffaa3c;"></div><div class="timeline_inner_text"><a>04/12</a></div></div>
+          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff7f3d;"><div class="line_item_border" style="border:2px solid #ff7f3d;"></div><div class="timeline_inner_text"><a>16/12</a></div></div>
+          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff583d;"><div class="line_item_border" style="border:2px solid #ff583d;"></div><div class="timeline_inner_text"><a>23/12</a></div></div>
+          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff433e;"><div class="line_item_border" style="border:2px solid #ff433e;"></div><div class="timeline_inner_text"><a>15/01</a></div></div>
         </div>
         
       </div>
@@ -272,22 +296,36 @@ University of Portsmouth
     </div>
 
     <div class='dialog' id='dialog'>
-      <div class='dialog_close' id='dialogClose'><i class="fa fa-times" aria-hidden="true" onclick='closeDialog()'></i></div>
-      <div class='dialog_input' id='dialog_sign_input'>
-        <input type='text' id='username' value='Email' onfocus="if(value=='Email') value = ''" onblur="if(value=='') value = 'Email'"></input>
-        <input type='text' id='password' value='Password' onfocus="if(value=='Password') value = '', type='password'" onblur="if(value =='') value = 'Password', type='text'"></input>
-      </div>
-      <div class='dialog_term'>
-        <a>By creating an account, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
+      <div class="dialog_headline">
+        <div class="dialog_headline_inner">
+            <a>SEE WHAT'S NEXT</a><br>
+            <a>SIGN IN FOR OUR VIP</a>
+        </div>
+        
       </div>
 
-      <div class='dialog_button'>
-        <button onclick="login()">Sign in or Create account</button>
+      <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
+      
+      <div class='dialog_input' id='dialog_sign_input'>
+        <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"><!--div class="dialog_newsign"><a>NEW</a></div--></div>
+        
+        <input type='password' id='password' value='' placeholder="Password">
+      </div>
+
+      <div class='dialog_button_area'>
+        <div class="popcorn_btn_1 dialog_btn"><a onclick="login()">Sign in or Create account</a></div>
       </div>
 
       <div class='dialog_iForgot'>
-        <a href='#'>I forgot my password</a>
+          <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
       </div>
+
+      <div class="dialog_bg">
+        <div class="dialog_bg_inner">
+          <img src="./asset/img/login_bg.jpg">
+        </div>
+      </div>
+
     </div>
 
     <div class='dialogOverlay' id='dialogOverlay' onclick='closeDialog()'>
