@@ -48,6 +48,7 @@ button:focus {
 
 
 
+
 @media (max-device-width: 600px) and (orientation : landscape) {
   .noLS{
     color:#666666;
@@ -265,13 +266,8 @@ button:focus {
 
   .dialog{
     height:60%;
-  }
-  
+  } 
 }
-
-
-
-
 
 .popcorn_btn_1{
   width:172px;

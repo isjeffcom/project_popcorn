@@ -1,0 +1,160 @@
+.top_background{
+    overflow: hidden;
+    position:absolute;
+    z-index:-1;
+    top:0px;
+    width:100%;
+    height:300px;
+}
+
+.top_background img{
+    width:100%;
+    width: 100%;
+    margin-top: -320px;
+}
+
+.ticket_tm_container{
+    margin-top:220px;
+    width:100%;
+}
+
+
+.ticket_tm{
+    margin-bottom:60px;
+    margin-left:35%;
+    width:540px;
+    height:240px;
+    border-radius: 6px 6px 6px 6px;
+    background-color: #ffc13b;
+}
+
+@media screen and (max-width: 1440px){
+    .ticket_tm{
+        margin-left:30%;
+    }
+}
+
+
+.ticket_tm_top{
+    width:100%;
+    height: 44px;
+    color:#fff;
+    padding-top: 20px;
+    border-radius: 6px 6px 0px 0px;
+    background-color:#ff423e;
+}
+
+.ticket_tm_top_title{
+    width: 50%;
+    height: 20px;
+    margin-left: 20px;
+}
+
+.ticket_tm_main{
+    height:276px;
+    width:100%;
+}
+
+.ticket_tm_main_movieinfo{
+    margin-left:35px;
+    margin-top:20px;
+}
+
+.ticket_tm_main_movieinfo a{
+    font-family:barlowbold;
+    font-size:18px;
+    letter-spacing: 2px;
+}
+
+.ticket_tm_main_time{
+    margin-top:8px;
+}
+
+.ticket_tm_main_time a{
+    font-size:14px;
+}
+
+.ticket_tm_main_refcode{
+    margin-top:20px;
+    margin-left:35px;
+    opacity: 0.8;
+}
+
+.ticket_tm_main_refcode a{
+    font-family:barlow;
+    font-size:8px;
+}
+
+.ticket_tm_main_refcode_title{
+
+}
+
+.ticket_tm_main_fefcode_code{
+    text-align: center;
+    width: 200px;
+    height: 32px;
+    padding-top: 6px;
+    border: 1px solid #000;
+}
+
+.ticket_tm_main_fefcode_code a{
+    font-size:20px;
+}
+
+.ticket_tm_cut{
+    position:relative;
+    width:540px;
+    height:240px;
+    margin-top:-360px;
+}
+
+.ticket_tm_cut_top{
+    margin-left: 350px;
+}
+
+.ticket_tm_cut_bottom{
+    margin-top:168px;
+    margin-left: 350px;
+}
+
+
+.ticket_semi_circle_top {  
+    border-radius: 0 0 100px 100px;  
+    height: 36px;
+    width:72px;
+    background-color:#0c0f19;  
+}  
+
+.ticket_semi_circle_bottom {  
+
+    border-radius: 100px 100px 0 0;  
+    height: 36px;  
+    width:72px;
+    background-color:#0c0f19;  
+}  
+
+.ticket_tm_cut_line{
+    top: 0px;
+    right: 152px;
+    height: 100%;
+    width: 0px;
+    position: absolute;
+    border: 2px dashed #0c0f19;
+}
+
+.ticket_tm_seat{
+    width: 130px;
+    height: 100%;
+    float: right;
+    margin-top: -136px;
+    text-align: center;
+}
+
+.ticket_tm_seat_position a{
+    font-size:36px;
+}
+
+.ticket_tm_seat_type a{
+    font-size:18px;
+}
+
