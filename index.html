@@ -18,38 +18,31 @@ University of Portsmouth
     <link rel="stylesheet" type="text/css" href="./asset/css/slider.css">
     <script src="./js/scroll.js"></script>
     <script src="./js/jq321.js"></script>
+
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/vue-resource.js"></script>
+    <script src="./js/index.js" defer></script>
+
     <script src="./js/popcorn_slider.js" defer></script>
     <script src="./js/signin.js" defer></script>
     <script src="./js/mobile.js" defer></script>
 
     <link rel="icon" href="./asset/img/favicon1.png" type="image/gif" sizes="16x16">
 
-    <script>
-
-      
-
-    </script>
 
   </head>
 
   <body>
+    <div id="main">
+    <div class="video_overlay" id="video_overlay" v-on:click="openVideo()"></div>
 
-    <div class="video_overlay" id="video_overlay" onclick="openVideo()"></div>
-    <div class="sbar_overlay" id="sbar_overlay" onclick="openSearchBar()"></div>
 
     <div class='vid_container' id="video_overlay_player">
-        <div class='insideoverlay' onclick="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
+        <div class='insideoverlay' v-on:click="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
         <iframe width="900" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <div class="searchBarOverlay" id="searchBarOverlay">
-      <div class="searchBarContainer">
-        <form>
-          <input value="" placeholder="SEARCH">
-          <div class="searchBar_close" onclick="openSearchBar()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
-        </form>
-      </div>
-    </div>
+
 
     <div class='navBar'>
 
@@ -59,20 +52,17 @@ University of Portsmouth
 
       <script src='./js/logohome.js'></script>
 
-      <div class='navBar_sBar'>
-        <input id='ssbar' type='text' onfocus="if(value=='&#xf002;  SEARCH') value = ''" onblur="if (this.value == '') (this.value='&#xf002;  SEARCH')" value='&#xf002;  SEARCH'>
-      </div>
+
 
       <div class='navBar_mobile'>
-        <i class="fa fa-search" style="margin-top:-2px;" aria-hidden="true" onclick='openSearchBar()' id='navMBTN'></i>
         <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
-        
+
         <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
       </div>
 
     </div>
 
-    <div class="poocorn_slider">
+    <div class="popcorn_slider">
 
         <div class="ps_controller">
           <div class="ps_controller_container">
@@ -111,161 +101,105 @@ University of Portsmouth
 
     </div>
 
-    <div class='content'>
+
+      <div class='content'>
+
+        <div class='content_title'>
+          <a class='ct ct_1'>NOW ON</a>
+          <div class="title_indicator_img"><img src='./asset/img/indicator.png' alt='image'></div>
+        </div>
+
+
+          <div class='content_video_list' id='cvl_1'>
+
+            <div class='vl_container vl1' v-for="item in film_content">
+              <div v-on:click="navToDetail(item.id)">
+                <div class="vl_container_img"><img v-bind:src='item.posterImg' alt='image'></div>
+                <div class='vl_text'>
+                  <a href='./video.html' class='vl_title'>{{item.name}}</a><br>
+                </div>
+              </div>
+            </div>
+
+      </div>
+
+
+
+      <div class='videoPreview_Container'>
+
+        <div class='content_title'>
+          <a class='ct ct_1'>TRAILER</a>
+          <div class="title_indicator_img"><img src='./asset/img/indicator.png' alt='image'></div>
+        </div>
+
+        <div class="vP_container_inside">
+            <div class='videoimg' v-for="item in video_content.slice(0, 3)" v-on:click="openVideo(item.id)" >
+              <img v-bind:src='item.pImgUrl' alt='image'>
+            </div>
+        </div>
+
+      </div>
 
       <div class='content_title'>
-        <a class='ct ct_1'>NOW ON</a>
-        <div class="title_indicator_img"><img src='./asset/img/indicator.png' alt='image'></div>
+        <a class='ct ct_1'>COMING SOON</a>
       </div>
 
-
-        <div class='content_video_list' id='cvl_1'>
-
-          <div class='vl_container vl1'>
-            <div class="vl_container_img"><img src='./asset/img/poster01.jpg' alt='image'></div>
-            <div class='vl_text'>
-              <a href='./video.html' class='vl_title'>Video Title</a><br>
-            </div>
+      <div class="timeline">
+        <div class="timeline_container">
+          <div class="draw_line"></div>
+          <div class="line_item_container">
+            <div class="line_item" style="border:3px solid #0c0f19; background-color:#ffbf3b;"><div class="line_item_border" style="border:2px solid #ffbf3b;"></div><div class="timeline_inner_text"><a>01/12</a></div></div>
+            <div class="line_item" style="border:3px solid #0c0f19; background-color:#ffaa3c;"><div class="line_item_border" style="border:2px solid #ffaa3c;"></div><div class="timeline_inner_text"><a>04/12</a></div></div>
+            <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff7f3d;"><div class="line_item_border" style="border:2px solid #ff7f3d;"></div><div class="timeline_inner_text"><a>16/12</a></div></div>
+            <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff583d;"><div class="line_item_border" style="border:2px solid #ff583d;"></div><div class="timeline_inner_text"><a>23/12</a></div></div>
+            <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff433e;"><div class="line_item_border" style="border:2px solid #ff433e;"></div><div class="timeline_inner_text"><a>15/01</a></div></div>
           </div>
 
-          <div class='vl_container vl1'>
-            <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
-            <div class='vl_text'>
-              <a href='./video.html' class='vl_title'>Video Title</a><br>
-            </div>
-          </div>
-
-          <div class='vl_container vl1'>
-            <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
-            <div class='vl_text'>
-              <a href='./video.html' class='vl_title'>Video Title</a><br>
-            </div>
-          </div>
-
-          <div class='vl_container vl1'>
-            <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
-            <div class='vl_text'>
-              <a href='./video.html' class='vl_title'>Video Title</a><br>
-            </div>
-          </div>
-
-
-    </div>
-
-    <div class='content_video_list' id='cvl_2'>
-
-      <div class='vl_container vl1'>
-        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
-        <div class='vl_text'>
-          <a href='./video.html' class='vl_title'>Video Title</a><br>
         </div>
-      </div>
 
-      <div class='vl_container vl1'>
-        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
-        <div class='vl_text'>
-          <a href='./video.html' class='vl_title'>Video Title</a><br>
-        </div>
-      </div>
+        <div class="timeline_video_container">
 
-      <div class='vl_container vl1'>
-        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
-        <div class='vl_text'>
-          <a href='./video.html' class='vl_title'>Video Title</a><br>
-        </div>
-      </div>
-
-      <div class='vl_container vl1'>
-        <div class="vl_container_img"><a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br></div>
-        <div class='vl_text'>
-          <a href='./video.html' class='vl_title'>Video Title</a><br>
-        </div>
-      </div>
-
-
-
-    </div>
-
-    <div class='videoPreview_Container'>
-
-      <div class='content_title'>
-        <a class='ct ct_1'>TRAILER</a>
-        <div class="title_indicator_img"><img src='./asset/img/indicator.png' alt='image'></div>
-      </div>
-
-      <div class="vP_container_inside">
-          <div class='videoimg'>
-            <img src='./asset/img/videoright.png' alt='image'>
+          <div class='timeline_video_single'>
+              <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+              <div class='vl_text tvs_text'>
+                <a href='./video.html'class='vl_title'>Video Title</a><br>
+              </div>
           </div>
 
-          <div class='videoimg'onclick="openVideo()">
-            <img src='./asset/img/videoright.png' alt='image'>
+          <div class='timeline_video_single'>
+              <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+              <div class='vl_text tvs_text'>
+                <a href='./video.html'class='vl_title'>Video Title</a><br>
+              </div>
           </div>
 
-          <div class='videoimg'>
-            <img src='./asset/img/videoright.png' alt='image'>
+          <div class='timeline_video_single'>
+              <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+              <div class='vl_text tvs_text'>
+                <a href='./video.html'class='vl_title'>Video Title</a><br>
+              </div>
           </div>
+
+          <div class='timeline_video_single'>
+              <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+              <div class='vl_text tvs_text'>
+                <a href='./video.html'class='vl_title'>Video Title</a><br>
+              </div>
+          </div>
+
+          <div class='timeline_video_single'>
+              <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
+              <div class='vl_text tvs_text'>
+                <a href='./video.html'class='vl_title'>Video Title</a><br>
+              </div>
+          </div>
+
+
+        </div>
       </div>
 
     </div>
-
-    <div class='content_title'>
-      <a class='ct ct_1'>COMING SOON</a>
-    </div>
-    
-    <div class="timeline">
-      <div class="timeline_container">
-        <div class="draw_line"></div>
-        <div class="line_item_container">
-          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ffbf3b;"><div class="line_item_border" style="border:2px solid #ffbf3b;"></div><div class="timeline_inner_text"><a>01/12</a></div></div>
-          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ffaa3c;"><div class="line_item_border" style="border:2px solid #ffaa3c;"></div><div class="timeline_inner_text"><a>04/12</a></div></div>
-          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff7f3d;"><div class="line_item_border" style="border:2px solid #ff7f3d;"></div><div class="timeline_inner_text"><a>16/12</a></div></div>
-          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff583d;"><div class="line_item_border" style="border:2px solid #ff583d;"></div><div class="timeline_inner_text"><a>23/12</a></div></div>
-          <div class="line_item" style="border:3px solid #0c0f19; background-color:#ff433e;"><div class="line_item_border" style="border:2px solid #ff433e;"></div><div class="timeline_inner_text"><a>15/01</a></div></div>
-        </div>
-        
-      </div>
-
-      <div class="timeline_video_container">
-
-        <div class='timeline_video_single'>
-            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-            <div class='vl_text tvs_text'>
-              <a href='./video.html'class='vl_title'>Video Title</a><br>
-            </div>
-        </div>
-
-        <div class='timeline_video_single'>
-            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-            <div class='vl_text tvs_text'>
-              <a href='./video.html'class='vl_title'>Video Title</a><br>
-            </div>
-        </div>
-
-        <div class='timeline_video_single'>
-            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-            <div class='vl_text tvs_text'>
-              <a href='./video.html'class='vl_title'>Video Title</a><br>
-            </div>
-        </div>
-
-        <div class='timeline_video_single'>
-            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-            <div class='vl_text tvs_text'>
-              <a href='./video.html'class='vl_title'>Video Title</a><br>
-            </div>
-        </div>
-
-        <div class='timeline_video_single'>
-            <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-            <div class='vl_text tvs_text'>
-              <a href='./video.html'class='vl_title'>Video Title</a><br>
-            </div>
-        </div>
-
-
-      </div>
-    </div>
+  </div>
 
     <div class='dialog' id='dialog'>
       <div class="dialog_headline">
@@ -273,14 +207,14 @@ University of Portsmouth
             <a>SEE WHAT'S NEXT</a><br>
             <a>SIGN IN FOR OUR VIP</a>
         </div>
-        
+
       </div>
 
       <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
-      
+
       <div class='dialog_input' id='dialog_sign_input'>
         <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"><!--div class="dialog_newsign"><a>NEW</a></div--></div>
-        
+
         <input type='password' id='password' value='' placeholder="Password">
       </div>
 
@@ -340,7 +274,7 @@ University of Portsmouth
             <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
             <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
           </div>
-          
+
         </div>
 
         <div class='contact'>

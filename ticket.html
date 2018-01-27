@@ -16,40 +16,31 @@
     <body>
         <div class="video_overlay" id="video_overlay" onclick="openVideo()"></div>
         <div class="sbar_overlay" id="sbar_overlay" onclick="openSearchBar()"></div>
-    
+
         <div class='vid_container' id="video_overlay_player">
             <div class='insideoverlay' onclick="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
             <iframe width="900" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-    
-        <div class="searchBarOverlay" id="searchBarOverlay">
-            <div class="searchBarContainer">
-            <form>
-                <input value="" placeholder="SEARCH">
-                <div class="searchBar_close" onclick="openSearchBar()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
-            </form>
-            </div>
-        </div>
+
+
 
         <div class='navBar'>
 
             <div class='navBar_logo' id='logoBg'>
                 <img src = './asset/img/headlogo01.png' alt='logo' id='logo'>
             </div>
-        
+
             <script src='./js/logohome.js'></script>
-        
-            <div class='navBar_sBar'>
-                <input id='ssbar' type='text' onfocus="if(value=='&#xf002;  SEARCH') value = ''" onblur="if (this.value == '') (this.value='&#xf002;  SEARCH')" value='&#xf002;  SEARCH'>
-            </div>
-        
+
+
+
             <div class='navBar_mobile'>
-                <i class="fa fa-search" style="margin-top:-2px;" aria-hidden="true" onclick='openSearchBar()' id='navMBTN'></i>
-                <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
                 
+                <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
+
                 <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
             </div>
-            
+
         </div>
 
         <div class="top_background">
@@ -88,14 +79,14 @@
                     </div>
 
                     <div class="ticket_tm_cut_line"></div>
-                    
+
                 </div>
 
                 <div class="ticket_tm_seat">
                     <div class="ticket_tm_seat_position"><a>C12</a></div>
                     <div class="ticket_tm_seat_type"><a>2D-AD</a></div>
                 </div>
-                
+
             </div>
 
             <div class="ticket_tm">
@@ -105,37 +96,37 @@
                             <a style="font-family:barlowbold;">POPCORN </a><a>CINAME TICKET</a>
                         </div>
                     </div>
-    
+
                     <div class="ticket_tm_main">
                         <div class="ticket_tm_main_movieinfo">
                             <div class="ticket_tm_main_title"><a>STAR WAR: THE LAST JEDI</a></div>
                             <div class="ticket_tm_main_time"><a>5:40 PM</a><br><a>10/01/2018</a></div>
                         </div>
-    
+
                         <div class="ticket_tm_main_refcode">
                             <div class="ticket_tm_main_refcode_title"><a>REFERENCE CODE</a></div>
                             <div class="ticket_tm_main_fefcode_code"><a>RF3C9YULJ</a></div>
                         </div>
                     </div>
-    
+
                     <div class="ticket_tm_cut">
                         <div class="ticket_tm_cut_top">
                             <div class="ticket_semi_circle_top"></div>
                         </div>
-    
+
                         <div class="ticket_tm_cut_bottom">
                             <div class="ticket_semi_circle_bottom"></div>
                         </div>
-    
+
                         <div class="ticket_tm_cut_line"></div>
-                        
+
                     </div>
-    
+
                     <div class="ticket_tm_seat">
                         <div class="ticket_tm_seat_position"><a>C12</a></div>
                         <div class="ticket_tm_seat_type"><a>2D-AD</a></div>
                     </div>
-                    
+
                 </div>
         </div>
 
@@ -146,37 +137,37 @@
                 <a>SEE WHAT'S NEXT</a><br>
                 <a>SIGN IN FOR OUR VIP</a>
             </div>
-            
+
         </div>
-    
+
         <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
-        
+
         <div class='dialog_input' id='dialog_sign_input'>
             <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"><!--div class="dialog_newsign"><a>NEW</a></div--></div>
-            
+
             <input type='password' id='password' value='' placeholder="Password">
         </div>
-    
+
         <div class='dialog_button_area'>
             <div class="popcorn_btn_1 dialog_btn"><a onclick="login()">Sign in or Create account</a></div>
         </div>
-    
+
         <div class='dialog_iForgot'>
             <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
         </div>
-    
+
         <div class="dialog_bg">
             <div class="dialog_bg_inner">
             <img src="./asset/img/login_bg.jpg">
             </div>
         </div>
-    
+
         </div>
-    
+
         <div class='dialogOverlay' id='dialogOverlay' onclick='closeDialog()'>
         <a> </a>
         </div>
-    
+
         <div class='alertOverlay' id='alertOverlay'>
         <a id='alertContent'>Something wrong here.</a>
         </div>
@@ -185,14 +176,14 @@
         <div class="line01">
 
             <img src = "./asset/img/footer_line.png">
-        
+
         </div>
-        
+
         <footer class='footer'>
             <div class='f_container'>
-        
+
                 <div class='footer_list'>
-        
+
                 <div class='footer_socialNet'>
                     <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
                     <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
@@ -200,9 +191,9 @@
                     <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
                     <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
                 </div>
-                
+
                 </div>
-        
+
                 <div class='contact'>
                 <div class="contact_container">
                     <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
@@ -210,7 +201,7 @@
                     <div class="contact_single"><a href='#'>Customer service 020 8789 1436</a></div>
                 </div>
                 </div>
-        
+
             </div>
         </footer>
 

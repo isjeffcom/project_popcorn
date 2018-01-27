@@ -24,8 +24,8 @@ University of Portsmouth
 @font-face {
 font-family: barlowbold;
 src: local('☺'),
-  url(../fonts/barlowbold.tff) format('ttf'), 
-  url(../fonts/barlowbold.otf) format('otf'), 
+  url(../fonts/barlowbold.tff) format('ttf'),
+  url(../fonts/barlowbold.otf) format('otf'),
   url(../fonts/barlowbold.woff) format('woff');
 }
 
@@ -92,8 +92,8 @@ button:focus {
   position:fixed;
   top:10%;
   left:27%;
-  width:45%;
-  height:50%;
+  width: 900px;
+  height: 480px;
   background-color: #171720;
   overflow: hidden;
   z-index:999 !important;
@@ -176,7 +176,7 @@ button:focus {
   background-color: rgba(255, 255, 255, 1);
   outline:none;
   color:#000;
-  
+
 }
 
 .dialog_term{
@@ -210,7 +210,7 @@ button:focus {
   cursor: pointer;
   padding-top:15px;
   text-transform: uppercase;
-  
+
 }
 
 .dialog_btn a{
@@ -266,7 +266,7 @@ button:focus {
 
   .dialog{
     height:60%;
-  } 
+  }
 }
 
 .popcorn_btn_1{
@@ -1041,7 +1041,7 @@ button:focus {
 
 .searchBarContainer input:focus{
   outline:none;
-  
+
 }
 
 .searchBar_close{
@@ -1076,4 +1076,3 @@ button:focus {
 .vid_container iframe{
   margin-top:5%;
 }
-

@@ -12,122 +12,108 @@ University of Portsmouth
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Popcorn | Book Film Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./asset/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./asset/css/common.css" >
     <link rel="stylesheet" type="text/css" href="./asset/css/index.css" >
     <link rel="stylesheet" type="text/css" href="./asset/css/video.css" >
     <link rel="stylesheet" type="text/css" href="./asset/css/slider.css" >
     <link rel="icon" href="./asset/img/favicon1.png" type="image/gif" sizes="16x16">
+    <script src="./js/jq321.js"></script>
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/vue-resource.js"></script>
+    <script src="./js/video.js" defer></script>
+    <script src="./js/video_overlay.js"></script>
+    <script src="./js/signin.js" defer></script>
+    <script src="./js/mobile.js" defer></script>
+
+
+	<!--link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"-->
 
   <script>
 
-    var isOpen = 0;
-    function openVideo(){
 
-      if(isOpen == 0){
-        document.getElementById("video_overlay").style.display = "block";
-        document.getElementById("video_overlay_player").style.display = "block";
-        isOpen = 1;
-      }else{
-        document.getElementById("video_overlay").style.display = "none";
-        document.getElementById("video_overlay_player").style.display = "none";
-        isOpen = 0;
-      }
-    }
 
   </script>
 
   </head>
   <h1 class='noLS'>Webpage currently unable to support landscape view.</h1>
   <body>
-
-    <div class="video_overlay" id="video_overlay" onclick="openVideo()"></div>
+    <div id="main">
+    <div class="video_overlay" id="video_overlay" v-on:click="openVideo()"></div>
 
     <div class='vid_container' id="video_overlay_player">
-      <div class='insideoverlay' onclick="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
-      <iframe width="1080" height="720" src="https://www.youtube.com/embed/52x5HJ9H8DM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class='insideoverlay' v-on:click="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
+      <iframe width="1080" height="720" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <nav class='navBar'>
+    <div class='navBar'>
 
       <div class='navBar_logo' id='logoBg'>
-        <img src = './asset/img/headLogo.png' alt='logo' id='logo'>
+        <a href="./index.html"><img src = './asset/img/headlogo01.png' alt='logo' id='logo'></a>
       </div>
 
-      <div class='navBar_sBar'>
-        <input id='ssbar' type='text' onfocus="if(value=='&#xf002;  SEARCH') value = ''" onblur="if (this.value == '') (this.value='&#xf002;  SEARCH')" value='&#xf002;  SEARCH'>
-      </div>
+      <script src='./js/logohome.js'></script>
 
-      <div class='navBar_text'>
-        <a href='#' onclick='openDialog()' id='navIn'>Sign In</a>
-        <a href='#' onclick='openDialog()' id='navUp'>Sign Up</a>
-        <a href='#' id='navUn'></a>
-        <a href='#' onclick='signOut()' id='navOut'>Sign Out</a>
-      </div>
+
 
       <div class='navBar_mobile'>
-        <i class="fa fa-user" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
-        <a class='navBar_mobile_Un' id='navMUN' onclick='signOut()'>Sign Out</a>
+        <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
+
+        <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
       </div>
 
-    </nav>
+    </div>
 
 	<!--poster here-->
 
-  <div class='movie_container'>
+  <div class='movie_container' v-for="item in filmContent1">
     <div class='movie_2'>
-      <img src='./asset/img/slider1.jpg' alt="">
+      <img v-bind:src='item.previewImg' alt="">
     </div>
   </div>
 
-        <div class='main_filminfo'>
+   <div class='main_filminfo' v-for="item in filmContent1">
 
-             <div class='mi_main'>
+      <div class='mi_main'>
 
-               <img src='./asset/img/poster05.jpg' alt='image'>
+        <img v-bind:src='item.posterImg' alt='image'>
 
-             </div>
+      </div>
 
       <div class='movie_infocont'>
 
-          <div class='movie_cred'>
-               <ul>
-                 <li><a><img src='./asset/img/certificate.png' alt='image'></a></li>
-                 <li></li>
-                 <li><a>RELEASE DATE</a></li>
-                 <li><a>10/04/17</a></li>
-                 <li></li>
-                 <li><a>RUNNING TIME</a></li>
-                 <li><a>2HR 30MIN</a></li>
-                 <li></li>
-                 <li><a>DIRECTER</a></li>
-                 <li><a>efefefefe</a></li>
-                 <li></li>
-                 <li><a>CAST</a></li>
-                 <li><a>efefefe</a></li>
-                 <li><a>JOHN</a></li>
-                 <li><a>efefefe</a></li>
-                 <li><a>DAVE</a></li>
-                 <li><a>efefefe</a></li>
-               </ul>
-             </div>
+        <div class='movie_cred'>
+          <ul>
+              <li><a><img src='./asset/img/certificate.png' alt='image'></a></li>
+              <li></li>
+              <li><a style="font-family: barlowbold">RELEASE DATE</a></li>
+              <li><a>{{item.rDate}}</a></li>
+              <li></li>
+              <li><a style="font-family: barlowbold">RUNNING TIME</a></li>
+              <li><a>{{item.runningTime}}</a></li>
+              <li></li>
+              <li><a style="font-family: barlowbold">DIRECTER</a></li>
+              <li><a>{{item.director}}</a></li>
+              <li></li>
+              <li><a style="font-family: barlowbold">CAST</a></li>
+              <li v-for="i in castList"><a>{{i}}</a><br></li>
+            </ul>
+         </div>
 
 
 
 
         <div class='movie_info'>
 
-              <ul>
-                <li><a><img src='./asset/img/play_btn.png' alt='image'></a></li>
-                <li><a>STAR WARS:THE LAST JEDI</a></li>
-                <li><a>ACTION, ADVENTURE, FANTASY | 2 HR 30MIN</a></li>
-                <li><a><img src='./asset/img/sep.png' alt='image'></a></li>
-              </ul>
+            <ul>
+              <li><div class='imgbutton' alt='image' onclick="openVideo()"></div></li>
+              <li><a style="color:#ffffff;font-size:3.5em;font-family:barlow;">{{item.name}}</a></li>
+              <li><a style="color:#ffffff;font-size:1em;font-family:barlow;">{{item.cate}} | {{item.runningTime}}</a></li>
+              <li><a><img src='./asset/img/sep.png' alt='image'></a></li>
+            </ul>
             <div class='paragraph_f'>
-              <P>HAVING TAKEN HER FIRST STEPS INTO THE JEDI WORLD, REY</p>
-              <P>JOINS LUKE SKYWALKER ON AN ADVENTURE WITH LEAI, FINN</p>
-              <p>AND POE THAT UNLOCKS MYSTERIES OF THE FORCE AND </p>
-              <p>SECRETS OF THE PAST.</P>
+              <p style="color:#ffffff;font-size:1em;font-family:barlow;">{{item.brief}}</p>
             </div>
 
           </div>
@@ -135,86 +121,44 @@ University of Portsmouth
       </div>
 
       <div class='date_select'>
+        <div class='date_menu'>
+          <select v-model="tt_st" @change="tm_switch">
+                  <option v-for="t in date_list" v-bind:value="t">
+                      {{ t }}
+                  </option>
+          </select>
+       </div>
       </div>
 <div class='outer_time'>
       <div class='time_table'>
         <div class='time'>
 
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
+          <ul v-for="tt in movieTime" v-if="tt.date == now_st">
+            <li><a style="font-size: 1.5em;">2:40</a><a style="font-size: 1.5em;"> PM</a></li>
+            <li><a style="color:#A6792C;font-size:1.1em;">2D</a> <a style="opacity:0.6;font-size:1.1em;">- AD</a></li>
           </ul>
 
         </div>
 
       </div>
-
-      <div class='time_table2'>
-        <div class='time'>
-
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-          <ul>
-            <li><a>2:40 PM</a></li>
-            <li><a>2D - AD</a></li>
-          </ul>
-
-        </div>
-      </div>
     </div>
 
-    <div class='content_title'>
-      <a class='ct ct_1'>RELATED</a>
-      <img src='./asset/img/indicator.png' alt='image'>
-    </div>
 
-    <div class='videoPreview_Container'>
-      <div class="vP_container_inside">
-          <div class='videoimg'>
-            <!--a class='ct ct_1'>Trailer</a-->
-            <img src='./asset/img/videoright.png' alt='image'>
-          </div>
+     <div class='videoPreview_Container'>
 
-          <div class='videoimg'onclick="openVideo()">
-            <img src='./asset/img/videoright.png' alt='image'>
-          </div>
+       <div class='content_title'>
+         <a class='ct ct_1'>RELATED</a>
+         <div class="title_indicator_img"><img src='./asset/img/indicator.png' alt='image'></div>
+       </div>
 
-          <div class='videoimg'>
-            <img src='./asset/img/videoright.png' alt='image'>
-          </div>
-      </div>
+       <div class="vP_container_inside">
+         <div class="videoimg" v-for="(item, index) in videoContent1" v-if="index < 3" v-on:click="openVideo(item.id)">
+           <img v-bind:src='item.pImgUrl' alt='image'>
+         </div>
+       </div>
 
-    </div>
+     </div>
+
 
     <div class='content_title'>
       <a class='ct ct_1'>ALSO SHOWING</a>
@@ -223,54 +167,48 @@ University of Portsmouth
 
     <div class='content_video_list' id='cvl_2'>
 
-      <div class='vl_container vl1'>
-        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-        <div class='vl_text'>
-          <a href='./video.html'class='vl_title'>Video Title</a><br>
+      <div class='vl_container vl1' v-for="item in otherFilm.slice(0, 4)">
+        <div v-on:click="navToDetail(item.id)">
+          <img v-bind:src='item.posterImg' alt='image'><br>
+          <div class='vl_text'>
+            <a href='./video.html'class='vl_title'>{{item.name}}</a><br>
+          </div>
         </div>
       </div>
-      <div class='vl_container vl1'>
-        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-        <div class='vl_text'>
-          <a href='./video.html' class='vl_title'>Video Title</a><br>
-        </div>
-      </div>
-      <div class='vl_container vl1'>
-        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-        <div class='vl_text'>
-          <a href='./video.html' class='vl_title'>Video Title</a><br>
-        </div>
-      </div>
-      <div class='vl_container vl1'>
-        <a href='./video.html'><img src='./asset/img/poster01.jpg' alt='image'></a><br>
-        <div class='vl_text'>
-          <a href='./video.html' class='vl_title'>Video Title</a><br>
-        </div>
-      </div>
-
-
-
 
   </div>
 
 
     <div class='dialog' id='dialog'>
-      <div class='dialog_close' id='dialogClose'><i class="fa fa-times" aria-hidden="true" onclick='closeDialog()'></i></div>
-      <div class='dialog_input' id='dialog_sign_input'>
-        <input type='text' id='username' value='Email' onfocus="if(value=='Email') value = ''" onblur="if(value=='') value = 'Email'"></input>
-        <input type='text' id='password' value='Password' onfocus="if(value=='Password') value = '', type='password'" onblur="if(value =='') value = 'Password', type='text'"></input>
-      </div>
-      <div class='dialog_term'>
-        <a>By creating an account, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
-      </div>
+        <div class="dialog_headline">
+          <div class="dialog_headline_inner">
+              <a>SEE WHAT'S NEXT</a><br>
+              <a>SIGN IN FOR OUR VIP</a>
+          </div>
+        </div>
 
-      <div class='dialog_button'>
-        <button onclick="login()">Sign in or Create account</button>
-      </div>
+        <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
 
-      <div class='dialog_iForgot'>
-        <a href='#'>I forgot my password</a>
-      </div>
+        <div class='dialog_input' id='dialog_sign_input'>
+          <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"><!--div class="dialog_newsign"><a>NEW</a></div--></div>
+
+          <input type='password' id='password' value='' placeholder="Password">
+        </div>
+
+        <div class='dialog_button_area'>
+          <div class="popcorn_btn_1 dialog_btn"><a onclick="login()">Sign in or Create account</a></div>
+        </div>
+
+        <div class='dialog_iForgot'>
+            <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
+        </div>
+
+        <div class="dialog_bg">
+          <div class="dialog_bg_inner">
+            <img src="./asset/img/login_bg.jpg">
+          </div>
+        </div>
+
     </div>
 
     <div class='dialogOverlay' id='dialogOverlay' onclick='closeDialog()'>
@@ -289,32 +227,34 @@ University of Portsmouth
 
     <footer class='footer'>
       <div class='f_container'>
-      <div class='footer_list'>
 
-        <div class='footer_socialNet'>
-          <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
-          <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
-          <a href='https://en-gb.facebook.com/'target="_blank"><img src='./asset/img/social_icon04.png' alt='logo'></a>
-          <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
-          <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
+        <div class='footer_list'>
+
+          <div class='footer_socialNet'>
+            <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
+            <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
+            <a href='https://en-gb.facebook.com/'target="_blank"><img src='./asset/img/social_icon04.png' alt='logo'></a>
+            <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
+            <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
+          </div>
+
         </div>
-      </div>
+
         <div class='contact'>
-          <ul>
-            <li><a href='#' target="_blank">POPCORN 2017 All rights reserved</a></li>
-            <li></li>
-            <li style="margin-top: -26px;"><a href='./index.html'><img src='./asset/img/headLogo.png' alt='logo'></a></li>
-            <li></li>
-            <li><a href='#' target="_blank">Customer service 020 8789 1436</a></li>
-          </ul>
+          <div class="contact_container">
+              <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
+              <div class="contact_single" style="margin-top: -24px;"><a href='./index.html'><img src='./asset/img/headlogo.png' alt='logo'></a></div>
+              <div class="contact_single"><a href='#'>Customer service 020 8789 1436</a></div>
+          </div>
         </div>
+
       </div>
     </footer>
 
       <script src="./js/signin.js"></script>
       <script src='./js/logohome.js'></script>
 
-
+</div>
   </body>
 
 </html>

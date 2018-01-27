@@ -1,6 +1,6 @@
 <head>
 
-    
+
 
     <title>POPCORN Management</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -18,14 +18,14 @@
     <!--Import View Controller-->
     <script src="./js/iflogin.js"></script>
     <script src="./js/main.js" defer></script>
-    
+
 
 </head>
 
 
 
 <body>
-        
+
 <div class="all">
 
     <div class="titleBar">
@@ -71,17 +71,23 @@
                     <a>User</a>
                 </div>
             </div>
-    
+
             <div class="sideBar_item" data-id="4">
                 <div class="sideBar_item_name">
                     <a>Slider</a>
                 </div>
             </div>
 
+            <div class="sideBar_item" data-id="5">
+                <div class="sideBar_item_name">
+                    <a>Ticket</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    
+
     <div id="main">
         <!--TABLE VIEW ALL-->
         <div id="uiTableView" v-if="view_table">
@@ -143,6 +149,15 @@
 
                 </tr>
 
+                <tr v-for="item in table_content" v-if="vid == 5">
+                    <td>{{item.uid}}</td>
+                    <td>{{item.fid}}</td>
+                    <td>{{item.refCode}}</td>
+                    <td>{{item.seat}}</td>
+                    <td class="tt_iA">Ticket</td>
+                </tr>
+
+
             </table>
         </div>
 
@@ -152,10 +167,10 @@
                 <a v-if="view_is_edit">EDIT MOVIE</a>
                 <a v-if="view_is_new">NEW MOVIE</a>
                 <div class="uif_sub"><button v-on:click="sub_f">SUBMIT</button></div>
-                
+
             </div>
 
-            
+
             <div class="uif_form_container_left">
                 <div class="uif_name">
                         <li>NAME: </li>
@@ -172,7 +187,7 @@
                 <!-- EDIT MOVIE-->
                 <!-- Control by viewIsEdit-->
                 <div class="uif_input" v-if="view_is_edit" v-for="item in single_data_content">
-                        
+
                         <li><input type="text" id="f_name" v-bind:value="item.name"></li>
                         <li><input type="text" id="f_cate" v-bind:value="item.cate"></li>
                         <li><textarea rows="4" cols="50" id="f_brief" v-bind:value="item.brief"></textarea></li>
@@ -188,7 +203,7 @@
                             </select>
                             <div class="arrowdown"></div>
                         </li>
-                        
+
                         <li>
                             <select id="f_status" v-model="item.status">
                                 <option v-for="b in view_film_status" v-bind:value="b">
@@ -211,7 +226,7 @@
                         <li><input type="text" id="f_runningTime" placeholder="2HOURS 4MINS"></li>
                         <li><input type="text" id="f_director" placeholder="JEFF?"></li>
                         <li><input type="text" id="f_cast" placeholder="NAME OF THE PLAYER"></li>
-                        <li>  
+                        <li>
                             <select id="f_rate">
                                 <option v-for="a in view_film_rate" v-bind:value="a">
                                     {{ a }}
@@ -219,7 +234,7 @@
                             </select>
                             <div class="arrowdown"></div>
                         </li>
-                        
+
                         <li>
                             <select id="f_status">
                                 <option v-for="b in view_film_status" v-bind:value="b">
@@ -232,17 +247,17 @@
 
             </div>
 
-            
+
 
             <div class="uif_form_container_right" >
 
 
                 <div class="uif_uploadImg">
                     <a class="uif_uploadImgTitle">POSTER IMAGE</a>
-                    
+
                     <!--Display current image from database-->
                     <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.posterImg" id="f_posterImgExist" width="200px"></div>
-                    
+
                     <!--Image upload function, call onFileChange function when selected image-->
                     <div class="imgUploadBtn">
                         <form action="/file-upload" class="dropzone" id="dropzone">
@@ -250,7 +265,7 @@
                             <div></div>
                             <!--img id="poIUploading" src="" width="200px"-->
                         </form>
-                        
+
                     </div>
                 </div>
 
@@ -259,20 +274,20 @@
 
                         <!--Display current image from database-->
                         <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.previewImg" id="f_previewImgExist" width="200px"></div>
-                        
+
                         <!--Image upload function, call onFileChange function when selected image-->
                         <div class="imgUploadBtn">
                             <input type="file" name="previewImgUpload" id="f_previewImg" @change="upload" path="">
                             <div></div>
                         </div>
-                        
+
                     </div>
 
-                
+
 
             </div>
 
-            
+
 
         </div>
 
@@ -282,10 +297,10 @@
                     <a v-if="view_is_edit">EDIT VIDEO</a>
                     <a v-if="view_is_new">NEW VIDEO</a>
                     <div class="uif_sub"><button v-on:click="sub_v">SUBMIT</button></div>
-                    
+
                 </div>
-    
-                
+
+
                 <div class="uif_form_container_left">
                     <div class="uif_name">
                             <li>NAME: </li>
@@ -294,11 +309,11 @@
                             <li>VIDEO: </li>
 
                     </div>
-    
+
                     <!-- EDIT VIDEO-->
                     <!-- Control by viewIsEdit-->
                     <div class="uif_input" v-if="view_is_edit" v-for="item in single_data_content">
-                            
+
                             <li><input type="text" id="v_name" v-bind:value="item.name"></li>
                             <li>
                                 <select id="v_toid" v-model="item.toMovieId">
@@ -314,21 +329,21 @@
                                 <div>
                                     <iframe width="320" height="240" v-if="is_youtube" v-bind:src="youtube_Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                     <video width="320" height="240" v-else controls>
-                                            <source v-bind:src="item.url"  type="video/mp4">               
+                                            <source v-bind:src="item.url"  type="video/mp4">
                                     </video>
-                                    
+
                                 </div>
-                                
+
                             </li>
                             <li><input type="hidden" id="v_id" v-bind:value="item.id"></li>
                     </div>
-    
-    
+
+
                     <!-- ADD NEW VIDEO-->
                     <!-- Control by viewIsNew-->
                     <div class="uif_input" v-if="view_is_new">
                         <li><input type="text" id="v_name" placeholder="NAME OF THE VIDEO"></li>
-                        <li>  
+                        <li>
                                 <select id="v_toid">
                                     <option v-for="c in movie_to_id_list" v-bind:value="c.id">
                                         {{ c.name }}
@@ -342,33 +357,33 @@
                                 <div></div>
                         </li>
                     </div>
-    
+
                 </div>
-    
-                
-    
+
+
+
                 <div class="uif_form_container_right" >
-    
+
                     <div class="uif_uploadImg">
                             <a class="uif_uploadImgTitle">PREVIEW IMAGE</a>
-    
+
                             <!--Display current image from database-->
                             <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.pImgUrl" id="v_previewImgExist" width="200px"></div>
-                            
+
                             <!--Image upload function, call onFileChange function when selected image-->
                             <div class="imgUploadBtn">
                                 <input type="file" name="previewImgUpload" id="v_previewImg" @change="upload" path="">
                                 <div></div>
                             </div>
-                            
+
                         </div>
-    
-                    
-    
+
+
+
                 </div>
-    
-                
-    
+
+
+
         </div>
 
         <!--TIMETABLE NEW/EDIT PAGE-->
@@ -376,7 +391,7 @@
             <div class="tableViewTop">
 
                 <div class="uiTT_mS">
-                    <a>MOVIE: </a> 
+                    <a>MOVIE: </a>
                     <select id="t_mid" @change="tt_m_switch" v-model="tt_id">
                         <option v-for="t in movie_to_id_list" v-bind:value="t.id">
                             {{ t.name }}
@@ -384,7 +399,7 @@
                     </select>
                     <div class="arrowdown" style="margin-left: 292px;"></div>
                 </div>
-                
+
                 <div class="addNewBtn" v-on:click="tt_addNew" style="margin-top: -36px;">
                     <div class="addNewBtnContainer">
                         <a>ADD NEW</a>
@@ -408,7 +423,7 @@
 
                     <!--EDIT TT POPUP-->
                     <div class="tt_edit_view_container" v-for="item in tt_s" v-if="tt_editview">
-                        
+
                         <div class="tt_single_edit">
                             <a>DATE: </a><br>
                             <input type="date" v-bind:id="'t_date_' + item.id" v-bind:value="item.date" @change="dateChange" style="width:190px;"><br><br>
@@ -437,14 +452,14 @@
                                 <div class="tt_single_edit_submit_text" v-bind:data-id="item.id" v-on:click="tt_del" style="padding-top:10px;">DELETE</div>
                             </div>
 
-                            
+
 
                         </div>
                     </div>
 
                     <!--NEW TT POPUP-->
                     <div class="tt_edit_view_container" v-if="tt_newview">
-                        
+
                             <div class="tt_single_edit">
                                 <a>DATE: </a><br>
                                 <input type="date" id="t_date_0" placeholder="" @change="dateChange" style="width:190px;"><br><br>
@@ -464,14 +479,14 @@
                                         </option>
                                 </select>
                                 <div class="arrowdown" style="margin-left: 172px;margin-top: -25px;"></div>
-                                
+
                                 <br><br>
                                 <div class="tt_submit tt_s_save">
                                     <div class="tt_single_edit_submit_text" v-on:click="sub_t" style="padding-top:10px;">SAVE</div>
                                 </div>
-    
-                                
-    
+
+
+
                             </div>
                         </div>
 
@@ -491,10 +506,10 @@
                     <a v-if="view_is_edit">EDIT SLIDER</a>
                     <a v-if="view_is_new">NEW SLIDER</a>
                     <div class="uif_sub"><button v-on:click="sub_s">SUBMIT</button></div>
-                    
+
                 </div>
-    
-                
+
+
                 <div class="uif_form_container_left">
                     <div class="uif_name">
                             <li>NAME: </li>
@@ -502,7 +517,7 @@
                             <li>PRIORITY: </li>
 
                     </div>
-    
+
                     <!-- EDIT SLIDER-->
                     <!-- Control by viewIsEdit-->
                     <div class="uif_input" v-if="view_is_edit" v-for="item in single_data_content">
@@ -518,13 +533,13 @@
                         <li><input type="text" id="s_od" v-bind:value="item.od"></li>
                         <li><input type="hidden" id="s_id" v-bind:value="item.id"></li>
                     </div>
-    
-    
+
+
                     <!-- ADD NEW SLIDER-->
                     <!-- Control by viewIsNew-->
                     <div class="uif_input" v-if="view_is_new">
                         <li><input type="text" id="s_name" placeholder="NAME OF THE SLIDER"></li>
-                        <li>  
+                        <li>
                             <select id="s_toid">
                                 <option v-for="d in movie_to_id_list" v-bind:value="d.id">
                                     {{ d.name }}
@@ -534,38 +549,38 @@
                         </li>
                         <li><input type="text" id="s_od" placeholder="IMAGE SEQUENCE"></li>
                     </div>
-    
+
                 </div>
-    
-                
-    
+
+
+
                 <div class="uif_form_container_right" >
-    
+
                     <div class="uif_uploadImg">
                             <a class="uif_uploadImgTitle">PREVIEW IMAGE</a>
-    
+
                             <!--Display current image from database-->
                             <div v-if="view_is_edit" v-for="item in single_data_content"><img v-bind:src="item.img" id="s_imgExist" width="200px"></div>
-                            
+
                             <!--Image upload function, call onFileChange function when selected image-->
                             <div class="imgUploadBtn">
                                 <input type="file" name="previewImgUpload" id="s_img" @change="upload" path="">
                                 <div></div>
                             </div>
-                            
+
                         </div>
-    
-                    
-    
+
+
+
                 </div>
-    
-                
-    
+
+
+
         </div>
-        
+
     </div>
-    
-    
+
+
 
 
 </div>

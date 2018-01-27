@@ -10,14 +10,25 @@ div.seatCharts-cell {
 	outline: none;
 	font-size: 13px;
 	line-height:16px;
-	color: blue;
+	margin-bottom: 24px;
+	margin-right: 24px;
+	color: #626d7a;
 
 }
 div.seatCharts-seat {
-	background-color: green;
+	background-color: rgb(255, 193, 59);
 	color: white;
-	cursor: default;
+	cursor: pointer;
+	transition: all 540ms cubic-bezier(.25,.8,.25,1);
 }
+
+div.seatCharts-seat:hover {
+	transform: scale(1.03);
+	box-shadow: 0px 4px 45px 0px rgba(255, 193, 59, 0.45);
+}
+
+
+
 div.seatCharts-seat:focus {
 	border: none;
 }
@@ -50,11 +61,11 @@ div.seatCharts-seat.focused {
 }
 
 div.seatCharts-seat.available {
-	background-color: #626D7A;
+	background-color: #626d7a;
 }
 
 div.seatCharts-seat.unavailable {
-	background-color: #3A3E4B;
+	background-color: #3b3f4c;
 	cursor: not-allowed;
 }
 

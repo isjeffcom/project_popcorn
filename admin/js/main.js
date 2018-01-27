@@ -1,11 +1,12 @@
 
 
-let url = "http://localhost:7888/project_popcorn";
+let url = "http://up786100.ct.port.ac.uk";
 let api_film = "/api/data_film.php";
 let api_user = '/api/data_user.php';
 let api_timetable = '/api/data_tt.php';
 let api_video = '/api/data_v.php';
 let api_slider = '/api/data_s.php';
+let api_ticket = '/api/data_ticket.php';
 
 let sapi_film = '/api/update_film.php';
 let sapi_video = '/api/update_v.php';
@@ -46,7 +47,7 @@ var tt_id = 1;
         2. Timetable
         3. User
         4. Slider
-    
+
     $IBA_id: item id control by listview
 */
 
@@ -61,6 +62,7 @@ let view_title_0 = ["Name","Category","Release Data","Status", "Action"];
 let view_title_1 = ["Name","URL","Belong to","Status", "Action"];
 let view_title_3 = ["Email","Address","Postcode","Payment", "Action"];
 let view_title_4 = ["Name","Image","Link to","Order", "Action"];
+let view_title_5 = ["User","Film","Reference Code","Seat", "Action"];
 
 let viewFilmRate = ["All", "PG", "12+", "15+", "18+", "19R"];
 let viewFilmStatus = ["Coming", "NowOn", "Pass"];
@@ -81,7 +83,7 @@ $(document).on("click", ".sideBar_item", function(){
     $(this).css("background-color","#0c0f19");
     $(".sideBar_item").not(this).css("background-color","#2a3045");
     $(".sideBar_item").not(this).css("cursor","pointer");
-    
+
     viewFilm = true ? false : true;
     viewVideo = true ? false : true;
     viewIsEdit = false;
@@ -101,7 +103,7 @@ $(document).on("click", ".sideBar_item", function(){
     }
 
 
-    if(sBI_cS == 3){
+    if(sBI_cS == 3 || sBI_cS == 5){
         $(".addNewBtn").hide();
     }else{
         $(".addNewBtn").show();
@@ -128,7 +130,7 @@ $(document).on("click", ".addNewBtn", function(){
         viewSlider = true ? true : false;
         view.getMovieToId()
     }
-    
+
 
     viewIsEdit = true ? false : true;
     viewIsNew = true ? true : false;
@@ -168,6 +170,8 @@ $(document).on("click", ".sliderEditBtn", function(){
     viewIsNew = true ? false : true;
     view.getData(sBI_cS, IBA_id);
 });
+
+
 
 
 
@@ -220,18 +224,18 @@ var view = new Vue({
             var data = JSON.parse(response.body);
             this.table_content = data;
         });
-        
+
     },
 
     ready: function(){
-        
+
 
 
     },
 
     methods: {
-        
-        
+
+
         sub_f(e){
             //select a api
             var sApi = this.idSubApi(sBI_cS);
@@ -244,10 +248,10 @@ var view = new Vue({
             var previewImg = $('#f_previewImg').attr("path") ? $('#f_previewImg').attr("path")  : $('#f_previewImgExist').attr("src");
 
             var s_film_data = {
-                name: $('#f_name').val(), 
-                cate: $('#f_cate').val(), 
-                brief: $('#f_brief').val(), 
-                rDate: $('#f_rdate').val(), 
+                name: $('#f_name').val(),
+                cate: $('#f_cate').val(),
+                brief: $('#f_brief').val(),
+                rDate: $('#f_rdate').val(),
                 runningTime: $('#f_runningTime').val(),
                 director: $('#f_director').val(),
                 cast: $('#f_cast').val(),
@@ -290,11 +294,11 @@ var view = new Vue({
             var postType = viewIsEdit ? 1 : 0;
             var f_id= viewIsEdit ? $('#v_id').val() : 0;
             var previewImg = $('#v_previewImg').attr("path") ? $('#v_previewImg').attr("path") : $('#v_previewImgExist').attr("src");
-             
+
 
             var s_video_data = {
-                name: $('#v_name').val(), 
-                toMovieId: $('#v_toid').val(), 
+                name: $('#v_name').val(),
+                toMovieId: $('#v_toid').val(),
                 v_url: $('#v_url').val(),
                 previewImg: previewImg,
                 postType: postType,
@@ -334,8 +338,8 @@ var view = new Vue({
             var slider_img = $('#s_img').attr("path") ? $('#s_img').attr("path") : $('#s_imgExist').attr("src");
 
             var s_slider_data = {
-                name: $('#s_name').val(), 
-                toMovieId: $('#s_toid').val(), 
+                name: $('#s_name').val(),
+                toMovieId: $('#s_toid').val(),
                 s_img: slider_img,
                 s_od:$('#s_od').val(),
                 postType: postType,
@@ -375,15 +379,14 @@ var view = new Vue({
             tttTime = tttTime ? tttTime : $('#t_time_'+tid).val();
 
             var t_data = {
-                date: tttDate, 
+                date: tttDate,
                 time: tttTime,
                 type: $('#t_type_'+tid).val(),
-                toMovieId: $('#t_toMovieId_'+tid).val(), 
+                toMovieId: $('#t_toMovieId_'+tid).val(),
                 postType: postType,
                 id: tid,
             }
-            console.log($('#t_date_'+tid).val())
-            console.log(t_data)
+
             //NO BLANK INFO
             if(this.sub_checkBlank(t_data) == false){
                 alert("All information is required");
@@ -404,7 +407,7 @@ var view = new Vue({
                 }
             }).catch ((error)=> console.log(error));
         },
-        
+
         //check all infomation been fill before post to back-end
         sub_checkBlank(dataObj){
             var cb_res = true;
@@ -468,7 +471,7 @@ var view = new Vue({
             var formData = new FormData();
             formData.append("fileToUpload", file)
             var self=$(e.target);
-            
+
             this.$http.post(url+api_imgUpload, formData).then(response => {
                 // get status
                 if(response.status == 200){
@@ -478,10 +481,10 @@ var view = new Vue({
                     self.attr("path", finalUrl);
                     self.next().find('img').remove(); //remove previous preview image (if exist no need cuz no warning)
                     self.next().append("<img src=" + finalUrl + " width='200px'>"); //append preview image
-                    
+
                 };
             }).catch ((error)=> console.log(error));
-            
+
         },
 
         //video upload function, return video url
@@ -490,14 +493,14 @@ var view = new Vue({
             var formData = new FormData();
             formData.append("fileToUpload", file)
             var self=$(e.target);
-            
+
             this.$http.post(url+api_vidUpload, formData).then(response => {
                 // get status
                 if(response.status == 200){
                     //remove url when official deploy
                     var finalUrl_v = url + String(response.body); //combine image url
                     finalUrl_v=finalUrl_v.replace(/[\r\n]/g,""); //remove spacing in text assest for decode
-                    $("#v_url").val(finalUrl_v); 
+                    $("#v_url").val(finalUrl_v);
                     self.attr("path", finalUrl_v);
                     self.next().find('video').remove(); //remove previous preview image (if exist no need cuz no warning)
                     self.next().append("<video width='320' height='240' controls><source id='v_url' v-bind:src="+finalUrl_v+" type='video/mp4'></video>"); //append preview image
@@ -508,7 +511,7 @@ var view = new Vue({
         tt_m_switch(){
             var tt_mid = this.tt_id;
             ttDateList = [];
-            
+
             this.$http.post(url+api_timetable+"?id="+tt_mid).then((response)=>{
                 var data = JSON.parse(response.body);
                 if(typeof data != undefined || data != null || data != ""){
@@ -578,13 +581,13 @@ var view = new Vue({
             this.view_slider = viewSlider;
             this.view_is_edit = viewIsEdit;
             this.view_is_new = viewIsNew;
-            
+
             console.log(cid);
 
             //if no need to get data
             if(currentViewId == 90){return;}
 
-            
+
 
             if(singleId != undefined){
                 var sid = singleId;
@@ -602,7 +605,7 @@ var view = new Vue({
                                 this.is_youtube = isYouTube;
                             }
                         }
-                        
+
                     }
                 });
 
@@ -622,7 +625,7 @@ var view = new Vue({
                     }
                 });
             }
-            
+
         },
 
         //get movie id list (for toId selection)
@@ -638,26 +641,30 @@ var view = new Vue({
         //id data api by current view id
         idCidApi(cid){
             var tempApi;
-            
+
             switch (cid) {
                 case 0:
                     tempApi = api_film
                 break;
-        
+
                 case 1:
                     tempApi = api_video
                 break;
-        
+
                 case 2:
                     tempApi = api_timetable
                 break;
-        
+
                 case 3:
                     tempApi = api_user
                 break;
-        
+
                 case 4:
                     tempApi = api_slider
+                break;
+
+                case 5:
+                    tempApi = api_ticket
                 break;
             }
 
@@ -666,25 +673,29 @@ var view = new Vue({
 
         //id table title by current view id
         idTitle(cid){
-            
+
             var tempTitle;
             switch (cid) {
                 case 0:
                     tempTitle = view_title_0
                 break;
-        
+
                 case 1:
                     tempTitle = view_title_1
                 break;
-        
+
                 case 3:
                     tempTitle = view_title_3
                 break;
-        
+
                 case 4:
                     tempTitle = view_title_4
                 break;
-            
+
+                case 5:
+                    tempTitle = view_title_5
+                break;
+
                 default:
                     break;
             }
@@ -735,14 +746,14 @@ var view = new Vue({
             youtube_return_url = youtube_url_base + youtube_video_id;
             return youtube_return_url;
         }
-        
+
     }
 })
 
 
 
 
-//remove duplicates item in array 
+//remove duplicates item in array
 function re_dup(arr){
     let newArr = []
     for(let i = 0;i < arr.length; i++){
