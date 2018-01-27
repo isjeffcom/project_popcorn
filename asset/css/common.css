@@ -265,7 +265,8 @@ button:focus {
   }
 
   .dialog{
-    height:60%;
+    left:18%;
+    height:500px;
   }
 }
 

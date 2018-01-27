@@ -134,8 +134,8 @@ University of Portsmouth
         <div class='time'>
 
           <ul v-for="tt in movieTime" v-if="tt.date == now_st">
-            <li><a style="font-size: 1.5em;">2:40</a><a style="font-size: 1.5em;"> PM</a></li>
-            <li><a style="color:#A6792C;font-size:1.1em;">2D</a> <a style="opacity:0.6;font-size:1.1em;">- AD</a></li>
+            <li><a style="font-size: 1.5em;">{{tt.time.substring(0,5)}}</a><a style="font-size: 1.5em;"> PM</a></li>
+            <li><a style="color:#A6792C;font-size:1.1em;">{{tt.type.substring(0,2)}}</a> <a style="opacity:0.6;font-size:1.1em;">- {{tt.type.substring(3,5)}}</a></li>
           </ul>
 
         </div>
