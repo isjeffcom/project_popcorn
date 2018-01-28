@@ -1,3 +1,26 @@
+var view = new Vue({
+    el:"main",
+    data:{
+
+    },
+    created: function(){
+        this.$http.post(url+api_film).then((response)=>{
+            var data = JSON.parse(response.body);
+            this.otherFilm = data;
+        });
+    },
+    methods:{
+
+    },
+});
+
+
+
+
+
+
+
+
 $(document).ready(function() {
 
 

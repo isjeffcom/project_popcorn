@@ -200,12 +200,12 @@ height:300px;
 	transition: all 240ms ease-in-out;
 }
 
-.time>ul:hover{
+.time ul:hover{
 	border: 2px solid #ffae3b;
 	color:#ffae3b;
 }
 
-.time>ul>li{
+.time li{
 	list-style: none;
 	list-style: none;
 
@@ -676,8 +676,9 @@ colum-break-inside: avoid;
 
 }
 
-.videoimg>img{
+.videoimg img{
 	right:-50px;
+	opcaity:0.4;
 
 }
 

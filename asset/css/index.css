@@ -164,7 +164,7 @@ a {
 
 
 .vl_container_img:hover{
-  box-shadow: 0 12px 25px rgba(255,193,59,0.1), 0 12px 25px rgba(255,26,62,0.1);
+  box-shadow: 0 14px 20px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
   transform: scale(1.03);
 }
 
@@ -181,7 +181,7 @@ a {
   font-family: barlow;
   margin-top:4px;
   margin-bottom:4px;
-  margin-left: 30%;
+  text-align: center;
   transition: all 180ms ease-in-out;
 }
 
@@ -569,7 +569,7 @@ color: #ffffff;
 }
 
 .timeline_video_container{
-  margin-left: 5%;
+  margin-left: 6.7%;
   margin-top: 40px;
   overflow: hidden;
   display: flex;
@@ -601,4 +601,11 @@ color: #ffffff;
 
 .timeline_inner_text a{
   font-family:barlowbold;
+}
+
+
+@media screen and (max-width: 1440px){
+  .timeline_video_container{
+    margin-left: 8.2%;
+  }
 }

@@ -94,6 +94,10 @@ var view = new Vue({
 
     tm_switch(){
       this.now_st = this.tt_st;
+    },
+
+    toBilling(id){
+        window.location.href = './ticketbilling.html?id='+id;
     }
 
   },
@@ -102,8 +106,9 @@ var view = new Vue({
 
 //Nav to detail page
 function navToDetail(id){
-  window.location.href = 'http://up786100.ct.port.ac.uk/video.html?id='+id;
+  window.location.href = './video.html?id='+id;
 }
+
 
 //Get selected mvoid id
 function getPassId(){
