@@ -9,10 +9,8 @@ University of Portsmouth
 
 <html>
 <head>
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Popcorn | Book Film Tickets</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./asset/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./asset/css/common.css">
     <link rel="stylesheet" type="text/css" href="./asset/css/index.css">
@@ -21,24 +19,22 @@ University of Portsmouth
     <link rel="stylesheet" type="text/css" href="./asset/css/ticketbilling.css">
     <link rel="stylesheet" type="text/css" href="asset/css/jquery.seat-charts.css">
 
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/vue-resource.js"></script>
+    <script src="./js/tb_data.js" defer></script>
+
     <script src="./js/jq321.js"></script>
-    <script src="js/jquery.seat-charts.min.js"></script>
-    <script src="js/video_overlay.js"></script>
-    <script src="js/ticketbilling.js"></script>
+    <script src="./js/jquery.seat-charts.min.js"></script>
+    <script src="./js/tb_seat.js"></script>
+
+
+
     <link rel="icon" href="./asset/img/favicon1.png" type="image/gif" sizes="16x16">
 
-
 </head>
-<h1 class='noLS'>Webpage currently unable to support landscape view.</h1>
-<body>
-    <div id="main">
-        <div class="video_overlay" id="video_overlay" v-on:click="openVideo()"></div>
 
-        <div class='vid_container' id="video_overlay_player">
-            <div class='insideoverlay' v-on:click="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
-            <iframe width="1080" height="720" src="" frameborder="0"
-                    allow="encrypted-media" allowfullscreen></iframe>
-        </div>
+  <body>
+      <div id="main">
 
         <div class='navBar'>
 
@@ -50,228 +46,246 @@ University of Portsmouth
 
             <div class='navBar_mobile'>
                 <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
-
-                <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
             </div>
 
         </div>
 
-        <!--poster here-->
-
         <div class='movie_container'>
-            <div class='movie_2'>
-                <img src='./asset/img/slider1.jpg' alt="">
+            <div class='movie_2' v-if="default_film">
+                <img src='./asset/img/login_bg.jpg' alt="">
             </div>
+
+            <div class='movie_2' v-for="i in film_content" v-else>
+                <img v-bind:src='i.previewImg' alt="">
+            </div>
+
+
         </div>
 
         <div class='main_filminfo'>
 
             <div class='mi_main'>
-
-                <img src='./asset/img/poster05.jpg' alt='image'>
+                <img src='./asset/img/default_poster.jpg' alt='image' height="100%" v-if="default_film">
+                <img v-for="item in film_content" v-bind:src='item.posterImg' alt='image' v-else>
 
             </div>
-
 
             <div class='movie_info'>
 
-                <ul>
-                    <li><a style="color:#ffffff;font-size:1.5em;font-family:barlow;">TICKET FOR:</a></li>
-                    <li>
-                        <div class='date_select'>
-                            <div class='date_menu'>
-                                <select>
-                                    <option value="date1">STAR WARS: THE LAST JEDI</option>
-                                    <option value="date2">STAR WARS: THE LAST JEDI</option>
-                                    <option value="date3">STAR WARS: THE LAST JEDI</option>
-                                    <option value="date4">STAR WARS: THE LAST JEDI</option>
-                                </select></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class='imgbutton' alt='image'><img src='./asset/img/certificate.png' alt='image'></div>
-                    </li>
-                </ul>
+              <ul>
+                <li><a style="color:#ffffff;font-size:1.5em;font-family:barlow;">TICKET FOR:</a></li>
+                <li>
+                  <div class='date_select_tf'>
+                    <div class='date_menu_tf'>
+                      <select id="v_toid" v-model="sv" @change="film_change">
+                          <option v-for="i in film_list" v-bind:value="i.id">
+                              {{ i.name }}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <div class='imgbutton' alt='image'><img src='./asset/img/certificate.png' alt='image'></div>
+                </li>
+              </ul>
             </div>
+
         </div>
 
+        <div class='date_select' id="date_select" v-if="isTimeSelected">
+          <div class='date_menu'>
+            <select v-model="tt_st" @change="tm_switch">
+                    <option v-for="t in date_list" v-bind:value="t">
+                        {{ t }}
+                    </option>
+            </select>
+         </div>
+        </div>
 
-        <div class='ticket_info'>
-            <div class='ticket_time'>
+        <div class='outer_time' v-if="isTimeSelected">
+          <div class='time_table'>
+            <div class='time'>
+              <ul v-for="tt in movieTime" v-if="tt.date == now_st">
+                <div v-on:click="timeSelected(tt.id)">
+                  <li><a style="font-size: 1.5em;">{{tt.time.substring(0,5)}}</a><a style="font-size: 1.5em;"> PM</a></li>
+                  <li><a style="color:#A6792C;font-size:1.1em;">{{tt.type.substring(0,2)}}</a> <a style="opacity:0.6;font-size:1.1em;">- {{tt.type.substring(3,5)}}</a></li>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class='ticket_info' v-if="isTimeSelectedComplete">
+            <div class='ticket_time' v-for="item in time_content">
                 <ul>
                     <li><a style="font-size: 1.5em; font-family:barlow;">TIME:</a></li>
-                    <li><a style="font-size: 1.5em;">4:00 PM - 19/01/18</a></li>
+                    <li><a style="font-size: 1.5em;">{{item.time}} - {{item.date}}</a></li>
                 </ul>
                 <ul>
                     <li><a style="font-size: 1.5em; font-family:barlow;">TICKET:</a></li>
-                    <li><a style="font-size: 1.5em; font-family:Barlow;">2D - AD</a></li>
+                    <li><a style="font-size: 1.5em; font-family:Barlow;">{{item.type}}</a></li>
                 </ul>
             </div>
         </div>
 
-        <div class="seats">
+        <div id="seat_area">
+
+            <div class="seats">
             <div id='cinema-seats'></div>
-        </div>
+          </div>
 
-        <div class='line_sep'>
-            <img src='./asset/img/linesep.png' alt='image'>
-        </div>
+            <div class='line_sep'>
+              <img src='./asset/img/linesep.png' alt='image'>
+            </div>
 
-        <div class='outer_time'>
-            <div class='time_table'>
+            <div class='outer_time'>
+              <div class='time_table'>
                 <div class='time' id="seat_to_ticket">
-
                     <div class='payment'>
-                        <a style="color:#A6792C;font-size:2em;" id="seat_final_price"></a>
-
+                      <a style="color:#A6792C;font-size:2em;" id="seat_final_price"></a>
                     </div>
-
-                </div>
-                <div id="seat_alert"><a id="seat_alert_text"></a></div>
+                  </div>
+                  <div id="seat_alert"><a id="seat_alert_text"></a></div>
+              </div>
             </div>
+        </div>
 
-
-            </div>
-            <div class='bill_info'>
-                <div class='billing'>
-                    <ul>
-                        <li><a style="font-size: 1.5em;">BANK CARD NUMBER:</a></li>
-                        <li>
-                            <form>
-                                <div class='data_input'>
-                                    <input type="text" required>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li><a style="font-size: 1.5em;">CVV:</a></li>
-                        <li>
-                            <form>
-                                <div class='data_input'>
-                                    <input type="text" required>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li><a style="font-size: 1.5em;">BILLING ADDRESS:</a></li>
-                        <li>
-                            <form>
-                                <div class='data_input'>
-                                    <input type="text" required>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li><a style="font-size: 1.5em;">POSTCODE:</a></li>
-                        <li>
-                            <form>
-                                <div class='data_input'>
-                                    <input type="text" required>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <div class='dialog' id='dialog'>
-                <div class="dialog_headline">
-                <div class="dialog_headline_inner">
-                    <a>SEE WHAT'S NEXT</a><br>
-                    <a>SIGN IN FOR OUR VIP</a>
-                </div>
-                </div>
-
-                <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
-
-                <div class='dialog_input' id='dialog_sign_input'>
-                <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"><!--div class="dialog_newsign"><a>NEW</a></div--></div>
-
-                <input type='password' id='password' value='' placeholder="Password">
-                </div>
-
-                <div class='dialog_button_area'>
-                <div class="popcorn_btn_1 dialog_btn"><a onclick="login()">Sign in or Create account</a></div>
-                </div>
-
-                <div class='dialog_iForgot'>
-                    <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
-                </div>
-
-                <div class="dialog_bg">
-                <div class="dialog_bg_inner">
-                    <img src="./asset/img/login_bg.jpg">
-                </div>
-                </div>
-
-            </div>
-
-            <div class='alertOverlay' id='alertOverlay'>
-                <a id='alertContent'>Something wrong here.</a>
-            </div>
-
-            <div class='ticket_but1'>
-
-                <div class="ticket_but1_container">
-                    <div class="popcorn_btn_1">
-                        <div class="popcorn_btn_1_inside">
-                        <div class="popcorn_btn_1_svg">
-                            <svg t="1516376133506" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1048" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><defs><style type="text/css"></style></defs><path d="M828.5184 179.2H195.4816C144.1792 179.2 102.4 221.8496 102.4 274.2784v475.4432c0 52.4288 41.7792 95.0784 93.0816 95.0784h633.0368c51.3536 0 93.0816-42.6496 93.0816-95.0784V274.2784c0-52.4288-41.7792-95.0784-93.0816-95.0784z m41.8816 563.2c0 31.4368-20.3776 51.2-51.2 51.2H204.8c-30.8224 0-51.2-19.7632-51.2-51.2v-307.2h716.8v307.2z m0-409.6H153.6v-51.2c0-31.488 20.3776-51.2 51.2-51.2h614.4c30.8224 0 51.2 19.712 51.2 51.2v51.2zM256 716.8h281.6s25.6 0.8192 25.6-25.6-25.6-25.6-25.6-25.6H256s-25.6-0.8192-25.6 25.6 25.6 25.6 25.6 25.6z" fill="#000000" p-id="1049"></path></svg>
+        <div class='bill_info' v-if="isTimeSelectedComplete">
+          <div class='billing'>
+            <ul>
+              <li><a style="font-size: 1.5em;">BANK CARD NUMBER:</a></li>
+              <li>
+                <form>
+                  <div class='data_input'>
+                      <input type="text" required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                  </div>
+                </form>
+              </li>
+            </ul>
+            <ul>
+                <li><a style="font-size: 1.5em;">CVV:</a></li>
+                <li>
+                    <form>
+                        <div class='data_input'>
+                            <input type="text" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
                         </div>
-                        <div class="popcorn_btn_1_text"><a>CHECK OUT</a></div>
+                    </form>
+                </li>
+            </ul>
+            <ul>
+                <li><a style="font-size: 1.5em;">BILLING ADDRESS:</a></li>
+                <li>
+                    <form>
+                        <div class='data_input'>
+                            <input type="text" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
                         </div>
+                    </form>
+                </li>
+            </ul>
+            <ul>
+              <li><a style="font-size: 1.5em;">POSTCODE:</a></li>
+              <li>
+                <form>
+                    <div class='data_input'>
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                    </div>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class='dialog' id='dialog'>
+          <div class="dialog_headline">
+            <div class="dialog_headline_inner">
+                <a>SEE WHAT'S NEXT</a><br>
+                <a>SIGN IN FOR OUR VIP</a>
+            </div>
+          </div>
+
+          <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
+
+          <div class='dialog_input' id='dialog_sign_input'>
+          <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"><!--div class="dialog_newsign"><a>NEW</a></div--></div>
+
+            <input type='password' id='password' value='' placeholder="Password">
+          </div>
+
+          <div class='dialog_button_area'>
+            <div class="popcorn_btn_1 dialog_btn"><a onclick="login()">Sign in or Create account</a></div>
+          </div>
+
+          <div class='dialog_iForgot'>
+              <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
+          </div>
+
+          <div class="dialog_bg">
+            <div class="dialog_bg_inner">
+                <img src="./asset/img/login_bg.jpg">
+            </div>
+          </div>
+
+      </div>
+
+        <div class='alertOverlay' id='alertOverlay'>
+            <a id='alertContent'>Something wrong here.</a>
+        </div>
+
+        <div class='ticket_but1' v-if="isTimeSelectedComplete">
+
+            <div class="ticket_but1_container">
+                <div class="popcorn_btn_1">
+                    <div class="popcorn_btn_1_inside">
+                    <div class="popcorn_btn_1_svg">
+                        <svg t="1516376133506" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1048" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><defs><style type="text/css"></style></defs><path d="M828.5184 179.2H195.4816C144.1792 179.2 102.4 221.8496 102.4 274.2784v475.4432c0 52.4288 41.7792 95.0784 93.0816 95.0784h633.0368c51.3536 0 93.0816-42.6496 93.0816-95.0784V274.2784c0-52.4288-41.7792-95.0784-93.0816-95.0784z m41.8816 563.2c0 31.4368-20.3776 51.2-51.2 51.2H204.8c-30.8224 0-51.2-19.7632-51.2-51.2v-307.2h716.8v307.2z m0-409.6H153.6v-51.2c0-31.488 20.3776-51.2 51.2-51.2h614.4c30.8224 0 51.2 19.712 51.2 51.2v51.2zM256 716.8h281.6s25.6 0.8192 25.6-25.6-25.6-25.6-25.6-25.6H256s-25.6-0.8192-25.6 25.6 25.6 25.6 25.6 25.6z" fill="#000000" p-id="1049"></path></svg>
+                    </div>
+                    <div class="popcorn_btn_1_text"><a>CHECK OUT</a></div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="line01">
+      </div>
 
-                <img src = "./asset/img/footer_line.png">
+      <div class="line01">
+        <img src = "./asset/img/footer_line.png">
+      </div>
 
-            </div>
+      <footer class='footer'>
+          <div class='f_container'>
 
-            <footer class='footer'>
-                <div class='f_container'>
+              <div class='footer_list'>
 
-                    <div class='footer_list'>
+              <div class='footer_socialNet'>
+                  <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
+                  <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
+                  <a href='https://en-gb.facebook.com/'target="_blank"><img src='./asset/img/social_icon04.png' alt='logo'></a>
+                  <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
+                  <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
+              </div>
 
-                    <div class='footer_socialNet'>
-                        <a href='https://twitter.com/?lang=en'target="_blank"><img src='./asset/img/social_icon02.png' alt='logo'></a>
-                        <a href='https://www.youtube.com/'target="_blank"><img src='./asset/img/social_icon03.png' alt='logo'></a>
-                        <a href='https://en-gb.facebook.com/'target="_blank"><img src='./asset/img/social_icon04.png' alt='logo'></a>
-                        <a href='https://plus.google.com/discover'target="_blank"><img src='./asset/img/social_icon05.png' alt='logo'></a>
-                        <a href='https://www.instagram.com/?hl=en'target="_blank"><img src='./asset/img/social_icon06.png' alt='logo'></a>
-                    </div>
+              </div>
 
-                    </div>
+              <div class='contact'>
+              <div class="contact_container">
+                  <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
+                  <div class="contact_single" style="margin-top: -24px;"><a href='./index.html'><img src='./asset/img/headlogo.png' alt='logo'></a></div>
+                  <div class="contact_single"><a href='#'>Customer service 020 8789 1436</a></div>
+              </div>
+              </div>
 
-                    <div class='contact'>
-                    <div class="contact_container">
-                        <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
-                        <div class="contact_single" style="margin-top: -24px;"><a href='./index.html'><img src='./asset/img/headlogo.png' alt='logo'></a></div>
-                        <div class="contact_single"><a href='#'>Customer service 020 8789 1436</a></div>
-                    </div>
-                    </div>
+          </div>
+      </footer>
 
-                </div>
-            </footer>
-
-            <script src="./js/signin.js"></script>
-            <script src='./js/logohome.js'></script>
-
-    </div>
-</body>
+  </body>
 
 </html>

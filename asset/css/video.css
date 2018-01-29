@@ -188,7 +188,7 @@ height:300px;
 	font-family: barlow;
 }
 
-.time>ul{
+.time ul{
 	width: 120px;
 	height: 80px;
 	border: 2px solid #fff;
@@ -676,11 +676,6 @@ colum-break-inside: avoid;
 
 }
 
-.videoimg img{
-	right:-50px;
-	opcaity:0.4;
-
-}
 
 .mi_main {
 	width:302px;
@@ -725,5 +720,5 @@ colum-break-inside: avoid;
 	.time{
 		margin-left:260px;
 	}
-	
+
 }

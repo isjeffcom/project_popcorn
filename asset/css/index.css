@@ -147,7 +147,7 @@ a {
 
 .vl_container img:hover{
   box-shadow: 0 14px 20px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 @media screen and (max-width: 1440px){
@@ -155,7 +155,6 @@ a {
     margin-right: 8%;
   }
 }
-
 
 .vl_container_img{
   height:358px;
@@ -165,7 +164,7 @@ a {
 
 .vl_container_img:hover{
   box-shadow: 0 14px 20px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 
@@ -187,10 +186,6 @@ a {
 
 .vl_text a{
   font-size:20px;
-}
-
-.vl_text a:hover{
-  color:#dc2323 !important;
 }
 
 .vl_info{
@@ -338,31 +333,6 @@ a {
 
 }
 
-.banner{
-  margin-top:40px;
-  margin-bottom:40px;
-  margin-left:10px;
-  margin-right:10px;
-
-}
-
-.banner_img_inner{
-  margin-left: 1%;
-  overflow: hidden;
-  width:97.8%;
-  height:360px;
-}
-
-.banner_img_inner img{
-  opacity: 0.4;
-  transition: all 180ms ease-in-out;
-}
-
-.banner_img_inner img:hover{
-  opacity: 1;
-
-}
-
 .videoarea{
   	width: 960px;
     height: 540px;
@@ -424,11 +394,28 @@ a {
 
 .videoimg img{
   height:100%;
+  opacity:0.4;
+}
+
+.videoimg_playbtn{
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  margin-top: 180px;
+  margin-left: 300px;
+  opacity: 0.5;
+  z-index:900;
+  transition: all 360ms ease-in-out;
+}
+
+.videoimg_playbtn:hover{
+  opacity:1;
+
 }
 
 
 .video_title{
-width:100%;
+  width:100%;
 
 }
 
@@ -442,9 +429,6 @@ width:100%;
   -webkit-box-align: start;
   align-items: flex-start;
   width:100%;
-  /*timer*/
-  -webkit-transition: all 180ms cubic-bezier(.25,.8,.25,1);
-  -moz-transition: all 180ms ease-in-out;
   transition: all 180ms ease-in-out;
   margin-left: 10px;
 
@@ -571,24 +555,29 @@ color: #ffffff;
 .timeline_video_container{
   margin-left: 6.7%;
   margin-top: 40px;
-  overflow: hidden;
   display: flex;
   flex-direction: row;
   width: calc(100% - 160px);
 }
 
 .timeline_video_single{
-
-  overflow: hidden;
+  cursor: pointer;
   width: calc(100%/5);
 }
 
+
 .timeline_video_single img{
   width:75%;
+  transition: all 500ms ease-in-out;
+}
+
+.timeline_video_single img:hover{
+  box-shadow: 0 14px 20px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
+  transform: scale(1.02);
 }
 
 .tvs_text{
-  margin-left:3.5% !important;
+  margin-left: -25% !important;
 }
 
 .timeline_inner_text{
@@ -602,6 +591,9 @@ color: #ffffff;
 .timeline_inner_text a{
   font-family:barlowbold;
 }
+
+
+
 
 
 @media screen and (max-width: 1440px){

@@ -1,29 +1,39 @@
-
+let ps_url="http://up786100.ct.port.ac.uk/api/";
+let ps_api_s ="data_s.php";
 //Data set
-let s_img = ["./asset/img/simg1.jpg", "./asset/img/simg2.jpg","./asset/img/simg3.jpg", "./asset/img/simg4.jpg"];
-let s_name = ["Justice League", "Star War: The Last Judi", "Transformer", "X-Man: Dark Phoenix"];
+var s_img = [];
+var s_name = [];
+var s_id = [];
+getSlider();
 
-//Get element
 let self = $("#ps_img_container");
 let self_name = $("#psName");
-
 var count = 0;
-self.attr("src", s_img[count]);
-self_name.text(s_name[count]);
 
-for(i=0;i<s_name.length;i++){
-  $("#sn"+i).text(s_name[i]);
-}
+//Run after document ready
+$(document).ready(function(){
+  //Click slider controller function
+  $(".ps_controller_single").click(function(){
+      count = $(this).attr("data-id");
+      self.attr("src", s_img[count]);
+      self_name.attr("data-id",s_id[count]);
+      $("#s_play_btn").attr("data-id", s_id[count]);
+      self_name.text(s_name[count]);
+      theRightOne(count);
+  });
+
+});
 
 //Main Timer & controller
 setInterval(function(){
 
     //Start Animate
     self.addClass("ani");
-
+    $("#s_play_btn").attr("data-id", s_id[count]);
     //Call back: Change Img
     setTimeout(function(){
       self.attr("src", s_img[count]);
+      self_name.attr("data-id",s_id[count]);
       self_name.text(s_name[count]);
       theRightOne(count);
     },1000)
@@ -38,12 +48,7 @@ setInterval(function(){
 
 }, 9000);
 
-$(".ps_controller_single").click(function(){
-    count = $(this).attr("data-id");
-    self.attr("src", s_img[count]);
-    self_name.text(s_name[count]);
-    theRightOne(count);
-});
+
 
 //Styling
 function theRightOne(c){
@@ -72,4 +77,29 @@ function theRightOne(c){
     }
   }
 
+}
+
+function getSlider() {
+  var xhttp = new XMLHttpRequest();
+  $.getJSON(ps_url+ps_api_s,function(result){
+    for(i=0;i<result.length;i++){
+      s_img.push(result[i].img);
+      s_name.push(result[i].name);
+      s_id.push(result[i].toMovieId);
+    }
+
+    //Get element
+    let self = $("#ps_img_container");
+    let self_name = $("#psName");
+
+    $("#s_play_btn").attr("data-id", s_id[count]);
+    self.attr("src", s_img[count]);
+    self_name.attr("data-id",s_id[count]);
+    self_name.text(s_name[count]);
+
+
+    for(i=0;i<s_name.length;i++){
+      $("#sn"+i).text(s_name[i]);
+    }
+  });
 }

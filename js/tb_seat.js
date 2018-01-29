@@ -1,29 +1,6 @@
-var view = new Vue({
-    el:"main",
-    data:{
-
-    },
-    created: function(){
-        this.$http.post(url+api_film).then((response)=>{
-            var data = JSON.parse(response.body);
-            this.otherFilm = data;
-        });
-    },
-    methods:{
-
-    },
-});
-
-
-
-
-
-
-
-
 $(document).ready(function() {
 
-
+    //Seat Chart function
     var sc = $('#cinema-seats').seatCharts({
         map: [
             '___aa___aa___',

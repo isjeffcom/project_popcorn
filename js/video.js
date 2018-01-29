@@ -97,7 +97,7 @@ var view = new Vue({
     },
 
     toBilling(id){
-        window.location.href = './ticketbilling.html?id='+id;
+        window.location.href = './ticketbilling.html?id='+parseInt(getPassId())+"&tid="+id;
     }
 
   },

@@ -4,7 +4,7 @@ var view = new Vue({
 
   el:"#main",
   data:{
-
+    
   },
   methods:{
     openVideo(vid){

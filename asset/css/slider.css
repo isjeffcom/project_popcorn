@@ -102,11 +102,6 @@ a{
   transition: all 460ms cubic-bezier(.25,.8,.25,1);
 }
 
-.ps_controller_single:hover{
-  height:90px;
-  z-index:999;
-
-}
 
 .ps_controller_single img{
   width:400px;
@@ -127,6 +122,10 @@ a{
   font-size: 36px;
   text-transform: uppercase;
   letter-spacing: 3px;
+}
+
+.ps_name_container{
+  cursor: pointer;
 }
 
 .ps_csN{

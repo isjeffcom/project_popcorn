@@ -64,16 +64,6 @@ function indicator() {
     }
 
 
-    /*if(slideIndex == 1){
-      console.log('400');
-      bt.style.marginTop="-20.6%";
-      console.log(bt);
-
-    }else{
-      console.log('440');
-      bt.style.marginTop="-23%";
-      console.log(bt);
-    }*/
     setTimeout(indicator, 10000); //10s
 }
 

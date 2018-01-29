@@ -15,10 +15,12 @@
     $sql = "SELECT * FROM popcorn_film WHERE id=".$_GET['id']."";
   }
 
+
+
   if(isset($_GET['status'])){
     $sql = "SELECT * FROM popcorn_film WHERE status=".$_GET['status']."";
   }
-  
+
   if(!isset($_GET['id']) && !isset($_GET['status'])){
     $sql = "SELECT * FROM popcorn_film";
   }

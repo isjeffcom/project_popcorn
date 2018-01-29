@@ -120,16 +120,17 @@ University of Portsmouth
         </div>
       </div>
 
-      <div class='date_select'>
-        <div class='date_menu'>
-          <select v-model="tt_st" @change="tm_switch">
-                  <option v-for="t in date_list" v-bind:value="t">
-                      {{ t }}
-                  </option>
-          </select>
-       </div>
-      </div>
-<div class='outer_time'>
+    <div class='date_select'>
+      <div class='date_menu'>
+        <select v-model="tt_st" @change="tm_switch">
+                <option v-for="t in date_list" v-bind:value="t">
+                    {{ t }}
+                </option>
+        </select>
+     </div>
+    </div>
+
+    <div class='outer_time'>
       <div class='time_table'>
         <div class='time'>
 

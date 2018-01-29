@@ -12,7 +12,13 @@
 
   if(isset($_GET['id'])){
     $sql = "SELECT * FROM popcorn_video WHERE id=".$_GET['id']."";
-  }else{
+  }
+
+  if(isset($_GET['vid'])){
+    $sql = "SELECT * FROM popcorn_video WHERE toMovieId=".$_GET['vid']."";
+  }
+
+  if(!isset($_GET['id']) && !isset($_GET['vid'])){
     $sql = "SELECT * FROM popcorn_video";
   }
 
