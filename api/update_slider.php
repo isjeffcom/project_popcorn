@@ -11,7 +11,7 @@
     include('../admin/services/security.php');
     //新增活动开始
     if(!empty($_POST)){
-        
+
         $id = cleanStr($_POST['id']);
         $postType = $_POST['postType'];
 
@@ -28,7 +28,7 @@
         }
 
         //vars
-        
+
         $name = cleanStr($_POST['name']);
         $s_img = $_POST['s_img'];
         $toMovieId = cleanStr($_POST['toMovieId']);
@@ -37,17 +37,17 @@
         if($postType == 0){
             //query line
             $update_sql="INSERT INTO popcorn_slider (name, img, toMovieId, od)
-            VALUES ('$name', '$s_img','$toMovieId', '$od')";
+            VALUES ('$name','$s_img','$toMovieId','$od')";
         }
         if($postType == 1){
-            
+
             $update_sql="UPDATE popcorn_slider SET name='$name', img='$s_img', toMovieId='$toMovieId', od='$od'
             WHERE id='$id'";
             echo $update_sql;
         }
 
-        
-        
+
+
 
         //start query order in database
         $updateSqlRun = mysqli_query($link, $update_sql);
@@ -62,3 +62,4 @@
         }
     }
     //新增活动结束
+?>

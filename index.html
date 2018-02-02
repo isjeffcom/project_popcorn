@@ -21,6 +21,7 @@ University of Portsmouth
 
     <script src="./js/vue.min.js"></script>
     <script src="./js/vue-resource.js"></script>
+    <script src="./js/js.cookie.js"></script>
     <script src="./js/index.js" defer></script>
 
     <script src="./js/popcorn_slider.js" defer></script>
@@ -51,8 +52,6 @@ University of Portsmouth
       </div>
 
       <script src='./js/logohome.js'></script>
-
-
 
       <div class='navBar_mobile'>
         <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
@@ -164,26 +163,30 @@ University of Portsmouth
 
     <div class='dialog' id='dialog'>
       <div class="dialog_headline">
-        <div class="dialog_headline_inner">
-            <a>SEE WHAT'S NEXT</a><br>
-            <a>SIGN IN FOR OUR VIP</a>
-        </div>
+        <div class="dialog_headline_inner" id="dialog_headline_inner">
+            <a id="dhi_wel">SEE WHAT'S NEXT</a><br>
+            <a id="dhi_acc">SIGN IN FOR OUR VIP</a>
 
+        </div>
+        <div class="popcorn_btn_1 signout_btn" id="signout_btn" onclick="signout()"><a>SIGN OUT</a></div>
       </div>
 
       <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
 
       <div class='dialog_input' id='dialog_sign_input'>
-        <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"></div>
-
-        <input type='password' id='password' value='' placeholder="Password">
+        <div class="dialog_username_input_container">
+          <input type='text' id='username' value='' placeholder="Email" oninput="hideNew()" onchange="ifExist(this.value)">
+          <div id="username_new"><a>NEW</a></div>
+        </div>
+        <input type='password' id='password' value='' oninput="ifPsw()" onchange="checkPsw()" placeholder="Password">
+        <div id="password_alert"><div id="password_alert_left_tr"></div><a id="password_alert_text">6 - 16 NUMBERS OR CHARACTERS</a></div>
       </div>
 
-      <div class='dialog_button_area'>
-        <div class="popcorn_btn_1 dialog_btn"><a onclick="login()">Sign in or Create account</a></div>
+      <div class='dialog_button_area' id="dialog_button_area">
+        <div class="popcorn_btn_1 dialog_btn" onclick=""><a>Sign in or Create account</a></div>
       </div>
 
-      <div class='dialog_iForgot'>
+      <div class='dialog_iForgot' id="dialog_iForgot">
           <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
       </div>
 

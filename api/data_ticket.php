@@ -20,7 +20,7 @@
   }
 
   if(isset($_GET['id'])){
-    $sql = "SELECT * FROM popcorn_ticket WHERE id=".$_GET['sid']."";
+    $sql = "SELECT * FROM popcorn_ticket WHERE id=".$_GET['id']."";
 
   }
 

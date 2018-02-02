@@ -8,21 +8,24 @@
         <title>Popcorn | Your Ticket</title>
         <script src="./js/scroll.js"></script>
         <script src="./js/jq321.js"></script>
+        <script src="./js/vue.min.js"></script>
+        <script src="./js/vue-resource.js"></script>
+        <script src="./js/js.cookie.js"></script>
         <script src="./js/signin.js" defer></script>
         <script src="./js/mobile.js" defer></script>
+        <script src="./js/ticket.js" defer></script>
     </head>
 
 
     <body>
         <div class="video_overlay" id="video_overlay" onclick="openVideo()"></div>
+
         <div class="sbar_overlay" id="sbar_overlay" onclick="openSearchBar()"></div>
 
         <div class='vid_container' id="video_overlay_player">
             <div class='insideoverlay' onclick="openVideo()"><img src='./asset/img/overlay_exit.png' alt='logo'></div>
             <iframe width="900" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-
-
 
         <div class='navBar'>
 
@@ -35,7 +38,7 @@
 
 
             <div class='navBar_mobile'>
-                
+
                 <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
 
                 <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
@@ -47,9 +50,10 @@
             <img src="./asset/img/ticket_res_bg.jpg">
         </div>
 
-        <div class="ticket_tm_container">
+        <div id="main">
+          <div class="ticket_tm_container">
 
-            <div class="ticket_tm">
+            <div class="ticket_tm" v-for="item in ticketCount">
 
                 <div class="ticket_tm_top">
                     <div class="ticket_tm_top_title">
@@ -88,90 +92,53 @@
                 </div>
 
             </div>
-
-            <div class="ticket_tm">
-
-                    <div class="ticket_tm_top">
-                        <div class="ticket_tm_top_title">
-                            <a style="font-family:barlowbold;">POPCORN </a><a>CINAME TICKET</a>
-                        </div>
-                    </div>
-
-                    <div class="ticket_tm_main">
-                        <div class="ticket_tm_main_movieinfo">
-                            <div class="ticket_tm_main_title"><a>STAR WAR: THE LAST JEDI</a></div>
-                            <div class="ticket_tm_main_time"><a>5:40 PM</a><br><a>10/01/2018</a></div>
-                        </div>
-
-                        <div class="ticket_tm_main_refcode">
-                            <div class="ticket_tm_main_refcode_title"><a>REFERENCE CODE</a></div>
-                            <div class="ticket_tm_main_fefcode_code"><a>RF3C9YULJ</a></div>
-                        </div>
-                    </div>
-
-                    <div class="ticket_tm_cut">
-                        <div class="ticket_tm_cut_top">
-                            <div class="ticket_semi_circle_top"></div>
-                        </div>
-
-                        <div class="ticket_tm_cut_bottom">
-                            <div class="ticket_semi_circle_bottom"></div>
-                        </div>
-
-                        <div class="ticket_tm_cut_line"></div>
-
-                    </div>
-
-                    <div class="ticket_tm_seat">
-                        <div class="ticket_tm_seat_position"><a>C12</a></div>
-                        <div class="ticket_tm_seat_type"><a>2D-AD</a></div>
-                    </div>
-
-                </div>
         </div>
-
+        </div>
 
         <div class='dialog' id='dialog'>
-        <div class="dialog_headline">
-            <div class="dialog_headline_inner">
-                <a>SEE WHAT'S NEXT</a><br>
-                <a>SIGN IN FOR OUR VIP</a>
+          <div class="dialog_headline">
+            <div class="dialog_headline_inner" id="dialog_headline_inner">
+                <a id="dhi_wel">SEE WHAT'S NEXT</a><br>
+                <a id="dhi_acc">SIGN IN FOR OUR VIP</a>
+
             </div>
+            <div class="popcorn_btn_1 signout_btn" id="signout_btn" onclick="signout()"><a>SIGN OUT</a></div>
+          </div>
 
-        </div>
+          <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
 
-        <div class='dialog_close' id='dialogClose'><i class="fa fa-times-circle-o" aria-hidden="true" onclick='closeDialog()'></i></div>
+          <div class='dialog_input' id='dialog_sign_input'>
+            <div class="dialog_username_input_container">
+              <input type='text' id='username' value='' placeholder="Email" oninput="hideNew()" onchange="ifExist(this.value)">
+              <div id="username_new"><a>NEW</a></div>
+            </div>
+            <input type='password' id='password' value='' oninput="ifPsw()" onchange="checkPsw()" placeholder="Password">
+            <div id="password_alert"><div id="password_alert_left_tr"></div><a id="password_alert_text">6 - 16 NUMBERS OR CHARACTERS</a></div>
+          </div>
 
-        <div class='dialog_input' id='dialog_sign_input'>
-            <div class="dialog_username_input_container"><input type='text' id='username' value='' placeholder="Email" onchange="ifExist(this.value)"><!--div class="dialog_newsign"><a>NEW</a></div--></div>
+          <div class='dialog_button_area' id="dialog_button_area">
+            <div class="popcorn_btn_1 dialog_btn" onclick=""><a>Sign in or Create account</a></div>
+          </div>
 
-            <input type='password' id='password' value='' placeholder="Password">
-        </div>
+          <div class='dialog_iForgot' id="dialog_iForgot">
+              <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
+          </div>
 
-        <div class='dialog_button_area'>
-            <div class="popcorn_btn_1 dialog_btn"><a onclick="login()">Sign in or Create account</a></div>
-        </div>
-
-        <div class='dialog_iForgot'>
-            <a>By continue, you agree with our </a><a href = '#' class='dialog_term_policy'>term and policy</a><a>.</a>
-        </div>
-
-        <div class="dialog_bg">
+          <div class="dialog_bg">
             <div class="dialog_bg_inner">
-            <img src="./asset/img/login_bg.jpg">
+              <img src="./asset/img/login_bg.jpg">
             </div>
-        </div>
+          </div>
 
         </div>
 
         <div class='dialogOverlay' id='dialogOverlay' onclick='closeDialog()'>
-        <a> </a>
+          <a> </a>
         </div>
 
         <div class='alertOverlay' id='alertOverlay'>
-        <a id='alertContent'>Something wrong here.</a>
+          <a id='alertContent'>Something wrong here.</a>
         </div>
-
 
         <div class="line01">
 
@@ -204,7 +171,6 @@
 
             </div>
         </footer>
-
 
     </body>
 

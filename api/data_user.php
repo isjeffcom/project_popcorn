@@ -11,10 +11,8 @@
   include('./connect.php');
 
 
-  if(isset($_POST['id'])){
-    $sql = "SELECT * FROM popcorn_user WHERE id=".$_POST['id']."";
-  }else{
-    $sql = "SELECT * FROM popcorn_user";
+  if(isset($_GET['e'])){
+    $sql = "SELECT id, address, postcode, pcard FROM popcorn_user WHERE email = '".$_GET['e']."'";
   }
 
 
@@ -33,7 +31,6 @@
 
 
   //print out data
-
   echo stripslashes(json_encode($jsonArr, JSON_UNESCAPED_UNICODE));
 
 ?>

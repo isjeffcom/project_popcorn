@@ -8,28 +8,43 @@ University of Portsmouth
 */
 
 //USER Information
-var username = ['up793229@myport.ac.uk', 'up123456@myport.ac.uk'];
-var password = ['123321', '123456'];
+let sapi_user ="update_signin.php";
+let sapi_ifexist ="update_ifexist.php";
 
-function ifExist(v){
-  for(var i=0;i<username.length;i++){
-    if(v == username[i]){
-      
-    }
-  }
-}
+//Get value from input box
+var u = $('#username').val();
+var p = $('#password').val();
 
-keepLogin();
-
-//Open dialog function
+//Open pop-up dialog function
 function openDialog(){
-  var overlay = document.getElementById('dialogOverlay');
-  var dialog = document.getElementById('dialog');
-  dialog.style.display='block';
-  overlay.style.display='block';
+  if(Cookies.get('email')){
+    everythingKeep();
+    $("#dhi_wel").text("WELCOME BACK");
+    $("#dhi_acc").text(Cookies.get('email'));
+    $("#signout_btn").css("display", "block");
+    return;
+  }else{
+    var overlay = document.getElementById('dialogOverlay');
+    var dialog = document.getElementById('dialog');
+    everythingBack();
+    dialog.style.display='block';
+    overlay.style.display='block';
+    $("#signout_btn").css("display", "none");
+  }
+
 }
 
-//Close dialog function
+//Sign out function
+function signout(){
+  Cookies.remove('email');
+  Cookies.remove('login');
+  $('#username').val("");
+  $('#password').val("");
+  $("#dhi_acc").text("SIGN IN FOR OUR VIP");
+  everythingBack();
+}
+
+//Close pop-up dialog function
 function closeDialog(){
   var overlay = document.getElementById('dialogOverlay');
   var dialog = document.getElementById('dialog');
@@ -37,152 +52,153 @@ function closeDialog(){
   overlay.style.display='none';
 }
 
-//Check Username and Password function
-function checkUP(u,p){
-
-  for(i=0; i<username.length; i++){
-    if(u == username[i]){
-
-      if(p == password[i]){
-        result = 1;
-        break;
-      }else{
-        result = 0;
-        break;
-      }
-    }else{
-      result = 9;
-    }
-  }
-  return result;
-}
-
-
 //Login Function with alert pop up
 function login(){
-  var u = document.getElementById('username').value;
-  var p = document.getElementById('password').value;
+  u = $('#username').val();
+  p = $('#password').val();
 
+  $.ajax({
+    type: "POST",
+    url: url+sapi_user,
+    data: {
+      email: u,
+      psw: p,
+    },
+    success: function(res){
+      console.log(res)
+      if(res == 1){
+        Cookies.set('email', u);
+        Cookies.set('login', '1');
+        $("#dhi_wel").text("WELCOME BACK");
+        $("#dhi_acc").text(u);
+        everythingGo();
+      }
 
-  console.log(navUn);
-  var alertContent = document.getElementById('alertContent');
-  var alert = document.getElementById('alertOverlay');
-  //Get the result from checker
-  checkUP(u,p);
+      if(res == 9){
+          $("#password_alert").css("opacity", "0.95");
+          $("#password_alert_text").text("CHECK YOUR EMAIL OR PASSWORD");
+          return;
+      }
 
-  //Username and password are right
-  if(result == 1){
-    content = 'Log in successful';
-    navUn.innerHTML = u;
-    navMUN.innerHTML = i;
-    alertGreen();
-    set2LS(u);
-  }
-
-  //Can't find user, sign a new one
-  if(result == 9){
-    content = 'Successful sign to Well Played';
-    navUn.innerHTML = u;
-    alertGreen();
-    set2LS(u);
-    console.log(localStorage.getItem('username'));
-
-  }
-
-  //Right username, wrong password
-  if(result == 0){
-    content = 'Your password wrong';
-    alertRed();
-  }
-
-  //Pop Up alert
-  alertContent.innerHTML = content;
-  alert.style.display='block';
-
-
-
-  //Alert display in 3 secound
-  setTimeout(function(){document.getElementById('alertOverlay').style.display='none';}, 4000);
-
-  //Close dialog immediatelly
-  closeDialog();
+      if(res == 11){
+        Cookies.set('email', u);
+        Cookies.set('login', '1');
+        $("#dhi_wel").text("YOU HAVE CREATE A NEW ACCOUNT");
+        $("#dhi_acc").text(u);
+        everythingGo();
+        //do nothing for now
+      }
+      //closeDialog();
+    },
+  });
 
 }
 
-function signOut(){
-  var navIn = document.getElementById('navIn');
-  var navUp = document.getElementById('navUp');
-  var navUn = document.getElementById('navUn');
-  var navOut = document.getElementById('navOut');
-  var navMUN = document.getElementById('navMUN');
-  var navMBTN = document.getElementById('navMBTN');
-  var alert = document.getElementById('alertOverlay');
-  navIn.style.display = 'block';
-  navUp.style.display = 'block';
-  navUn.style.display = 'none';
-  navOut.style.display = 'none';
-  navMBTN.style.display = 'block';
-  navMUN.style.display = 'none';
-  localStorage.clear();
+//Animate Open
+function everythingGo(){
+  $("#dialog_headline_inner").css("animation-name", "goDown");
+  $("#dialog_headline_inner").css("transform", "translateY(160px)");
+
+  $("#dialog_sign_input").css("animation-name", "fadeout");
+  $("#dialog_sign_input").css("opacity", "0");
+  $("#dialog_button_area").css("animation-name", "fadeout");
+  $("#dialog_button_area").css("opacity", "0");
+  $("#dialog_iForgot").css("animation-name", "fadeout");
+  $("#dialog_iForgot").css("opacity", "0");
+  setTimeout(function(){$("#dialog").hide();$("#dialogOverlay").hide();}, 1500)
+
 }
 
-function alertGreen(){
-  var navIn = document.getElementById('navIn');
-  var navUp = document.getElementById('navUp');
-  var navUn = document.getElementById('navUn');
-  var navOut = document.getElementById('navOut');
-  var navMUN = document.getElementById('navMUN');
-  var navMBTN = document.getElementById('navMBTN');
-  var alert = document.getElementById('alertOverlay');
-  navMBTN.style.display = 'none';
-  navMUN.style.display = 'block';
-  navIn.style.display = 'none';
-  navUp.style.display = 'none';
-  navUn.style.display = 'block';
-  navOut.style.display='block';
-  alert.style.backgroundColor = '#58c271';
+//Animate Close
+function everythingBack(){
+  $("#dialog_headline_inner").css("transform", "translateY(0px)");
+  $("#dialog_headline_inner").css("animation-name", "none");
+
+  $("#dialog_sign_input").css("animation-name", "none");
+  $("#dialog_sign_input").css("opacity", "1");
+  $("#dialog_button_area").css("animation-name", "none");
+  $("#dialog_button_area").css("opacity", "0.5");
+  $("#dialog_iForgot").css("animation-name", "none");
+  $("#dialog_iForgot").css("opacity", "1");
+  $("#signout_btn").css("display", "none");
+  $("#dialog").show();
+  $("#dialogOverlay").show();
 }
 
-function alertRed(){
-  var alert = document.getElementById('alertOverlay');
-  alert.style.backgroundColor = '#bc2323';
+//Animate Close
+function everythingKeep(){
+  $("#dialog_headline_inner").css("animation-name", "goDown");
+  $("#dialog_headline_inner").css("transform", "translateY(160px)");
+
+  $("#dialog_sign_input").css("animation-name", "fadeout")
+  $("#dialog_sign_input").css("opacity", "0")
+  $("#dialog_button_area").css("animation-name", "fadeout")
+  $("#dialog_button_area").css("opacity", "0")
+  $("#dialog_iForgot").css("animation-name", "fadeout")
+  $("#dialog_iForgot").css("opacity", "0")
+  $("#dialog").show();
+  $("#dialogOverlay").show();
 }
 
-function set2LS(u){
-
-  var i = localStorage.getItem('username');
-
-  if(i != null || i != ''){
-    localStorage.setItem('username',u);
+function checkPsw(){
+  if(p.length < 6 || p.length > 16){
+    $("#password_alert").css("opacity", "0.95");
+    return;
   }
 }
 
-function clearLS(u){
-  localStorage.clear();
-}
+//if condition is enough to login
+function ifPsw(){
+  u = $('#username').val();
+  p = $('#password').val();
+  $("#password_alert").css("opacity", "0");
 
-function keepLogin(){
-  var i = localStorage.getItem('username');
-  var navIn = document.getElementById('navIn');
-  var navUp = document.getElementById('navUp');
-  var navUn = document.getElementById('navUn');
-  var navOut = document.getElementById('navOut');
-  var navMUN = document.getElementById('navMUN');
-  var navMBTN = document.getElementById('navMBTN');
-  if(i != null){
-    navIn.style.display = 'none';
-    navUp.style.display = 'none';
-    navUn.style.display = 'block';
-    navOut.style.display = 'block';
-    navMBTN.style.display = 'none';
-    navUn.innerHTML = i;
-    console.log('1: '+i);
+  if(p.length>=6 && u.length>=4){
+    $("#dialog_button_area").css("opacity", "1");
+    $("#dialog_button_area").attr("onclick", "login()");
+    return;
   }else{
-    navIn.style.display = 'block';
-    navUp.style.display = 'block';
-    navUn.style.display = 'none';
-    navOut.style.display = 'none';
-    navMUN.style.display = 'none';
-    console.log('2: '+i);
+    $("#dialog_button_area").css("opacity", "0.5");
+    $("#dialog_button_area").attr("onclick", "");
+    return;
   }
+}
+
+//Hide NEW sign when input
+function hideNew(){
+  $("#username_new").css("opacity", "0");
+}
+
+//check if account is exist
+function ifExist(){
+  u = $('#username').val();
+  p = $('#password').val();
+
+  if(u.search("@") == -1 || u.search("@") == 1){
+    $("#dialog_button_area").css("opacity", "0.5");
+    return;
+  }else{
+    //do nothing
+  }
+
+  $.ajax({
+    type: "POST",
+    url: url+sapi_ifexist,
+    data: {
+      email: u,
+    },
+    success: function(res){
+      console.log(res);
+      if(res == 1){
+        console.log("isExist");
+        $("#username_new").css("opacity", "0");
+      }else{
+        console.log("notExist");
+        $("#username_new").css("opacity", "1");
+
+      }
+      //closeDialog();
+    },
+  });
+
 }
