@@ -53,7 +53,7 @@
         <div id="main">
           <div class="ticket_tm_container">
 
-            <div class="ticket_tm" v-for="item in ticketCount">
+            <div class="ticket_tm" v-for="(item, index) in ticketContent">
 
                 <div class="ticket_tm_top">
                     <div class="ticket_tm_top_title">
@@ -63,13 +63,13 @@
 
                 <div class="ticket_tm_main">
                     <div class="ticket_tm_main_movieinfo">
-                        <div class="ticket_tm_main_title"><a>STAR WAR: THE LAST JEDI</a></div>
-                        <div class="ticket_tm_main_time"><a>5:40 PM</a><br><a>10/01/2018</a></div>
+                        <div class="ticket_tm_main_title"><a>{{filmName}}</a></div>
+                        <div class="ticket_tm_main_time"><a>{{item.t}}</a><br><a>{{item.d}}</a></div>
                     </div>
 
                     <div class="ticket_tm_main_refcode">
                         <div class="ticket_tm_main_refcode_title"><a>REFERENCE CODE</a></div>
-                        <div class="ticket_tm_main_fefcode_code"><a>RF3C9YULJ</a></div>
+                        <div class="ticket_tm_main_fefcode_code"><a>{{item.refCode}}</a></div>
                     </div>
                 </div>
 
@@ -87,12 +87,19 @@
                 </div>
 
                 <div class="ticket_tm_seat">
-                    <div class="ticket_tm_seat_position"><a>C12</a></div>
-                    <div class="ticket_tm_seat_type"><a>2D-AD</a></div>
+                    <div class="ticket_tm_seat_position"><a>{{item.seat}}</a></div>
+                    <div class="ticket_tm_seat_type"><a>{{item.type}}</a></div>
                 </div>
 
             </div>
         </div>
+        </div>
+
+        <div class="endingTell">
+          <div class="endingTell_text">
+            <div><a>USE YOUR REFERENCE CODE TO COLLECT TICKET IN POPCORN CINEMA</a></div>
+            <div class="endingTell_text_link"><a href="./index.html">BACK TO HOME</a></div>
+          </div>
         </div>
 
         <div class='dialog' id='dialog'>

@@ -1034,12 +1034,10 @@ height:500px;
 		width: 320px;
 		height: auto;
 	}
-	.date_menu select{
-		margin-left: 0%;
-	}
+
 
 	.time{
-		margin-left:260px;
+		margin-left:18%;
 	}
 
 	.seats{
@@ -1048,10 +1046,6 @@ height:500px;
 
 	.line_sep img{
 		width: 1170px;
-	}
-
-	.time{
-		margin-left: 145px;
 	}
 
 	.billing{
@@ -1065,6 +1059,7 @@ height:500px;
 	.date_menu select{
 		width: 480px;
 		font-size: 20px;
+		margin-left:18%;
 	}
 
 	.imgbutton{

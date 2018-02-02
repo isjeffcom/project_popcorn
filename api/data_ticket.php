@@ -21,13 +21,34 @@
 
   if(isset($_GET['id'])){
     $sql = "SELECT * FROM popcorn_ticket WHERE id=".$_GET['id']."";
-
   }
 
   if(!isset($_GET['id']) && !isset($_GET['uid']) && !isset($_GET['fid'])){
     $sql = "SELECT * FROM popcorn_ticket ORDER BY ts DESC";
 
   }
+
+  //Catch mutiple id
+  if(isset($_GET['mtid'])){
+    //pass data from get par saperate by '-'
+    $tid = explode('-', $_GET['mtid']);
+    
+    //Generate sql code after WHERE 
+    for($i=0;$i<count($tid);$i++){
+      if($i == 0){
+        $tid_c = " id = ".$tid[$i];
+      }else{
+        $tid_c = $tid_c." OR id = ".$tid[$i];
+      }
+      
+    }
+
+    //Write sql
+    $sql = "SELECT * FROM popcorn_ticket WHERE ".$tid_c."";
+
+  }
+
+
 
   //query type:select, get data from database: py
   $result = $link->query($sql);

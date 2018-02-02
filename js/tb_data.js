@@ -158,7 +158,7 @@ var view = new Vue({
       var tk_fid = this.f_id;
       var tk_time = tk_info[0].time;
       var tk_type = tk_info[0].type;
-
+      var tk_date = tk_info[0].date;
 
       var tk_st_arr = [];
       var toTicketPar;
@@ -176,6 +176,7 @@ var view = new Vue({
         uid: tk_uid,
         fid: tk_fid,
         ftime: tk_time,
+        fdate: tk_date,
         type: tk_type,
         seat: String(tk_st_arr),
       }

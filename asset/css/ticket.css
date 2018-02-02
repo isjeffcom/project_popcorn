@@ -15,6 +15,7 @@
 
 .ticket_tm_container{
     margin-top:220px;
+    margin-bottom:400px;
     width:100%;
 }
 
@@ -118,20 +119,20 @@
 }
 
 
-.ticket_semi_circle_top {  
-    border-radius: 0 0 100px 100px;  
+.ticket_semi_circle_top {
+    border-radius: 0 0 100px 100px;
     height: 36px;
     width:72px;
-    background-color:#0c0f19;  
-}  
+    background-color:#0c0f19;
+}
 
-.ticket_semi_circle_bottom {  
+.ticket_semi_circle_bottom {
 
-    border-radius: 100px 100px 0 0;  
-    height: 36px;  
+    border-radius: 100px 100px 0 0;
+    height: 36px;
     width:72px;
-    background-color:#0c0f19;  
-}  
+    background-color:#0c0f19;
+}
 
 .ticket_tm_cut_line{
     top: 0px;
@@ -158,3 +159,24 @@
     font-size:18px;
 }
 
+.endingTell{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  position: absolute;
+  bottom: -320px;
+}
+
+.endingTell_text{
+}
+
+.endingTell_text a{
+  font-family:barlowbold;
+  font-size:20px;
+  color:#fff;
+}
+
+.endingTell_text_link{
+  text-decoration: underline;
+  margin-top:6px;
+}

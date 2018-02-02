@@ -10,6 +10,7 @@
     $uid = $_POST["uid"];
     $fid = $_POST["fid"];
     $t = $_POST["ftime"];
+    $d = $_POST["fdate"];
     $type = $_POST["type"];
     $ts = time();
     $state = 0;
@@ -21,12 +22,11 @@
       $refCode = gRS();
       $seat_s = $seat[$i];
 
-      $sql = "INSERT INTO popcorn_ticket (uid, fid, refCode, seat, t, type, state, ts)
-      VALUES ('$uid', '$fid', '$refCode', '$seat_s', '$t', '$type', '$state', '$ts')";
+      $sql = "INSERT INTO popcorn_ticket (uid, fid, refCode, seat, t, d, type, state, ts)
+      VALUES ('$uid', '$fid', '$refCode', '$seat_s', '$t', '$d', '$type', '$state', '$ts')";
 
       $updateSqlRun = mysqli_query($link, $sql);
       if($updateSqlRun){
-
         $query = "SELECT id FROM popcorn_ticket WHERE refCode = '".$refCode."'";
         $queryrun = mysqli_query($link, $query);
         $queryRes = mysqli_fetch_array($queryrun);
