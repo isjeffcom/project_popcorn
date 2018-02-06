@@ -33,7 +33,7 @@ $(document).ready(function() {
                   var val = this.node().attr("id");
                   var seat_row = getRow(val.charAt(0));
                   var seat_column = val.substring(val.search('_')+1, val.length);
-                  $("#seat_to_ticket").append("<ul class='seat_ticket_single' id='stt_"+val+"'><li><a>SEAT</a><a class='tk_position'> "+seat_row + seat_column+"</a></li><li>&#163;<a style='color:#A6792C;font-size:1.1em;' class='price_single'>"+this.data().price+"</a></li></ul>");
+                  $("#seat_to_ticket").append("<ul class='seat_ticket_single' id='stt_"+val+"'><li><a class='tk_stitle'>SEAT</a><a class='tk_position'> "+seat_row + seat_column+"</a></li><li>&#163;<a style='color:#A6792C;font-size:1.1em;' class='price_single'>"+this.data().price+"</a></li></ul>");
                   if($(".price_single")){
                     $(".price_single").each(function(){
                       finalPrice = finalPrice + parseInt($(this).text());

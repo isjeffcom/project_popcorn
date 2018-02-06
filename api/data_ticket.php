@@ -18,7 +18,6 @@
     $sql = "SELECT * FROM popcorn_ticket WHERE uid=".$_GET['sid']."";
 
   }
-
   if(isset($_GET['id'])){
     $sql = "SELECT * FROM popcorn_ticket WHERE id=".$_GET['id']."";
   }

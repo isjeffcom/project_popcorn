@@ -1014,6 +1014,13 @@ height:500px;
 	font-size: 24px;
 }
 
+.tk_stitle{
+	font-size:20px;
+}
+
+.tk_position{
+	font-size:20px;
+}
 
 
 @media screen and (max-width: 1440px){
@@ -1037,7 +1044,21 @@ height:500px;
 
 
 	.time{
-		margin-left:18%;
+		margin-left: 20%;
+	}
+
+	.time_table{
+		width:90%;
+	}
+
+	.time ul{
+		margin-right: 80px;
+		margin-bottom: 36px;
+		margin-right: 40px;
+	}
+
+	.stt_time{
+		margin-left:11.5%;
 	}
 
 	.seats{

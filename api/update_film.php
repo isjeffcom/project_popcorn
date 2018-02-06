@@ -15,7 +15,6 @@
         $id = cleanStr($_POST['id']);
         $postType = $_POST['postType'];
 
-
         if($postType == 99){
             $update_sql="DELETE FROM popcorn_film WHERE id='$id'";
             $updateSqlRun = mysqli_query($link, $update_sql);
@@ -23,12 +22,10 @@
                 //If success
                 echo 'updateSuccessful';
             }
-
             exit();
         }
 
         //vars
-        
         $name = cleanStr($_POST['name']);
         $cate = cleanStr($_POST['cate']);
         $brief = cleanStr($_POST['brief']);
@@ -48,7 +45,6 @@
             VALUES ('$name', '$cate','$brief', '$rDate', '$runningTime','$director', '$cast', '$rate', '$posterImg', '$previewImg', '$status', '$ts')";
         }
         if($postType == 1){
-            
             $update_sql="UPDATE popcorn_film SET name='$name', cate='$cate', brief='$brief', rDate='$rDate', runningTime='$runningTime', director='$director', cast='$cast', rate='$rate', posterImg='$posterImg', previewImg='$previewImg', status='$status', ts='$ts'
             WHERE id='$id'";
         }

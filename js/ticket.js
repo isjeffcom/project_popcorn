@@ -22,8 +22,6 @@ var view = new Vue({
     filmName:film_name,
   },
   created: function(){
-
-    
     t_id_push = function(){
       var frid;
       for(i=0;i<tid.length;i++){
@@ -43,7 +41,7 @@ var view = new Vue({
         var data = JSON.parse(response.body);
         this.ticketContent = data;
         this.fid = data[0].fid;
-        console.log(data);
+        console.log(this.fid);
         //console.log(response.body);
     }).then(function(){
       this.$http.post(url+api_film+"?id="+this.fid).then((response)=>{
