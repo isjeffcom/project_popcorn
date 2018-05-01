@@ -1,4 +1,4 @@
-let url="http://up786100.ct.port.ac.uk/api/";
+let url="https://isjeff.com/popcorn/api/";
 let api_ticket="data_ticket.php";
 let api_film="data_film.php";
 

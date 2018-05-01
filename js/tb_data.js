@@ -1,4 +1,4 @@
-let url="http://up786100.ct.port.ac.uk/api/";
+let url="https://isjeff.com/popcorn/api/";
 let api_film ="data_film.php";
 let api_timetable="data_tt.php";
 let api_user="data_user.php";
@@ -23,6 +23,8 @@ var noUsList = false;
 var haveUsList = false;
 var uid;
 var fid;
+
+var autofill_count = 0;
 
 
 
@@ -160,6 +162,12 @@ var view = new Vue({
       var tk_type = tk_info[0].type;
       var tk_date = tk_info[0].date;
 
+      var tk_bank = $("#ip_bcn").val()
+      var tk_cvv = $("#ip_cvv").val()
+      var tk_ed = $("#ip_ed").val()
+      var tk_ba = $("#ip_ba").val()
+      var tk_pc = $("#ip_pc").val()
+
       var tk_st_arr = [];
       var toTicketPar;
 
@@ -172,12 +180,32 @@ var view = new Vue({
         return;
       }
 
+
+      if(tk_bank == "" || tk_cvv == "" || tk_ed == "" || tk_ba == "" || tk_pc == ""){
+        alert("Please fill in all information.");
+        return;
+      }
+
+      if(tk_bank.length < 15 || tk_bank.length > 20){
+        alert("Please check your Bank Card Number.");
+        return;
+      }
+
+      var tk_ed_m = tk_ed.split("/");
+      if(tk_ed.length < 4 || parseInt(tk_ed_m[0]) > 12 || parseInt(tk_ed_m[1]) > 99){
+        alert("Please check your Expires Date");
+        return;
+      }
+
       var tk_data = {
         uid: tk_uid,
         fid: tk_fid,
         ftime: tk_time,
         fdate: tk_date,
         type: tk_type,
+        address: tk_ba,
+        postcode: tk_pc,
+        pcard: tk_bank,
         seat: String(tk_st_arr),
       }
       this.$http.post(url+sapi_ticket, tk_data).then((response)=>{
@@ -228,4 +256,18 @@ function getTId(){
   var url4id = new URL(currentUrl);
   var tid = url4id.searchParams.get("tid");
   return tid;
+}
+
+//Auto fill / in expires date
+function autofill(){
+  if(autofill_count > 0){
+    return;
+  }
+  var v = $("#ip_ed").val();
+  if(v.length == 2){
+    $("#ip_ed").val(v + "/");
+    autofill_count++;
+  }else{
+    //do nothing
+  }
 }

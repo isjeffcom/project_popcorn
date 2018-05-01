@@ -1,4 +1,4 @@
-let ps_url="http://up786100.ct.port.ac.uk/api/";
+let ps_url="https://isjeff.com/popcorn/api/";
 let ps_api_s ="data_s.php";
 //Data set
 var s_img = [];
@@ -32,6 +32,7 @@ setInterval(function(){
     $("#s_play_btn").attr("data-id", s_id[count]);
     //Call back: Change Img
     setTimeout(function(){
+      $("#s_play_btn").attr("data-id", s_id[count]);
       self.attr("src", s_img[count]);
       self_name.attr("data-id",s_id[count]);
       self_name.text(s_name[count]);

@@ -26,6 +26,7 @@ University of Portsmouth
     <script src="./js/video_overlay.js"></script>
     <script src="./js/js.cookie.js"></script>
     <script src="./js/signin.js" defer></script>
+    <script src="./js/logohome.js" defer></script>
     <script src="./js/mobile.js" defer></script>
 
 
@@ -51,20 +52,18 @@ University of Portsmouth
     <div class='navBar'>
 
       <div class='navBar_logo' id='logoBg'>
-        <a href="./index.html"><img src = './asset/img/headlogo01.png' alt='logo' id='logo'></a>
+        <img src = './asset/img/headlogo01.png' alt='logo' id='logo'>
+        <img src = './asset/img/headlogo.png' id='logo_mobile'>
       </div>
 
       <script src='./js/logohome.js'></script>
 
-
-
       <div class='navBar_mobile'>
         <i class="fa fa-user-circle" aria-hidden="true" onclick='openDialog()' id='navMBTN'></i>
-
-        <!--i class="fa fa-user-circle" aria-hidden="true" onclick='signOut()' id='navMUN'></i-->
       </div>
 
     </div>
+
 
 	<!--poster here-->
 
@@ -90,13 +89,13 @@ University of Portsmouth
               <li></li>
               <li><a style="font-family: barlowbold">RELEASE DATE</a></li>
               <li><a>{{item.rDate}}</a></li>
-              <li></li>
+              <br>
               <li><a style="font-family: barlowbold">RUNNING TIME</a></li>
               <li><a>{{item.runningTime}}</a></li>
-              <li></li>
+              <br>
               <li><a style="font-family: barlowbold">DIRECTER</a></li>
               <li><a>{{item.director}}</a></li>
-              <li></li>
+              <br>
               <li><a style="font-family: barlowbold">CAST</a></li>
               <li v-for="i in castList"><a>{{i}}</a><br></li>
             </ul>
@@ -105,13 +104,16 @@ University of Portsmouth
 
 
 
+
         <div class='movie_info'>
+            <div class="movie_play" id="movie_play" v-on:click="openVideoFF(item.id)">
+                <img src="./asset/img/ptn.png">
+            </div>
 
             <ul>
-              <li><div class='imgbutton' alt='image' onclick="openVideo()"></div></li>
-              <li><a style="color:#ffffff;font-size:3.5em;font-family:barlow;">{{item.name}}</a></li>
-              <li><a style="color:#ffffff;font-size:1em;font-family:barlow;">{{item.cate}} | {{item.runningTime}}</a></li>
-              <li><a><img src='./asset/img/sep.png' alt='image'></a></li>
+              <li><div id="titlemov1"><a>{{item.name}}</a></div></li>
+              <li><div id="titlecata1"><a>{{item.cate}} | {{item.runningTime}}</a></div></li>
+              <li><div id="titleline1"><a><img src='./asset/img/sep.png' alt='image'></a></div></li>
             </ul>
             <div class='paragraph_f'>
               <p style="color:#ffffff;font-size:1em;font-family:barlow;">{{item.brief}}</p>
@@ -123,11 +125,13 @@ University of Portsmouth
 
     <div class='date_select'>
       <div class='date_menu'>
+
         <select v-model="tt_st" @change="tm_switch">
                 <option v-for="t in date_list" v-bind:value="t">
                     {{ t }}
                 </option>
         </select>
+        <div class="select_down"><div class="arrow-down"></div></div>
      </div>
     </div>
 
@@ -157,6 +161,7 @@ University of Portsmouth
 
        <div class="vP_container_inside">
          <div class="videoimg" v-for="(item, index) in videoContent1" v-if="index < 3" v-on:click="openVideo(item.id)">
+           <div class="videoimg_playbtn"><img src="./asset/img/ptn_white.png" style="opacity:1;" id="videoImgPlayBtn"></div>
            <img v-bind:src='item.pImgUrl' alt='image'>
          </div>
        </div>
@@ -166,7 +171,7 @@ University of Portsmouth
 
     <div class='content_title'>
       <a class='ct ct_1'>ALSO SHOWING</a>
-      <img src='./asset/img/indicator.png' alt='image'>
+      <div class="title_indicator2"><img src='./asset/img/indicator.png' alt='image'></div>
     </div>
 
     <div class='content_video_list' id='cvl_2'>
@@ -224,10 +229,6 @@ University of Portsmouth
       <a> </a>
     </div>
 
-    <div class='alertOverlay' id='alertOverlay'>
-      <a id='alertContent'>Something wrong here.</a>
-    </div>
-
     <div class="line01">
 
       <img src = "./asset/img/footer_line.png">
@@ -253,12 +254,19 @@ University of Portsmouth
           <div class="contact_container">
               <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
               <div class="contact_single" style="margin-top: -24px;"><a href='./index.html'><img src='./asset/img/headlogo.png' alt='logo'></a></div>
-              <div class="contact_single"><a href='#'>Customer service 020 8789 1436</a></div>
+              <div class="contact_single"><a href='#'>Customer Service 020 8789 1436</a></div>
+          </div>
+
+          <div class="contact_container_mobile">
+              <div class="contact_single"><a href='./index.html'><img src='./asset/img/headlogo.png' alt='logo'></a></div>
+              <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
+              <div class="contact_single"><a href='#'>Customer Service 020 8789 1436</a></div>
           </div>
         </div>
 
       </div>
     </footer>
+
 
       <script src="./js/signin.js"></script>
       <script src='./js/logohome.js'></script>

@@ -74,6 +74,8 @@ a {
     font-size:12px;
   }
 
+  
+
 
 }
 
@@ -150,11 +152,7 @@ a {
   transform: scale(1.02);
 }
 
-@media screen and (max-width: 1440px){
-  .vl_container{
-    margin-right: 8%;
-  }
-}
+
 
 .vl_container_img{
   height:358px;
@@ -278,59 +276,6 @@ a {
 
 .vl_back_button>i{
   opacity: 0.7;
-}
-
-@media screen and (max-width: 600px){
-
-  .content{
-    margin-top:14%;
-  }
-
-  .ct{
-    font-size:20px;
-  }
-
-  .content_video_list{
-    /*Layout Ref VEVO website*/
-    display:block;
-    flex-direction:row;
-    flex-wrap:nowrap;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    -webkit-box-align: start;
-    align-items: flex-start;
-    width:100%;
-    cursor: pointer;
-    transition: all 180ms ease-in-out;
-
-  }
-
-  .banner{
-    display:none;
-
-  }
-
-
-  .vl_title{
-    font-size:18px;
-  }
-
-  .vl_details{
-    display:none;
-  }
-
-  .vl_info{
-    display:none;
-  }
-
-  .vl_more_button{
-    display:block;
-  }
-
-  .vl_button{
-    display:none !important;
-  }
-
 }
 
 .videoarea{
@@ -497,7 +442,11 @@ color: #ffffff;
 }
 
 .ticket_but1_container{
-  margin-top:160px;
+  position: fixed;
+  bottom: 32px;
+  right: 140px;
+  opacity:0.3;
+  transition: all 240ms ease-in-out;
 }
 
 .ticket_but1 img{
@@ -514,7 +463,6 @@ color: #ffffff;
 }
 
 .timeline_container{
-
   text-align: center;
   width:100%;
 }
@@ -533,6 +481,10 @@ color: #ffffff;
   flex-direction: row;
   margin-top: -19px;
   width: calc(100% - 160px);
+}
+
+.line_item_mobile{
+  display:none;
 }
 
 .line_item{
@@ -593,11 +545,182 @@ color: #ffffff;
 }
 
 
-
-
-
 @media screen and (max-width: 1440px){
   .timeline_video_container{
     margin-left: 8.2%;
   }
+
+  .vl_container{
+    margin-right: 8%;
+  }
+}
+
+@media screen and (max-width: 600px){
+
+  .content{
+    margin-top:65%;
+  }
+
+  .ct{
+    letter-spacing: 2px;
+    font-size: 20px;
+  }
+
+  .title_indicator_img {
+    margin-top: 4px;
+    margin-left: 12px;
+  }
+
+  .title_indicator_img img{
+    width: 240px;
+  }
+
+  .vl_container{
+    width: 172px;
+    height: 280px;
+    margin-top: 36px;
+  }
+
+  .vl_container_img{
+    height: 272px;
+  }
+
+  .vl_container img{
+    width: 172px;
+    height: 272px;
+  }
+  
+  .vl_text a{
+    font-size: 16px;
+  }
+
+  .videoPreview_Container {
+    width: 100%;
+    height: 320px;
+  }
+
+  .vP_container_inside{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .videoimg_playbtn{
+    margin-top: 70px;
+    margin-left: 150px;
+  }
+
+  .videoimg {
+    height: 220px;
+    overflow: visible;
+  }
+
+  .videoimg img {
+    opacity: 0.6;
+  }
+
+  .videoimg_playbtn{
+    display:none;
+  }
+
+  .timeline{
+    margin-top: 15%;
+  }
+
+  .timeline_container{
+    display:none;
+  }
+
+  .timeline_video_container{
+    margin-left: 0%;
+    display: block;
+    width: 100%;
+  }
+
+  .timeline_video_single {
+    width: 60%;
+    margin-left: 160px;
+    margin-bottom: 40px;
+  }
+
+  .line_item{
+    width: auto;
+    height: auto;
+    border-radius: 0px;
+    margin-left: 40px;
+    border-spacing: 2px;
+  }
+
+  .line_item_mobile{
+    display:block;
+    width: auto;
+    height: auto;
+    border-radius: 0px;
+    margin-left: 40px;
+    border-spacing: 2px;
+  }
+  
+
+  .timeline_inner_text {
+    margin-top: -40px;
+    margin-left: -180px;
+  }
+
+  .ticket_but1{
+    height:70px;
+  }
+
+  .line01{
+    margin-top:40px;
+  }
+
+  .f_container {
+    height: 100px;
+  }
+
+  .content_video_list{
+    /*Layout Ref VEVO website*/
+    display:block;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    -webkit-box-align: start;
+    align-items: flex-start;
+    width:100%;
+    cursor: pointer;
+    transition: all 180ms ease-in-out;
+
+  }
+
+  .banner{
+    display:none;
+
+  }
+
+
+  .vl_title{
+    font-size:18px;
+  }
+
+  .vl_details{
+    display:none;
+  }
+
+  .vl_info{
+    display:none;
+  }
+
+  .vl_more_button{
+    display:block;
+  }
+
+  .vl_button{
+    display:none !important;
+  }
+
+  
+
 }

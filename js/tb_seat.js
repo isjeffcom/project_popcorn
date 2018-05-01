@@ -21,7 +21,7 @@ $(document).ready(function() {
             if (this.status() == 'available') {
 
 
-                //Hallo
+
                 if($(".price_single").length>5){
 
                   $("#seat_alert_text").text("You can only book 6 tickets per order");

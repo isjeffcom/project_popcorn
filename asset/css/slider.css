@@ -157,3 +157,51 @@ a{
 .ps_name_des{
   margin-top:-16px;
 }
+
+.ps_name_des a{
+  font-size:20px; 
+  letter-spacing: 1px;
+}
+
+
+@media screen and (max-width: 600px){
+
+  .popcorn_slider{
+    height: 240px;
+  }
+
+  .ps_controller{
+    display:none;
+  }
+
+  .ps_name {
+    top: 170px;
+    left: 70px;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .ps_name_container{
+    margin-top:2px;
+  }
+
+  .ps_name_des{
+    margin-top: -2px;
+  }
+
+  .ps_name_des a{
+    font-size: 16px;
+  }
+
+  .ps_playbtn{
+    left: -50px;
+    top: 4px;
+  }
+
+  .ps_playbtn img {
+    width: 50%;
+  }
+
+
+
+}

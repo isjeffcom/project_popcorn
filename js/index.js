@@ -1,4 +1,5 @@
-let url="http://up786100.ct.port.ac.uk/api/";
+let url="https://isjeff.com/popcorn/api/";
+//let url="http://localhost:7888/project_popcorn/api/";
 let api_film ="data_film.php";
 let api_v ="data_v.php";
 let api_t ="data_tt.php";
@@ -87,11 +88,11 @@ var view = new Vue({
 });
 
 function navToDetail(id){
-  window.location.href = 'http://up786100.ct.port.ac.uk/video.html?id='+id;
+  window.location.href = 'https://isjeff.com/popcorn/video.html?id='+id;
 }
 
 function sliderToDetail(){
-  window.location.href = 'http://up786100.ct.port.ac.uk/video.html?id='+ $("#psName").attr("data-id");
+  window.location.href = 'https://isjeff.com/popcorn/video.html?id='+ $("#psName").attr("data-id");
 }
 
 

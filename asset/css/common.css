@@ -13,6 +13,10 @@ University of Portsmouth
 
 }
 
+html{
+  width:100%;
+}
+
 @font-face {
   font-family: barlow;
   src: local('☺'),
@@ -366,6 +370,7 @@ button:focus {
   margin-left:45%;
   cursor: pointer;
   transition: all 400ms ease-in-out;
+  box-shadow: 0 2px 24px rgba(255,193,59,0.5), 0 2px 24px rgba(255,26,62,0.5);
 }
 
 .popcorn_btn_1:hover{
@@ -404,11 +409,15 @@ button:focus {
   width: 100%;
 }
 
+#logo_mobile{
+  display:none;
+}
+
 .navBar_logo{
-  width: 150px;
+  width: 380px;
   cursor: pointer;
   margin-top: 20px;
-  margin-left: 40px;
+  margin-left: 80px;
   transition: all 240ms ease-in-out;
 }
 
@@ -417,7 +426,7 @@ button:focus {
 }
 
 .navBar_logo img{
-  width:150px;
+  width:380px;
 }
 
 .navBar_sBar{
@@ -536,6 +545,10 @@ button:focus {
   #navMUN{
     font-size:18px !important;
   }
+
+  .navBar_logo{
+    margin-left: 40px;
+  }
 }
 
 @media screen and (max-width: 1024px){
@@ -567,13 +580,21 @@ button:focus {
 
 
 @media screen and (max-width: 600px){
-  .navBar_logo{
-    background-color: transparent;
+
+  #logo_mobile{
+    display:block;
   }
 
-  .navBar_logo>img{
-    height:48px;
-    width:48px;
+  #logo{
+    display:none;
+  }
+
+  .navBar_logo{
+    margin-left: 20px;
+  }
+
+  .navBar_logo img{
+    width:128px;
     margin-top:16px;
   }
 
@@ -1020,6 +1041,10 @@ button:focus {
 
 }
 
+.contact_container_mobile{
+  display:none;
+}
+
 .contact_container{
   height:100px;
   width:100%;
@@ -1049,23 +1074,38 @@ button:focus {
 @media screen and (max-width: 600px){
   .footer{
     color:#ffffff;
-    /*height:72px;*/
+    height:0px;
     background-color:#1e1e1e;
   }
-  .footer img{
-    width:66px;
+
+  .footer img {
+    width: 126px;
     margin-top: 16px;
-  }
+    margin-bottom: 16px;
+}
 
   .footer_list{
-    display:none;
+    display:block;
   }
 
   .footer_socialNet{
-
       margin-top: 40px;
       transform: scale(0.9);
 
+  }
+
+  .contact_container{
+    display:none;
+  }
+
+  .contact_container_mobile{
+    text-align: center;
+    display:block;
+    height: 140px;
+  }
+
+  .contact_single{
+    width:100%;
   }
 }
 

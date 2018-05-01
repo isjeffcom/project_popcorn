@@ -11,7 +11,7 @@ University of Portsmouth
 
   <head>
     <title>Popcorn | Book Film in Advance</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="./asset/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./asset/css/common.css" >
     <link rel="stylesheet" type="text/css" href="./asset/css/index.css" >
@@ -22,11 +22,14 @@ University of Portsmouth
     <script src="./js/vue.min.js"></script>
     <script src="./js/vue-resource.js"></script>
     <script src="./js/js.cookie.js"></script>
+    <script src='./js/common.js' defer></script>
+
     <script src="./js/index.js" defer></script>
 
     <script src="./js/popcorn_slider.js" defer></script>
     <script src="./js/signin.js" defer></script>
     <script src="./js/mobile.js" defer></script>
+
 
     <link rel="icon" href="./asset/img/favicon1.png" type="image/gif" sizes="16x16">
 
@@ -49,6 +52,7 @@ University of Portsmouth
 
       <div class='navBar_logo' id='logoBg'>
         <img src = './asset/img/headlogo01.png' alt='logo' id='logo'>
+        <img src = './asset/img/headlogo.png' id='logo_mobile'>
       </div>
 
       <script src='./js/logohome.js'></script>
@@ -75,7 +79,7 @@ University of Portsmouth
           <div class="ps_playbtn" id="s_play_btn" v-on:click="sliderOpenVideo" data-id="0"><img src="./asset/img/ptn.png"></div>
           <div class="ps_name_container">
             <div class="ps_name_title" onclick="sliderToDetail()"><a id="psName" data-id="0"></a></div>
-            <div class="ps_name_des" onclick="sliderToDetail()"><a style="font-size:20px; letter-spacing: 1px;">NOW IN POPCORN CINEMA</a></div>
+            <div class="ps_name_des" onclick="sliderToDetail()"><a>BOOK TICKETS FOR THIS FILM</a></div>
           </div>
         </div>
 
@@ -120,7 +124,7 @@ University of Portsmouth
 
         <div class="vP_container_inside">
             <div class='videoimg' v-for="item in video_content.slice(0, 3)" v-on:click="openVideo(item.id)" >
-              <div class="videoimg_playbtn"><img src="./asset/img/ptn_white.png" style="opacity:1;"></div>
+              <div class="videoimg_playbtn"><img src="./asset/img/ptn_white.png" style="opacity:1;" id="videoImgPlayBtn"></div>
               <img v-bind:src='item.pImgUrl' alt='image'>
             </div>
         </div>
@@ -140,14 +144,17 @@ University of Portsmouth
               <div class="timeline_inner_text"><a>{{item}}</a></div>
             </div>
           </div>
-
-
         </div>
      </div>
 
         <div class="timeline_video_container">
 
           <div class='timeline_video_single' v-on:click="navToDetail(item.id)" v-for="item in film_content.slice(0,5)">
+
+              <div class="line_item_mobile" >
+                  <div class="timeline_inner_text"><a>{{item.rDate}}</a></div>
+              </div>
+
               <img v-bind:src='item.posterImg' alt='image'><br>
               <div class='vl_text tvs_text'>
                 <a class='vl_title'>{{item.name}}</a><br>
@@ -202,14 +209,10 @@ University of Portsmouth
       <a> </a>
     </div>
 
-    <div class='alertOverlay' id='alertOverlay'>
-      <a id='alertContent'>Something wrong here.</a>
-    </div>
-
     <div class='ticket_but1'>
 
-      <div class="ticket_but1_container">
-          <div class="popcorn_btn_1" onclick="window.location.href = './ticketbilling.html'">
+      <div class="ticket_but1_container" id="ticket_but1_container">
+          <div class="popcorn_btn_1" id="ticket_btn_1" onclick="window.location.href = './ticketbilling.html'">
             <div class="popcorn_btn_1_inside">
               <div class="popcorn_btn_1_svg">
                 <svg t="1516376133506" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1048" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><defs><style type="text/css"></style></defs><path d="M828.5184 179.2H195.4816C144.1792 179.2 102.4 221.8496 102.4 274.2784v475.4432c0 52.4288 41.7792 95.0784 93.0816 95.0784h633.0368c51.3536 0 93.0816-42.6496 93.0816-95.0784V274.2784c0-52.4288-41.7792-95.0784-93.0816-95.0784z m41.8816 563.2c0 31.4368-20.3776 51.2-51.2 51.2H204.8c-30.8224 0-51.2-19.7632-51.2-51.2v-307.2h716.8v307.2z m0-409.6H153.6v-51.2c0-31.488 20.3776-51.2 51.2-51.2h614.4c30.8224 0 51.2 19.712 51.2 51.2v51.2zM256 716.8h281.6s25.6 0.8192 25.6-25.6-25.6-25.6-25.6-25.6H256s-25.6-0.8192-25.6 25.6 25.6 25.6 25.6 25.6z" fill="#000000" p-id="1049"></path></svg>
@@ -245,6 +248,12 @@ University of Portsmouth
           <div class="contact_container">
               <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
               <div class="contact_single" style="margin-top: -24px;"><a href='./index.html'><img src='./asset/img/headlogo.png' alt='logo'></a></div>
+              <div class="contact_single"><a href='#'>Customer Service 020 8789 1436</a></div>
+          </div>
+
+          <div class="contact_container_mobile">
+              <div class="contact_single"><a href='./index.html'><img src='./asset/img/headlogo.png' alt='logo'></a></div>
+              <div class="contact_single"><a href='#'>POPCORN 2017 All rights reserved</a></div>
               <div class="contact_single"><a href='#'>Customer Service 020 8789 1436</a></div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-let url="http://up786100.ct.port.ac.uk/api/";
+let url="https://isjeff.com/popcorn/api/";
 let api_v="data_v.php";
 let api_film="data_film.php";
 let api_timetable="data_tt.php";
@@ -91,6 +91,29 @@ var view = new Vue({
         isOpen = 0;
       }
     },
+
+    openVideoFF(vid){
+        //always get data for at first load
+        if(vid){
+          this.$http.post(url+api_v+"?vid="+vid).then((response)=>{
+              var data = JSON.parse(response.body);
+              var vurl = readYoutubeURL(data[0].url);
+              $("#video_overlay_player").find("iframe").attr("src", vurl);
+          });
+        }
+  
+        if(isOpen == 0){
+          $("#video_overlay").css("display", "block");
+          $("#video_overlay_player").css("display", "block");
+  
+          isOpen = 1;
+        }else{
+          $("#video_overlay").css("display", "none");
+          $("#video_overlay_player").css("display", "none");
+          $("#video_overlay_player").find("iframe").attr("src", "");
+          isOpen = 0;
+        }
+      },
 
     tm_switch(){
       this.now_st = this.tt_st;
